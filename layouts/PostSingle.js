@@ -45,7 +45,7 @@ const PostSingle = ({
                 <div className="relative">
                   <GeneratedCover
                     post={{ frontmatter, slug }}
-                    className="min-h-[240px] md:min-h-[320px] lg:min-h-[400px]"
+                    className="min-h-[180px] md:min-h-[230px] lg:min-h-[280px]"
                   />
                   <ul className="absolute left-2 top-3 flex flex-wrap items-center gap-y-2">
                     {categories.map((tag, index) => (

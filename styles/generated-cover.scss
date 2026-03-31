@@ -14,7 +14,7 @@
     position: absolute;
     content: attr(data-stripe-label);
     top: 50%;
-    left: 95%;
+    left: 96.5%;
     transform: translate(-50%, -50%);
     writing-mode: vertical-rl;
     text-orientation: mixed;
@@ -37,8 +37,8 @@
     pointer-events: none;
     background: linear-gradient(
       90deg,
-      transparent 0 90%,
-      color-mix(in srgb, var(--cover-c2) 28%, white 72%) 90% 100%
+      transparent 0 93%,
+      color-mix(in srgb, var(--cover-c2) 28%, white 72%) 93% 100%
     );
     opacity: var(--cover-stripe-opacity, 0.55);
     z-index: 1;
