@@ -2,21 +2,27 @@ import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import Sidebar from "@layouts/partials/Sidebar";
 import { getSinglePage } from "@lib/contentParser";
-import { getTaxonomy } from "@lib/taxonomyParser";
+import { getTaxonomyMeta } from "@lib/taxonomyParser";
 import { slugify } from "@lib/utils/textConverter";
 import Post from "@partials/Post";
 const { blog_folder } = config.settings;
 
 // category page
-const Category = ({ postsByCategories, category, posts, categories }) => {
+const Category = ({
+  postsByCategories,
+  category,
+  categoryLabel,
+  posts,
+  categories,
+}) => {
   return (
-    <Base title={category}>
+    <Base title={categoryLabel}>
       <div className="section mt-4">
         <div className="container">
           <h1 className="h2 mb-12">
             Найдены записи содержащие:
             <span className="section-title mb-0 ml-1 inline-block capitalize">
-              {category.replace("-", " ")}
+              {categoryLabel}
             </span>
           </h1>
           <div className="row">
@@ -41,11 +47,11 @@ export default Category;
 
 // category page routes
 export const getStaticPaths = () => {
-  const allCategories = getTaxonomy(`content/${blog_folder}`, "categories");
+  const allCategories = getTaxonomyMeta(`content/${blog_folder}`, "categories");
 
   const paths = allCategories.map((category) => ({
     params: {
-      category: category,
+      category: category.slug,
     },
   }));
 
@@ -56,18 +62,22 @@ export const getStaticPaths = () => {
 export const getStaticProps = ({ params }) => {
   const posts = getSinglePage(`content/${blog_folder}`);
   const filterPosts = posts.filter((post) =>
-    post.frontmatter.categories.find((category) =>
-      slugify(category).includes(params.category)
+    post.frontmatter.categories.find(
+      (category) => slugify(category) === params.category
     )
   );
-  const categories = getTaxonomy(`content/${blog_folder}`, "categories");
+  const categories = getTaxonomyMeta(`content/${blog_folder}`, "categories");
+  const activeCategory = categories.find(
+    (category) => category.slug === params.category
+  );
 
   const categoriesWithPostsCount = categories.map((category) => {
     const filteredPosts = posts.filter((post) =>
-      post.frontmatter.categories.map((e) => slugify(e)).includes(category)
+      post.frontmatter.categories.map((e) => slugify(e)).includes(category.slug)
     );
     return {
-      name: category,
+      slug: category.slug,
+      label: category.label,
       posts: filteredPosts.length,
     };
   });
@@ -77,6 +87,7 @@ export const getStaticProps = ({ params }) => {
       posts,
       postsByCategories: filterPosts,
       category: params.category,
+      categoryLabel: activeCategory?.label || params.category,
       categories: categoriesWithPostsCount,
     },
   };

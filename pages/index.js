@@ -6,10 +6,10 @@ import Pagination from "@layouts/components/Pagination";
 import Post from "@layouts/partials/Post";
 import Sidebar from "@layouts/partials/Sidebar";
 import { getListPage, getSinglePage } from "@lib/contentParser";
-import { getTaxonomy } from "@lib/taxonomyParser";
+import { getTaxonomyMeta } from "@lib/taxonomyParser";
 import dateFormat from "@lib/utils/dateFormat";
 import { sortByDate } from "@lib/utils/sortFunctions";
-import { markdownify } from "@lib/utils/textConverter";
+import { markdownify, slugify } from "@lib/utils/textConverter";
 import Link from "next/link";
 import { FaRegCalendar } from "react-icons/fa";
 const { blog_folder, pagination } = config.settings;
@@ -191,14 +191,17 @@ export const getStaticProps = async () => {
   const { frontmatter } = homepage;
   const { banner, featured_posts, recent_posts, promotion } = frontmatter;
   const posts = getSinglePage(`content/${blog_folder}`);
-  const categories = getTaxonomy(`content/${blog_folder}`, "categories");
+  const categories = getTaxonomyMeta(`content/${blog_folder}`, "categories");
 
   const categoriesWithPostsCount = categories.map((category) => {
     const filteredPosts = posts.filter((post) =>
-      post.frontmatter.categories.includes(category)
+      post.frontmatter.categories
+        .map((item) => slugify(item))
+        .includes(category.slug)
     );
     return {
-      name: category,
+      slug: category.slug,
+      label: category.label,
       posts: filteredPosts.length,
     };
   });

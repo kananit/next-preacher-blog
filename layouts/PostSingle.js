@@ -3,7 +3,7 @@ import Base from "@layouts/Baseof";
 import GeneratedCover from "@layouts/components/GeneratedCover";
 import InnerPagination from "@layouts/components/InnerPagination";
 import dateFormat from "@lib/utils/dateFormat";
-import { markdownify } from "@lib/utils/textConverter";
+import { markdownify, slugify } from "@lib/utils/textConverter";
 import { DiscussionEmbed } from "disqus-react";
 import { MDXRemote } from "next-mdx-remote";
 import { useTheme } from "next-themes";
@@ -55,7 +55,7 @@ const PostSingle = ({
                       >
                         <Link
                           className="capitalize"
-                          href={`/categories/${tag.replace(" ", "-")}`}
+                          href={`/categories/${slugify(tag)}`}
                         >
                           {tag}
                         </Link>

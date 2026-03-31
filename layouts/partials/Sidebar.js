@@ -70,8 +70,8 @@ const Sidebar = ({ posts, categories, className }) => {
                     fill="#2ba283"
                   />
                 </svg>
-                <Link className="py-2" href={`/categories/${category.name}`}>
-                  {category.name.replace("-", " ")}
+                <Link className="py-2" href={`/categories/${category.slug}`}>
+                  {category.label}
                   <span className="absolute right-0 top-1/2 -translate-y-1/2 text-[10px] text-gray-500">
                     {category.posts}
                   </span>

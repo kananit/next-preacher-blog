@@ -1,7 +1,7 @@
 import config from "@config/config.json";
 import GeneratedCover from "@layouts/components/GeneratedCover";
 import dateFormat from "@lib/utils/dateFormat";
-import { plainify } from "@lib/utils/textConverter";
+import { plainify, slugify } from "@lib/utils/textConverter";
 import Link from "next/link";
 import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
 
@@ -22,10 +22,7 @@ const Post = ({ post }) => {
               className="mx-1 inline-flex h-7 rounded-[35px] bg-primary px-3 text-white sm:mx-1.5"
               key={"tag-" + index}
             >
-              <Link
-                className="capitalize"
-                href={`/categories/${tag.replace(" ", "-")}`}
-              >
+              <Link className="capitalize" href={`/categories/${slugify(tag)}`}>
                 {tag}
               </Link>
             </li>
