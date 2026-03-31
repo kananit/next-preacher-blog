@@ -182,15 +182,6 @@ footer .socials {
   @apply bg-theme-light dark:bg-darkmode-theme-dark;
 }
 
-.post {
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    min-height: 130px;
-  }
-}
-
 .single-blog {
   blockquote {
     @apply px-12 lg:px-[105px];

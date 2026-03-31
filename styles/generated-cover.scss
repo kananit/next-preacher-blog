@@ -1,0 +1,124 @@
+.generated-cover {
+  position: relative;
+  width: 100%;
+  min-height: 130px;
+  aspect-ratio: 5 / 2;
+  overflow: hidden;
+  background: linear-gradient(
+    var(--cover-angle),
+    var(--cover-c1),
+    var(--cover-c2)
+  );
+
+  &::before {
+    position: absolute;
+    content: attr(data-stripe-label);
+    top: 50%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(0.72rem, 1.8vw, 1.02rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: color-mix(in srgb, var(--cover-c2) 78%, white 22%);
+    opacity: var(--cover-stripe-text-opacity, 0);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  // Vertical stripe for base category
+  &::after {
+    position: absolute;
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent 0 90%,
+      color-mix(in srgb, var(--cover-c2) 28%, white 72%) 90% 100%
+    );
+    opacity: var(--cover-stripe-opacity, 0.55);
+    z-index: 1;
+  }
+
+  // Letter monograms — one <span> per extra category
+  &__layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+
+    &::before {
+      position: absolute;
+      content: "";
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &::after {
+      position: absolute;
+      left: var(--glyph-x, 76%);
+      top: var(--glyph-y, 32%);
+      content: attr(data-label);
+      transform: translate(-50%, -50%) rotate(var(--glyph-rotate, -6deg));
+      font-family: "Nunito", sans-serif;
+      font-size: var(--glyph-size, clamp(6.2rem, 16vw, 12rem));
+      font-weight: 700;
+      letter-spacing: -0.14em;
+      line-height: 0.72;
+      color: color-mix(in srgb, var(--layer-c4) 22%, white 78%);
+      opacity: var(--glyph-opacity, 0.64);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    &--shape {
+      &::after {
+        content: "";
+      }
+
+      &::before {
+        opacity: var(--shape-opacity, 0.2);
+      }
+    }
+
+    // Central separator stripe.
+    &--shape0::before {
+      background: linear-gradient(
+        90deg,
+        transparent 0 42%,
+        color-mix(in srgb, var(--layer-c4) 36%, white 64%) 42% 58%,
+        transparent 58% 100%
+      );
+    }
+
+    // Large left block.
+    &--shape1::before {
+      background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--layer-c4) 32%, white 68%) 0 30%,
+        transparent 30% 100%
+      );
+    }
+
+    // Large right block.
+    &--shape2::before {
+      background: linear-gradient(
+        90deg,
+        transparent 0 70%,
+        color-mix(in srgb, var(--layer-c4) 32%, white 68%) 70% 100%
+      );
+    }
+  }
+}
+
+.post img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  min-height: 130px;
+}

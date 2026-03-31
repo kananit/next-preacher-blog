@@ -1,5 +1,6 @@
 import config from "@config/config.json";
 import Base from "@layouts/Baseof";
+import GeneratedCover from "@layouts/components/GeneratedCover";
 import ImageFallback from "@layouts/components/ImageFallback";
 import Pagination from "@layouts/components/Pagination";
 import Post from "@layouts/partials/Post";
@@ -106,15 +107,12 @@ const Home = ({
                               }`}
                               key={`key-${i}`}
                             >
-                              {post.frontmatter.image && (
-                                <ImageFallback
-                                  className="mr-3 h-[85px] rounded object-cover"
-                                  src={post.frontmatter.image}
-                                  alt={post.frontmatter.title}
-                                  width={105}
-                                  height={85}
+                              <div className="mr-3 h-[85px] w-[105px] overflow-hidden rounded">
+                                <GeneratedCover
+                                  post={post}
+                                  className="h-full min-h-0"
                                 />
-                              )}
+                              </div>
                               <div>
                                 <h3 className="h5 mb-2 text-h6 sm:text-h5">
                                   <Link

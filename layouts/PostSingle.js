@@ -1,12 +1,12 @@
 import config from "@config/config.json";
 import Base from "@layouts/Baseof";
+import GeneratedCover from "@layouts/components/GeneratedCover";
 import InnerPagination from "@layouts/components/InnerPagination";
 import dateFormat from "@lib/utils/dateFormat";
 import { markdownify } from "@lib/utils/textConverter";
 import { DiscussionEmbed } from "disqus-react";
 import { MDXRemote } from "next-mdx-remote";
 import { useTheme } from "next-themes";
-import Image from "next/image";
 import Link from "next/link";
 import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
 import Post from "./partials/Post";
@@ -24,7 +24,7 @@ const PostSingle = ({
   allCategories,
   relatedPosts,
 }) => {
-  let { description, title, date, image, categories } = frontmatter;
+  let { description, title, date, categories } = frontmatter;
   description = description ? description : content.slice(0, 120);
 
   const { theme } = useTheme();
@@ -43,15 +43,10 @@ const PostSingle = ({
             <div className="lg:col-8">
               <article>
                 <div className="relative">
-                  {image && (
-                    <Image
-                      src={image}
-                      height="400"
-                      width="1000"
-                      alt={title}
-                      className="rounded-lg"
-                    />
-                  )}
+                  <GeneratedCover
+                    post={{ frontmatter, slug }}
+                    className="min-h-[240px] md:min-h-[320px] lg:min-h-[400px]"
+                  />
                   <ul className="absolute left-2 top-3 flex flex-wrap items-center gap-y-2">
                     {categories.map((tag, index) => (
                       <li

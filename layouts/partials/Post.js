@@ -1,5 +1,5 @@
 import config from "@config/config.json";
-import ImageFallback from "@layouts/components/ImageFallback";
+import GeneratedCover from "@layouts/components/GeneratedCover";
 import dateFormat from "@lib/utils/dateFormat";
 import Link from "next/link";
 import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
@@ -13,15 +13,7 @@ const Post = ({ post }) => {
   return (
     <div className="post">
       <div className="relative">
-        {post.frontmatter.image && (
-          <ImageFallback
-            className="rounded"
-            src={post.frontmatter.image}
-            alt={post.frontmatter.title}
-            width={405}
-            height={162}
-          />
-        )}
+        <GeneratedCover post={post} />
         <ul className="absolute left-2 top-3 flex flex-wrap items-center gap-y-2">
           {post.frontmatter.categories.map((tag, index) => (
             <li

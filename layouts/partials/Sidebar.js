@@ -1,5 +1,6 @@
 import config from "@config/config.json";
 import social from "@config/social.json";
+import GeneratedCover from "@layouts/components/GeneratedCover";
 import ImageFallback from "@layouts/components/ImageFallback";
 import Logo from "@layouts/components/Logo";
 import CustomForm from "@layouts/components/NewsLetterForm";
@@ -114,15 +115,9 @@ const Sidebar = ({ posts, categories, className }) => {
                     }`}
                     key={`key-${i}`}
                   >
-                    {post.frontmatter.image && (
-                      <ImageFallback
-                        className="mr-3 h-[85px] w-[85px] rounded-full object-cover"
-                        src={post.frontmatter.image}
-                        alt={post.frontmatter.title}
-                        width={105}
-                        height={85}
-                      />
-                    )}
+                    <div className="mr-3 h-[85px] w-[85px] overflow-hidden rounded-full">
+                      <GeneratedCover post={post} className="h-full min-h-0" />
+                    </div>
                     <div>
                       <h3 className="h5 mb-2">
                         <Link
@@ -149,15 +144,9 @@ const Sidebar = ({ posts, categories, className }) => {
                     }`}
                     key={`key-${i}`}
                   >
-                    {post.frontmatter.image && (
-                      <ImageFallback
-                        className="mr-3 h-[85px] w-[85px] rounded-full object-cover"
-                        src={post.frontmatter.image}
-                        alt={post.frontmatter.title}
-                        width={105}
-                        height={85}
-                      />
-                    )}
+                    <div className="mr-3 h-[85px] w-[85px] overflow-hidden rounded-full">
+                      <GeneratedCover post={post} className="h-full min-h-0" />
+                    </div>
                     <div>
                       <h3 className="h5 mb-2">
                         <Link
