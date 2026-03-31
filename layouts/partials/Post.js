@@ -1,12 +1,14 @@
 import config from "@config/config.json";
 import GeneratedCover from "@layouts/components/GeneratedCover";
 import dateFormat from "@lib/utils/dateFormat";
+import { plainify } from "@lib/utils/textConverter";
 import Link from "next/link";
 import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
 
 const Post = ({ post }) => {
   const { summary_length, blog_folder } = config.settings;
   const { meta_author } = config.metadata;
+  const excerpt = plainify(post.content) || "";
   const author = post.frontmatter.author
     ? post.frontmatter.author
     : meta_author;
@@ -53,7 +55,7 @@ const Post = ({ post }) => {
           {dateFormat(post.frontmatter.date)}
         </li>
       </ul>
-      <p>{post.content.slice(0, Number(summary_length))}</p>
+      <p>{excerpt.slice(0, Number(summary_length))}</p>
       <Link
         className="btn btn-outline-primary mt-4"
         href={`/${blog_folder}/${post.slug}`}
