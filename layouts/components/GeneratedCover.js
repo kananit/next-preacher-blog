@@ -67,7 +67,7 @@ const getCategoryGlyph = (category = "") => {
   return normalized.slice(0, 2);
 };
 
-const GeneratedCover = ({ post, className = "" }) => {
+const GeneratedCover = ({ post, className = "", mode = "full" }) => {
   const categories = post.frontmatter.categories || [];
 
   // First category sets the color palette
@@ -85,6 +85,18 @@ const GeneratedCover = ({ post, className = "" }) => {
   const seed = `${post.slug || ""}-${post.frontmatter.title || ""}`;
   const hash = hashString(seed);
   const angle = 15 + (hash % 150);
+
+  if (mode === "stripe-only") {
+    return (
+      <div
+        className={`generated-cover generated-cover--stripe-only rounded ${className}`.trim()}
+        style={{
+          "--cover-c2": palette[1],
+        }}
+        aria-hidden="true"
+      />
+    );
+  }
 
   // Additional categories get a clean overlay layer.
   const layers = extraCategories

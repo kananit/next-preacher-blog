@@ -116,6 +116,21 @@
   }
 }
 
+.generated-cover--stripe-only {
+  min-height: 0;
+  aspect-ratio: auto;
+  background: color-mix(in srgb, var(--cover-c2) 88%, white 12%);
+
+  &::before,
+  &::after {
+    content: none;
+  }
+
+  .generated-cover__layer {
+    display: none;
+  }
+}
+
 .post img {
   width: 100%;
   height: auto;

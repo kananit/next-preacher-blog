@@ -107,10 +107,11 @@ const Home = ({
                               }`}
                               key={`key-${i}`}
                             >
-                              <div className="mr-3 h-[85px] w-[105px] overflow-hidden rounded">
+                              <div className="mr-4 h-[72px] w-[8px] min-w-[8px] max-w-[8px] shrink-0 basis-[8px] overflow-hidden rounded-full">
                                 <GeneratedCover
                                   post={post}
-                                  className="h-full min-h-0"
+                                  mode="stripe-only"
+                                  className="h-full min-h-0 w-full"
                                 />
                               </div>
                               <div>
