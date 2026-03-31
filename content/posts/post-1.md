@@ -1,7 +1,6 @@
 ---
 title: "7 признаков человека, посланного в вашу жизнь дьяволом"
 date: 2024-09-21T16:00:00Z
-image: /images/post/post-8.jpg
 categories: ["аш", "школа духа", "семья"]
 featured: false
 draft: false

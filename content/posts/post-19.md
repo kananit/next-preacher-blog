@@ -1,7 +1,6 @@
 ---
 title: "9 признаков духовной незрелости"
 date: 2024-09-29T11:00:00Z
-image: /images/post/post-18.jpg
 categories: ["аш", "школа духа"]
 featured: false
 draft: false

@@ -1,7 +1,6 @@
 ---
 title: "10 ключевых принципов воспитания детей"
 date: 2025-08-02T11:00:00Z
-image: /images/post/post-19.jpg
 categories: ["аш", "школа духа"]
 featured: true
 draft: false

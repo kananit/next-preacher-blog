@@ -1,7 +1,6 @@
 ---
 title: "7 типов лжепророков, о которых церкви необходимо знать"
 date: 2024-09-17T15:00:00Z
-image: /images/post/post-6.jpg
 categories: ["аш", "школа духа"]
 featured: false
 draft: false

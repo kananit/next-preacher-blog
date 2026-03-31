@@ -1,7 +1,6 @@
 ---
 title: "7 уроков Ноя"
 date: 2024-09-16T15:00:00Z
-image: /images/post/post-1.jpg
 categories: ["олег мамонтов", "учение", "принципы"]
 featured: true
 draft: false

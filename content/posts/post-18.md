@@ -1,7 +1,6 @@
 ---
 title: "7 предупреждающих снов от Бога"
 date: 2024-09-28T11:00:00Z
-image: /images/post/post-17.jpg
 categories: ["аш", "школа духа"]
 featured: false
 draft: false

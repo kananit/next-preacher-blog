@@ -1,7 +1,6 @@
 ---
 title: "5 Признаков человека, которого Бог приготовил для вас"
 date: 2024-09-24T15:00:00Z
-image: /images/post/post-15.jpg
 categories: ["аш", "школа духа", "семья"]
 featured: true
 draft: false

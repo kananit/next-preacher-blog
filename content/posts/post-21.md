@@ -1,7 +1,6 @@
 ---
 title: "7 основных демонических атак на детей Бога"
 date: 2025-08-19T11:00:00Z
-image: /images/post/post-20.jpg
 categories: ["аш", "школа духа"]
 featured: true
 draft: false

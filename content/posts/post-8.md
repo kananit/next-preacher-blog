@@ -1,7 +1,6 @@
 ---
 title: "7 Негативных качеств человека, с которым нельзя встречаться"
 date: 2024-09-18T15:00:00Z
-image: /images/post/post-8.jpg
 categories: ["аш", "школа духа", "семья"]
 featured: true
 draft: false

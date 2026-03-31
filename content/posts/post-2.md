@@ -1,7 +1,6 @@
 ---
 title: "6 вещей, которые ни от кого нельзя принимать"
 date: 2024-09-21T15:00:00Z
-image: /images/post/post-14.jpg
 categories: ["аш", "школа духа"]
 featured: true
 draft: false

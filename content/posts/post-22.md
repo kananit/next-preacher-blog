@@ -1,7 +1,6 @@
 ---
 title: "8 опасных духовных мест, куда христианину нельзя входить"
 date: 2026-03-26T11:00:00Z
-image: /images/post/post-20.jpg
 categories: ["аш", "школа духа"]
 featured: true
 draft: false

@@ -1,7 +1,6 @@
 ---
 title: "Активация, проявления и действия, духа Авессалома"
 date: 2024-09-17T15:00:00Z
-image: /images/post/post-5.jpg
 categories: ["аш", "школа духа"]
 featured: false
 draft: false
