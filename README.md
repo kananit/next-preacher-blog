@@ -9,6 +9,8 @@
     <img src="https://img.shields.io/github/license/statichunt/geeky-nextjs" alt="license"></a>
 </p>
 
+https://preacher-blog.netlify.app
+
 ## Key Features
 
 - Google Page Speed score 100! (Desktop)
