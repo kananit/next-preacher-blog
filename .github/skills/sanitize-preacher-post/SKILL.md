@@ -1,6 +1,6 @@
 ---
 name: sanitize-preacher-post
-description: "Normalize preacher blog markdown posts. Use for aligning posts to a reference structure, adding descriptions, numbering headings when the title contains a number, and adding --- separators only between ## blocks when headings are not numbered."
+description: "Normalize preacher blog markdown posts. Use for aligning posts to a reference structure, adding descriptions, removing intro headings, and numbering headings when the title contains a number. Do not add horizontal rules in post content."
 argument-hint: "Reference post and target post files or range to normalize"
 user-invocable: true
 ---
@@ -14,7 +14,7 @@ user-invocable: true
 - Add or refine `description` in front matter
 - Remove intro headings while keeping intro text
 - Number section headings when the post title contains a number
-- Add `---` separators only between `##` blocks when the post does not use numbered headings
+- Keep post content free of horizontal rules such as `---`
 
 ## Scope Assumption
 
@@ -32,7 +32,7 @@ This skill is designed for this repository's preacher-blog content format and sh
 - intro formatting
 - `##` and `###` heading patterns
 - whether the title implies a numbered list
-- whether separators are already present
+- whether unwanted horizontal rules are present in content
 
 3. Normalize front matter.
    Ensure YAML front matter is valid and consistent.
@@ -58,11 +58,11 @@ Use these rules:
 - Do not number the `## Вывод: ...` heading
 - Do not introduce extra numbering where the article is not list-based
 
-6. If the post is not using numbered headings, add visual separation.
+6. Do not add horizontal rules in post content.
 
-- Insert `---` only between major `##` blocks
-- Do not place `---` between `###` subsections
-- Do not add extra separators inside the YAML front matter
+- Never insert `---` as a visual separator inside the article body
+- Preserve only the YAML front matter delimiters at the top of the file
+- Rely on heading structure and existing SCSS styling for visual separation
 
 7. Preserve content integrity.
 
@@ -76,7 +76,7 @@ Use these rules:
 - every edited file still has valid front matter
 - intro text remains without a `## Введение` heading
 - numbering matches the title when applicable
-- `---` appears only between `##` blocks in non-numbered posts
+- no horizontal rules were added inside post content
 - conclusion remains under `## Вывод: ...`
 
 ## Decision Rules
@@ -92,7 +92,7 @@ Apply numbering when the title itself promises a count-based structure, for exam
 
 ### Non-numbered title
 
-If the title does not imply a numbered list, keep headings unnumbered and use `---` between `##` sections for readability.
+If the title does not imply a numbered list, keep headings unnumbered and do not add visual separators in content.
 
 ### Mixed structure
 
@@ -103,11 +103,11 @@ If a post has a framing `##` section and the actual list lives in `###` subsecti
 - `description` exists in front matter
 - no `## Введение:` heading remains
 - numbered posts have coherent numbering
-- non-numbered posts use `---` only between `##` blocks
+- no horizontal rules exist in post content
 - no accidental formatting drift was introduced in unrelated parts of the file
 
 ## Example Prompts
 
 - `/sanitize-preacher-post use post-22 as the reference and normalize posts 10-23`
 - `/sanitize-preacher-post align this post to the preacher-blog structure and add missing description`
-- `/sanitize-preacher-post remove intro headings, fix numbering, and add separators where needed`
+- `/sanitize-preacher-post remove intro headings, fix numbering, and keep the post free of content separators`
