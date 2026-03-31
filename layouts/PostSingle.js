@@ -3,7 +3,7 @@ import Base from "@layouts/Baseof";
 import GeneratedCover from "@layouts/components/GeneratedCover";
 import InnerPagination from "@layouts/components/InnerPagination";
 import dateFormat from "@lib/utils/dateFormat";
-import { markdownify, slugify } from "@lib/utils/textConverter";
+import { markdownify, plainify, slugify } from "@lib/utils/textConverter";
 import { DiscussionEmbed } from "disqus-react";
 import { MDXRemote } from "next-mdx-remote";
 import { useTheme } from "next-themes";
@@ -25,7 +25,7 @@ const PostSingle = ({
   relatedPosts,
 }) => {
   let { description, title, date, categories } = frontmatter;
-  description = description ? description : content.slice(0, 120);
+  description = description ? description : plainify(content)?.slice(0, 120);
 
   const { theme } = useTheme();
   const author = frontmatter.author ? frontmatter.author : meta_author;

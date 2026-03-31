@@ -8,7 +8,7 @@ import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
 const Post = ({ post }) => {
   const { summary_length, blog_folder } = config.settings;
   const { meta_author } = config.metadata;
-  const excerpt = plainify(post.content) || "";
+  const excerpt = plainify(post.frontmatter.description || post.content) || "";
   const author = post.frontmatter.author
     ? post.frontmatter.author
     : meta_author;
