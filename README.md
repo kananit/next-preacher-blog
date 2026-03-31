@@ -1,13 +1,6 @@
 <h1 align=center>Blog Nextjs</h1>
 
-<p align=center>
-  <a href="https://github.com/vercel/next.js/releases/tag/v13.0.6" alt="Contributors">
-    <img src="https://img.shields.io/static/v1?label=NEXTJS&message=13.0&color=000&logo=nextjs" />
-  </a>
-
-  <a href="https://github.com/statichunt/geeky-nextjs/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/statichunt/geeky-nextjs" alt="license"></a>
-</p>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b6db5f90-b2b7-4d26-aee4-1222a576cc5f/deploy-status)](https://app.netlify.com/projects/preacher-blog/deploys)
 
 https://preacher-blog.netlify.app
 
