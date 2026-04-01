@@ -8,43 +8,12 @@ const hashString = (value = "") => {
   return Math.abs(hash);
 };
 
-// One entry per unique category found in content/posts
+// Only first categories determine color.
 // palette: [c1 base-light, c2 base-dark, c3 overlay-light, c4 overlay-dark]
-//
-// Colorist palette — 4 harmonious colors, same S=57% L=40%, only H shifts:
-//  Teal    H=162°  #2ba283  — spirit / nature / presence
-//  Blue    H=222°  #2c4fa0  — wisdom / depth / word
-//  Violet  H=282°  #7d2ca0  — authority / mystery / foundation
-//  Crimson H=342°  #a02c4f  — love / warmth / family
-const CATEGORY_MAP = {
-  // аш — тил: дух, присутствие
-  аш: {
-    palette: ["#b8c8e0", "#2c4fa0", "#dae0f0", "#183a6e"],
-  },
-  // учение — синий: мудрость, глубина, Писание
-  учение: {
-    palette: ["#b8c8e0", "#2c4fa0", "#dae0f0", "#183a6e"],
-  },
-  // принципы — фиолетовый: основание, авторитет
-  принципы: {
-    palette: ["#d4b8e0", "#7d2ca0", "#eadaf0", "#4e186e"],
-  },
-  // школа духа — тил (духовный рост, как аш)
-  "школа духа": {
-    palette: ["#b5dfd4", "#2ba283", "#daf0eb", "#186e57"],
-  },
-  // семья — малиновый: тепло, любовь
-  семья: {
-    palette: ["#e8b8c8", "#a02c4f", "#f5e0e7", "#6e1832"],
-  },
-  // мини-проповедь — синий (живое слово, как учение)
-  "мини-проповедь": {
-    palette: ["#b8c8e0", "#2c4fa0", "#dae0f0", "#183a6e"],
-  },
-  // олег мамонтов — фиолетовый (личность, служение)
-  "олег мамонтов": {
-    palette: ["#d4b8e0", "#7d2ca0", "#eadaf0", "#4e186e"],
-  },
+const FIRST_CATEGORY_MAP = {
+  аш: ["#b8c8e0", "#2c4fa0", "#dae0f0", "#183a6e"],
+  "олег мамонтов": ["#d4b8e0", "#7d2ca0", "#eadaf0", "#4e186e"],
+  "владимир михайлов": ["#e8b8c8", "#a02c4f", "#f5e0e7", "#6e1832"],
 };
 
 const FALLBACK_PALETTE = ["#e8dfc2", "#8a7d51", "#f7f2df", "#6e633e"];
@@ -72,8 +41,7 @@ const GeneratedCover = ({ post, className = "", mode = "full" }) => {
 
   // First category sets the color palette
   const firstCat = (categories[0] || "").toLowerCase().trim();
-  const firstConfig = CATEGORY_MAP[firstCat];
-  const palette = firstConfig ? firstConfig.palette : FALLBACK_PALETTE;
+  const palette = FIRST_CATEGORY_MAP[firstCat] || FALLBACK_PALETTE;
 
   // Only additional categories add visual patterns
   const extraCategories = categories.slice(1);
@@ -101,19 +69,19 @@ const GeneratedCover = ({ post, className = "", mode = "full" }) => {
   // Additional categories get a clean overlay layer.
   const layers = extraCategories
     .map((category, index) => {
-      const config = CATEGORY_MAP[category.toLowerCase().trim()];
-      if (!config) {
+      const glyph = getCategoryGlyph(category);
+      if (!glyph) {
         return null;
       }
 
       return {
-        palette: config.palette,
-        glyph: getCategoryGlyph(category),
+        palette,
+        glyph,
         isLetter: index === 0,
         accentType: index === 0 ? null : (index - 1) % 3,
       };
     })
-    .filter(Boolean);
+    .filter((cfg) => Boolean(cfg.glyph));
 
   return (
     <div

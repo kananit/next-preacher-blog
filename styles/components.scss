@@ -185,7 +185,7 @@ footer .socials {
 
 .single-blog {
   .content {
-    p + h2 {
+    :is(p, ul, ol, blockquote, pre) + h2 {
       @apply mt-12;
 
       &::before {
