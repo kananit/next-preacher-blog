@@ -43,7 +43,7 @@
   @apply prose-h4:mb-[.5em] prose-h5:mb-[.5em] prose-h6:mb-[.5em];
   @apply prose-hr:border-border prose-hr:dark:border-darkmode-border;
   @apply prose-p:text-base prose-p:text-text prose-p:dark:text-darkmode-text;
-  @apply prose-blockquote:mb-12 prose-blockquote:rounded prose-blockquote:border-0 prose-blockquote:bg-theme-light prose-blockquote:px-12 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:dark:bg-theme-dark prose-blockquote:lg:px-16;
+  @apply prose-blockquote:my-12 prose-blockquote:rounded prose-blockquote:border-0 prose-blockquote:bg-theme-light prose-blockquote:px-6 prose-blockquote:py-0.5 prose-blockquote:not-italic prose-blockquote:dark:bg-theme-dark sm:prose-blockquote:px-8 sm:prose-blockquote:py-1 prose-blockquote:lg:px-12;
   @apply prose-code:px-1 prose-code:text-primary;
   @apply prose-pre:rounded;
   @apply prose-img:rounded;
@@ -62,18 +62,18 @@
   }
   blockquote {
     & > p {
-      @apply relative text-2xl text-black;
+      @apply relative px-1 text-[17px] leading-7 text-black sm:px-2 sm:text-[19px] sm:leading-8 lg:px-3 lg:text-[21px];
       &::after,
       &::before {
         @apply absolute inline-block h-5 w-5 bg-[url('/images/quote.svg')] bg-[length:20px_20px] bg-no-repeat content-[''] lg:h-8 lg:w-8 lg:bg-[length:32px_32px];
       }
 
       &::before {
-        @apply -left-10 top-0 lg:-left-10;
+        @apply -left-6 top-0 lg:-left-8;
       }
 
       &::after {
-        @apply bottom-0 right-0 rotate-180;
+        @apply -right-6 bottom-0 rotate-180 lg:-right-8;
       }
     }
   }
@@ -195,24 +195,23 @@ footer .socials {
   }
 
   blockquote {
-    @apply px-12 lg:px-[105px];
+    @apply px-6 py-0.5 sm:px-8 sm:py-1 lg:mx-auto lg:max-w-3xl lg:px-12 xl:max-w-4xl xl:px-16;
 
     & > p {
-      @apply lg:text-[24px];
-      @apply relative text-2xl text-black;
+      @apply relative px-1 text-[17px] leading-7 text-black sm:px-2 sm:text-[19px] sm:leading-8 lg:px-3 lg:text-[21px];
       &::after,
       &::before {
-        @apply absolute inline-block h-8 w-8 bg-[url('/images/quote.svg')] bg-[length:32px_32px] bg-no-repeat content-[''];
+        @apply absolute inline-block h-5 w-5 bg-[url('/images/quote.svg')] bg-[length:20px_20px] bg-no-repeat content-[''] sm:h-6 sm:w-6 sm:bg-[length:24px_24px] lg:h-8 lg:w-8 lg:bg-[length:32px_32px];
       }
 
       &::before {
         @apply left-0 top-0;
-        @apply -left-10 lg:-left-12;
+        @apply -left-4 sm:-left-6 lg:-left-8;
       }
 
       &::after {
         @apply bottom-0 right-0 rotate-180;
-        @apply -right-10 lg:-right-8;
+        @apply -right-4 sm:-right-6 lg:-right-8;
       }
     }
   }
