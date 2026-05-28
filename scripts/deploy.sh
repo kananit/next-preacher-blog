@@ -3,12 +3,12 @@ set -euo pipefail
 
 BUCKET="hosea.ru"
 BUILD_DIR="out"
+PARALLEL_JOBS=8
 
-# Цвета для вывода
 GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
 NC='\033[0m'
 
-# Загрузить переменные из .env, если есть
 if [ -f .env ]; then
   set -a
   source .env
@@ -18,60 +18,103 @@ fi
 DRY_RUN=false
 if [ "${1:-}" = "--dry-run" ]; then
   DRY_RUN=true
-  echo "🧪 Сухой прогон — файлы не будут загружены"
+  echo -e "${YELLOW}🧪 Сухой прогон${NC}"
 fi
 
-echo "🔨 Сборка статики..."
+# Pre-flight: проверить публичный доступ к бакету
+if [ "$DRY_RUN" = false ]; then
+  BUCKET_INFO=$(yc storage bucket get --name "$BUCKET" 2>/dev/null || echo "")
+  if ! echo "$BUCKET_INFO" | grep -q "read: true"; then
+    echo -e "${YELLOW}🔧 Включаю публичный доступ к бакету...${NC}"
+    yc storage bucket update --name "$BUCKET" --public-read --public-list > /dev/null 2>&1
+  fi
+  if ! echo "$BUCKET_INFO" | grep -q "index: index.html"; then
+    echo -e "${YELLOW}🔧 Включаю статический хостинг...${NC}"
+    yc storage bucket update --name "$BUCKET" \
+      --website-settings '{"index": "index.html", "error": "404.html"}' > /dev/null 2>&1
+  fi
+fi
+
+echo -e "${YELLOW}🔨 Сборка статики...${NC}"
 npm run build
 
-# Счётчик для статистики
-TOTAL=0
+# Скопировать 404 страницу в корень (Object Storage ожидает 404.html)
+if [ -f "$BUILD_DIR/404/index.html" ]; then
+  cp "$BUILD_DIR/404/index.html" "$BUILD_DIR/404.html"
+  echo "  404 страница скопирована в корень"
+fi
 
-upload() {
-  local src="$1"
-  local dst="$2"
-  local content_type="$3"
+echo -e "${YELLOW}📦 Загрузка в Object Storage...${NC}"
 
-  if [ "$DRY_RUN" = true ]; then
-    echo "  [dry] $dst → $content_type"
-    return
-  fi
-
-  yc storage s3 cp "$src" "s3://${BUCKET}/${dst}" \
-    --content-type "$content_type" --quiet
-}
-
-echo "📦 Загрузка файлов в Object Storage..."
-
-# Обход всех файлов в out/
-while read -r file; do
-  # Убираем префикс BUILD_DIR/
-  rel="${file#$BUILD_DIR/}"
+upload_file() {
+  local file="$1"
+  local rel="${file#$BUILD_DIR/}"
+  local content_type
 
   case "$file" in
-    *.html)  upload "$file" "$rel" "text/html; charset=utf-8" ;;
-    *.css)   upload "$file" "$rel" "text/css; charset=utf-8" ;;
-    *.js)    upload "$file" "$rel" "application/javascript; charset=utf-8" ;;
-    *.json)  upload "$file" "$rel" "application/json; charset=utf-8" ;;
-    *.svg)   upload "$file" "$rel" "image/svg+xml" ;;
-    *.png)   upload "$file" "$rel" "image/png" ;;
-    *.jpg|*.jpeg) upload "$file" "$rel" "image/jpeg" ;;
-    *.webp)  upload "$file" "$rel" "image/webp" ;;
-    *.ico)   upload "$file" "$rel" "image/x-icon" ;;
-    *.woff2) upload "$file" "$rel" "font/woff2" ;;
-    *.woff)  upload "$file" "$rel" "font/woff" ;;
-    *.ttf)   upload "$file" "$rel" "font/ttf" ;;
-    *.xml)   upload "$file" "$rel" "application/xml" ;;
-    *.txt)   upload "$file" "$rel" "text/plain; charset=utf-8" ;;
-    *)       upload "$file" "$rel" "application/octet-stream" ;;
+    *.html)  content_type="text/html; charset=utf-8" ;;
+    *.css)   content_type="text/css; charset=utf-8" ;;
+    *.js)    content_type="application/javascript; charset=utf-8" ;;
+    *.json)  content_type="application/json; charset=utf-8" ;;
+    *.svg)   content_type="image/svg+xml" ;;
+    *.png)   content_type="image/png" ;;
+    *.jpg|*.jpeg) content_type="image/jpeg" ;;
+    *.webp)  content_type="image/webp" ;;
+    *.ico)   content_type="image/x-icon" ;;
+    *.woff2) content_type="font/woff2" ;;
+    *.woff)  content_type="font/woff" ;;
+    *.ttf)   content_type="font/ttf" ;;
+    *.xml)   content_type="application/xml" ;;
+    *.txt)   content_type="text/plain; charset=utf-8" ;;
+    *)       content_type="application/octet-stream" ;;
   esac
 
-  TOTAL=$((TOTAL + 1))
-done < <(find "$BUILD_DIR" -type f | sort)
+  if [ "$DRY_RUN" = true ]; then
+    echo "  $rel → $content_type"
+    return 0
+  fi
 
+  yc storage s3 cp "$file" "s3://${BUCKET}/${rel}" \
+    --content-type "$content_type" --quiet 2>/dev/null
+}
+
+# Собрать список файлов
+FILES=()
+while IFS= read -r -d '' f; do
+  FILES+=("$f")
+done < <(find "$BUILD_DIR" -type f ! -name '.DS_Store' -print0)
+
+TOTAL=${#FILES[@]}
+COUNT=0
+START_TIME=$(date +%s)
+
+for file in "${FILES[@]}"; do
+  # Запускаем в фоне, весь вывод в /dev/null
+  (upload_file "$file") &>/dev/null &
+  COUNT=$((COUNT + 1))
+
+  # Прогресс каждые 5 файлов
+  if [ $((COUNT % 5)) -eq 0 ]; then
+    ELAPSED=$(( $(date +%s) - START_TIME ))
+    printf "  📄 %d / %d (за %ds)\n" "$COUNT" "$TOTAL" "$ELAPSED"
+  fi
+
+  # Ждём каждые PARALLEL_JOBS фоновых задач
+  if [ $((COUNT % PARALLEL_JOBS)) -eq 0 ]; then
+    wait
+  fi
+done
+
+# Ждём оставшиеся
+wait
+
+# Финальный прогресс
+ELAPSED=$(( $(date +%s) - START_TIME ))
+printf "  📄 %d / %d (за %ds)\n" "$TOTAL" "$TOTAL" "$ELAPSED"
 echo ""
+
 if [ "$DRY_RUN" = true ]; then
-  echo "🧪 Сухой прогон завершён. Будет загружено ${TOTAL} файлов."
+  echo -e "${GREEN}🧪 Сухой прогон: ${TOTAL} файлов${NC}"
 else
-  echo -e "${GREEN}✅ Готово! Загружено ${TOTAL} файлов.${NC}"
+  echo -e "${GREEN}✅ Готово! Загружено ${TOTAL} файлов за ${ELAPSED}с${NC}"
 fi

@@ -205,22 +205,17 @@ yc init
 ### 4.3 Создание бакета
 
 ```bash
-# Создать бакет (имя = домену сайта) + публичный доступ
-# Флаги --public-read и --public-list задаются при создании
+# Создать бакет (имя = домену сайта)
 yc storage bucket create \
   --name hosea.ru \
   --default-storage-class standard \
-  --max-size 1073741824 \
-  --public-read \
-  --public-list
+  --max-size 1073741824
 
-# Включить статический хостинг
-yc storage bucket update \
-  --name hosea.ru \
-  --website-settings '{
-    "index": "index.html",
-    "error": "404.html"
-  }'
+# ✅ Публичный доступ и статический хостинг включаются отдельно
+# (при создании флаги --public-read --public-list могут не сработать)
+yc storage bucket update --name hosea.ru --public-read --public-list
+yc storage bucket update --name hosea.ru \
+  --website-settings '{"index": "index.html", "error": "404.html"}'
 ```
 
 ### 4.4 Настройка DNS
