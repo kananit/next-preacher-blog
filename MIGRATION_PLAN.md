@@ -205,24 +205,22 @@ yc init
 ### 4.3 Создание бакета
 
 ```bash
-# Создать бакет (имя = домену сайта)
+# Создать бакет (имя = домену сайта) + публичный доступ
+# Флаги --public-read и --public-list задаются при создании
 yc storage bucket create \
-  --name preacher-blog.ru \
+  --name hosea.ru \
   --default-storage-class standard \
-  --max-size 1073741824   # 1 ГБ лимит
+  --max-size 1073741824 \
+  --public-read \
+  --public-list
 
 # Включить статический хостинг
 yc storage bucket update \
-  --name preacher-blog.ru \
+  --name hosea.ru \
   --website-settings '{
     "index": "index.html",
     "error": "404.html"
   }'
-
-# ACL — публичный доступ на чтение
-yc storage bucket update \
-  --name preacher-blog.ru \
-  --acl public-read
 ```
 
 ### 4.4 Настройка DNS
@@ -230,23 +228,19 @@ yc storage bucket update \
 ```bash
 # Создать DNS-зону
 yc dns zone create \
-  --name preacher-blog-ru \
-  --zone preacher-blog.ru. \
+  --name hosea-ru \
+  --zone hosea.ru. \
   --public-visibility
 
-# ANAME-запись на бакет
+# ANAME-запись на бакет (используем .website.yandexcloud.net, а не .storage.yandexcloud.net)
 yc dns zone add-records \
-  --name preacher-blog-ru \
-  --record "@" \
-  --type ANAME \
-  --value "preacher-blog.ru.storage.yandexcloud.net"
+  --name hosea-ru \
+  --record "@ 600 ANAME hosea.ru.website.yandexcloud.net"
 
-# www → основной домен
+# www → основной домен (всё одной строкой: <NAME> [TTL] <TYPE> <DATA>)
 yc dns zone add-records \
-  --name preacher-blog-ru \
-  --record "www" \
-  --type CNAME \
-  --value "preacher-blog.ru"
+  --name hosea-ru \
+  --record "www 600 CNAME hosea.ru."
 ```
 
 > После создания DNS-зоны нужно перенести NS-серверы на Яндексе в панели reg.ru (или другого регистратора). DNS-пропагация занимает ~6 часов.
@@ -256,8 +250,8 @@ yc dns zone add-records \
 ```bash
 # Заказать сертификат
 yc certificate-manager certificate request \
-  --name preacher-blog-cert \
-  --domains preacher-blog.ru \
+  --name hosea-cert \
+  --domains hosea.ru \
   --challenge dns
 
 # Получить id сертификата
@@ -273,17 +267,21 @@ yc certificate-manager certificate get \
 ```bash
 # Создать сервисный аккаунт
 yc iam service-account create \
-  --name preacher-blog-deployer
+  --name hosea-deployer
 
 # Назначить роль storage.editor
-yc resource-manager folder add-access-binding \
+# Формат: yc resource-manager folder add-access-binding <FOLDER_ID> \
+#   --role storage.editor \
+#   --subject serviceAccount:<SA_ID>
+yc resource-manager folder list  # узнать FOLDER_ID
+yc resource-manager folder add-access-binding <FOLDER_ID> \
   --role storage.editor \
-  --service-account-id <SA_ID>
+  --subject serviceAccount:<SA_ID>
 
 # Создать статические ключи (для деплой-скрипта)
 yc iam access-key create \
   --service-account-id <SA_ID>
-# → Сохранить key_id и secret
+# → Сохранить key_id и secret в .env
 ```
 
 ---
@@ -300,7 +298,7 @@ yc iam access-key create \
 #!/bin/bash
 set -euo pipefail
 
-BUCKET="preacher-blog.ru"
+BUCKET="hosea.ru"
 BUILD_DIR="out"
 
 # Цвета для вывода
@@ -378,7 +376,7 @@ AWS_SECRET_ACCESS_KEY=<secret>
 ### 6.1 Регистрация счётчика
 
 1. Зайти в [metrika.yandex.ru](https://metrika.yandex.ru)
-2. Создать счётчик для `preacher-blog.ru`
+2. Создать счётчик для `hosea.ru`
 3. Получить ID счётчика (например, `12345678`)
 4. Выбрать: вебвизор, тепловые карты, точный расчёт отказов
 
@@ -462,7 +460,7 @@ return (
 ### 7.1 Добавление сайта
 
 1. Зайти в [webmaster.yandex.ru](https://webmaster.yandex.ru)
-2. Добавить сайт `preacher-blog.ru`
+2. Добавить сайт `hosea.ru`
 3. Подтвердить права через:
    - **DNS-запись** — самый простой способ добавить TXT-запись в DNS-зону Яндекса
    - Или через **мета-тег** в `Baseof.js`
@@ -473,7 +471,7 @@ Next.js с `output: "export"` автоматически генерирует:
 - `out/sitemap.xml`
 - `out/robots.txt`
 
-В Вебмастере указать путь: `https://preacher-blog.ru/sitemap.xml`
+В Вебмастере указать путь: `https://hosea.ru/sitemap.xml`
 
 (Опционально) Отправка через API:
 
@@ -491,8 +489,8 @@ USER_ID=$(curl -s \
 curl -s -X POST \
   -H "Authorization: OAuth $YM_TOKEN" \
   -H "Content-Type: application/json" \
-  "https://api.webmaster.yandex.net/v4/user/${USER_ID}/hosts/https:preacher-blog.ru:443/user-added-sitemaps" \
-  -d '{"url": "https://preacher-blog.ru/sitemap.xml"}'
+  "https://api.webmaster.yandex.net/v4/user/${USER_ID}/hosts/https:hosea.ru:443/user-added-sitemaps" \
+  -d '{"url": "https://hosea.ru/sitemap.xml"}'
 ```
 
 ### 7.3 Добавление мета-тега вебмастера (опционально)
@@ -543,22 +541,22 @@ curl -s -X POST \
    ```
 
 2. Подождать ~6 часов (DNS-пропагация)
-3. Проверить: `https://preacher-blog.ru` открывается с SSL
+3. Проверить: `https://hosea.ru` открывается с SSL
 
 ### 8.3 Финальный тест
 
 ```bash
 # Проверить HTTP-заголовки
-curl -I https://preacher-blog.ru
+curl -I https://hosea.ru
 
 # Проверить MIME-типы CSS
-curl -s https://preacher-blog.ru/_next/static/css/...css | head -1
+curl -s https://hosea.ru/_next/static/css/...css | head -1
 
 # Проверить sitemap
-curl -s https://preacher-blog.ru/sitemap.xml | head -5
+curl -s https://hosea.ru/sitemap.xml | head -5
 
 # Проверить robots.txt
-curl -s https://preacher-blog.ru/robots.txt
+curl -s https://hosea.ru/robots.txt
 ```
 
 ### 8.4 После миграции

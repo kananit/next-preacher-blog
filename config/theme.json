@@ -11,15 +11,14 @@
       "text_color": {
         "default": "#4c4c4c",
         "dark": "#222",
-        "light": "#999"
+        "light": "#767676"
       }
     },
     "darkmode": {
       "theme_color": {
         "primary": "#059669",
-        "body": "#1a1a1a",
+        "body": "#121212",
         "border": "#393939",
-        "theme_light": "#f4f7f7",
         "theme_dark": "#292929"
       },
       "text_color": {

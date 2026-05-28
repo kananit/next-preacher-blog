@@ -9,7 +9,9 @@
     "build": "node lib/jsonGenerator.js && next build",
     "export": "npm run build",
     "lint": "next lint",
-    "start": "npx serve out"
+    "start": "npx serve out",
+    "deploy": "bash scripts/deploy.sh",
+    "deploy:dry": "bash scripts/deploy.sh --dry-run"
   },
   "dependencies": {
     "disqus-react": "^1.1.7",

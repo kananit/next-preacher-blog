@@ -43,7 +43,7 @@
   @apply prose-h4:mb-[.5em] prose-h5:mb-[.5em] prose-h6:mb-[.5em];
   @apply prose-hr:border-border prose-hr:dark:border-darkmode-border;
   @apply prose-p:text-base prose-p:text-text prose-p:dark:text-darkmode-text;
-  @apply prose-blockquote:my-12 prose-blockquote:rounded prose-blockquote:border-0 prose-blockquote:bg-theme-light prose-blockquote:px-6 prose-blockquote:py-0.5 prose-blockquote:not-italic prose-blockquote:dark:bg-theme-dark sm:prose-blockquote:px-8 sm:prose-blockquote:py-1 prose-blockquote:lg:px-12;
+  @apply prose-blockquote:my-12 prose-blockquote:rounded prose-blockquote:border-0 prose-blockquote:bg-theme-light prose-blockquote:px-6 prose-blockquote:py-0.5 prose-blockquote:not-italic prose-blockquote:dark:bg-darkmode-theme-dark sm:prose-blockquote:px-8 sm:prose-blockquote:py-1 prose-blockquote:lg:px-12;
   @apply prose-code:px-1 prose-code:text-primary;
   @apply prose-pre:rounded;
   @apply prose-img:rounded;
@@ -52,7 +52,7 @@
   @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline;
   @apply prose-li:text-text prose-li:dark:text-darkmode-text;
   @apply prose-table:overflow-hidden prose-table:border prose-table:border-border prose-table:dark:border-darkmode-border;
-  @apply prose-thead:border-border prose-thead:bg-theme-light prose-th:px-4 prose-th:py-4 prose-th:text-dark prose-thead:dark:border-darkmode-border prose-thead:dark:bg-theme-dark prose-th:dark:text-darkmode-light;
+  @apply prose-thead:border-border prose-thead:bg-theme-light prose-th:px-4 prose-th:py-4 prose-th:text-dark prose-thead:dark:border-darkmode-border prose-thead:dark:bg-darkmode-theme-dark prose-th:dark:text-darkmode-light;
   @apply prose-tr:border-border prose-tr:dark:border-darkmode-border;
   @apply prose-td:px-3 prose-td:py-4 prose-td:dark:text-darkmode-light;
   @apply prose-li:marker:dark:text-darkmode-light;
