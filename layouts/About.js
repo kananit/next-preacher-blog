@@ -12,7 +12,7 @@ const About = ({ data }) => {
       {markdownify(
         title,
         "h1",
-        "h2 lg:mb-4 bg-theme-light dark:bg-darkmode-theme-dark py-12 text-center lg:text-[55px]"
+        "h2 lg:mb-4 bg-theme-light dark:bg-darkmode-theme-dark py-8 sm:py-12 text-center lg:text-[55px]"
       )}
       <div className="container text-left">
         {image && (
