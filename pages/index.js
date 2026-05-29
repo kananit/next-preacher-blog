@@ -1,16 +1,17 @@
 import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import ImageFallback from "@layouts/components/ImageFallback";
+import Logo from "@layouts/components/Logo";
 import Post from "@layouts/partials/Post";
 import Sidebar from "@layouts/partials/Sidebar";
 import { getListPage, getSinglePage } from "@lib/contentParser";
-import { getTaxonomyMeta } from "@lib/taxonomyParser";
 import { sortByDate } from "@lib/utils/sortFunctions";
-import { markdownify, slugify } from "@lib/utils/textConverter";
+import { markdownify } from "@lib/utils/textConverter";
 import Link from "next/link";
 const { blog_folder } = config.settings;
+const { about } = config.widgets;
 
-const Home = ({ banner, posts, recent_posts, categories }) => {
+const Home = ({ banner, posts, recent_posts }) => {
   const sortPostByDate = sortByDate(posts);
 
   return (
@@ -69,37 +70,37 @@ const Home = ({ banner, posts, recent_posts, categories }) => {
       {/* Home main */}
       <section className="section lg:py-8">
         <div className="container">
-          <div className="row items-start">
+          <div className="row">
             <div className="mb-12 lg:col-8 lg:mb-0">
               {/* Recent Posts */}
               {recent_posts.enable && (
-                <div className="section pt-0">
+                <div className="pt-0">
                   <div className="row">
-                    {sortPostByDate.slice(0, 3).map((post) => (
-                      <div className="mb-8 md:col-6 lg:col-4" key={post.slug}>
+                    {sortPostByDate.slice(0, 4).map((post) => (
+                      <div className="mb-8 md:col-6" key={post.slug}>
                         <Post post={post} />
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 text-center">
-                    <Link
-                      href="/page/1"
-                      className="inline-flex items-center gap-2 font-bold text-primary transition hover:gap-3"
-                    >
-                      Все записи
-                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </Link>
-                  </div>
+                </div>
+              )}
+
+              {/* About block */}
+              {about.enable && (
+                <div className="relative rounded border border-border p-6 text-center dark:border-darkmode-border">
+                  <ImageFallback
+                    className="-z-[1]"
+                    src="/images/map.svg"
+                    fill={true}
+                    alt="bg-map"
+                  />
+                  <Logo />
+                  {markdownify(about.content, "p", "mt-6")}
                 </div>
               )}
             </div>
             {/* sidebar */}
-            <Sidebar
-              posts={posts}
-              categories={categories}
-            />
+            <Sidebar posts={posts} />
           </div>
         </div>
       </section>
@@ -115,27 +116,12 @@ export const getStaticProps = async () => {
   const { frontmatter } = homepage;
   const { banner, recent_posts } = frontmatter;
   const posts = getSinglePage(`content/${blog_folder}`);
-  const categories = getTaxonomyMeta(`content/${blog_folder}`, "categories");
-
-  const categoriesWithPostsCount = categories.map((category) => {
-    const filteredPosts = posts.filter((post) =>
-      post.frontmatter.categories
-        .map((item) => slugify(item))
-        .includes(category.slug)
-    );
-    return {
-      slug: category.slug,
-      label: category.label,
-      posts: filteredPosts.length,
-    };
-  });
 
   return {
     props: {
       banner: banner,
       posts: posts,
       recent_posts,
-      categories: categoriesWithPostsCount,
     },
   };
 };
