@@ -23,7 +23,7 @@ const Sidebar = ({ posts, className }) => {
   }, [posts]);
 
   return (
-    <aside className={`${className || ""} flex flex-col px-0 lg:col-4 lg:px-6`}>
+    <aside className={`${className || ""} hidden flex-col px-0 lg:col-4 lg:flex lg:px-6`}>
       <div className="flex flex-1 flex-col lg:sticky lg:top-8">
       {/* random posts widget */}
       {randomPosts.length > 0 && (
