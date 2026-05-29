@@ -1,7 +1,6 @@
 import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import ImageFallback from "@layouts/components/ImageFallback";
-import Pagination from "@layouts/components/Pagination";
 import Post from "@layouts/partials/Post";
 import Sidebar from "@layouts/partials/Sidebar";
 import { getListPage, getSinglePage } from "@lib/contentParser";
@@ -9,11 +8,10 @@ import { getTaxonomyMeta } from "@lib/taxonomyParser";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { markdownify, slugify } from "@lib/utils/textConverter";
 import Link from "next/link";
-const { blog_folder, pagination } = config.settings;
+const { blog_folder } = config.settings;
 
 const Home = ({ banner, posts, recent_posts, categories }) => {
   const sortPostByDate = sortByDate(posts);
-  const showPosts = pagination;
 
   return (
     <Base>
@@ -75,26 +73,30 @@ const Home = ({ banner, posts, recent_posts, categories }) => {
             <div className="mb-12 lg:col-8 lg:mb-0">
               {/* Recent Posts */}
               {recent_posts.enable && (
-                <div className="section">
-                  {markdownify(recent_posts.title, "h2", "section-title")}
+                <div className="section pt-0">
                   <div className="row">
-                    {sortPostByDate.slice(0, showPosts).map((post) => (
-                      <div className="mb-8 md:col-6" key={post.slug}>
+                    {sortPostByDate.slice(0, 3).map((post) => (
+                      <div className="mb-8 md:col-6 lg:col-4" key={post.slug}>
                         <Post post={post} />
                       </div>
                     ))}
                   </div>
+                  <div className="mt-6 text-center">
+                    <Link
+                      href="/page/1"
+                      className="inline-flex items-center gap-2 font-bold text-primary transition hover:gap-3"
+                    >
+                      Все записи
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               )}
-
-              <Pagination
-                totalPages={Math.ceil(posts.length / showPosts)}
-                currentPage={1}
-              />
             </div>
             {/* sidebar */}
             <Sidebar
-              className={"lg:mt-[8.8rem]"}
               posts={posts}
               categories={categories}
             />

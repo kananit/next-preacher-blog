@@ -24,7 +24,7 @@ const Sidebar = ({ posts, categories, className }) => {
   const [showRecent, setShowRecent] = useState(true);
 
   return (
-    <aside className={`${className} px-0 lg:col-4 lg:px-6`}>
+    <aside className={`${className || ""} px-0 lg:col-4 lg:px-6`}>
       {about.enable && (
         <div className="relative rounded border border-border p-6 text-center dark:border-darkmode-border">
           <ImageFallback

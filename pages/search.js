@@ -1,31 +1,80 @@
 import Base from "@layouts/Baseof";
-import { slugify } from "@lib/utils/textConverter";
+import { plainify } from "@lib/utils/textConverter";
 import Post from "@partials/Post";
 import { useSearchContext } from "context/state";
 import { useRouter } from "next/router";
 
+/**
+ * Extracts a snippet around the first occurrence of `keyword` in `content`.
+ */
+const getMatchSnippet = (content, keyword, maxLength = 200) => {
+  if (!keyword || !content) return null;
+
+  const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const regex = new RegExp(escaped, "i");
+  const match = content.match(regex);
+
+  if (!match) return null;
+
+  const matchIndex = match.index;
+  const snippetStart = Math.max(0, matchIndex - Math.floor(maxLength / 3));
+  const snippetEnd = Math.min(content.length, matchIndex + keyword.length + Math.floor((maxLength * 2) / 3));
+
+  let snippet = content.slice(snippetStart, snippetEnd);
+  snippet = snippet.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
+
+  if (snippetStart > 0) snippet = "…" + snippet;
+  if (snippetEnd < content.length) snippet = snippet + "…";
+
+  return snippet;
+};
+
 const SearchPage = () => {
   const router = useRouter();
   const { query } = router;
-  const keyword = slugify(query.key);
+  const keyword = query.key;
+  const escapedKeyword = keyword?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const keywordRegex = escapedKeyword ? new RegExp(escapedKeyword, "i") : null;
   const { posts } = useSearchContext();
 
-  const searchResults = posts.filter((product) => {
-    if (product.frontmatter.draft) {
-      return !product.frontmatter.draft;
-    }
-    if (slugify(product.frontmatter.title).includes(keyword)) {
-      return product;
-    } else if (
-      product.frontmatter.categories.find((category) =>
-        slugify(category).includes(keyword)
-      )
-    ) {
-      return product;
-    } else if (slugify(product.content).includes(keyword)) {
-      return product;
-    }
-  });
+  const searchResults = posts
+    .filter((product) => {
+      if (product.frontmatter.draft) {
+        return !product.frontmatter.draft;
+      }
+      if (!keywordRegex) return false;
+
+      if (keywordRegex.test(product.frontmatter.title)) {
+        return true;
+      } else if (
+        product.frontmatter.categories.find((category) =>
+          keywordRegex.test(category)
+        )
+      ) {
+        return true;
+      } else if (keywordRegex.test(product.content)) {
+        return true;
+      }
+      return false;
+    })
+    .map((post) => {
+      const contentText = plainify(post.content);
+      const snippet = getMatchSnippet(contentText, query.key);
+
+      // If the keyword was found in the content, show the matching snippet
+      // instead of the original description, so the user sees *where* it matched.
+      const matchedInContent = snippet !== null;
+
+      return {
+        ...post,
+        frontmatter: {
+          ...post.frontmatter,
+          description: matchedInContent
+            ? snippet
+            : post.frontmatter.description,
+        },
+      };
+    });
 
   const resultsCount = searchResults.length;
 
