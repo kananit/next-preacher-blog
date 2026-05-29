@@ -3,16 +3,12 @@ body.menu-open {
 }
 
 .header {
-  @apply top-0 z-50 border-b bg-body py-[33px] dark:border-darkmode-border dark:bg-darkmode-body;
+  @apply top-0 z-50 border-b bg-body py-4 dark:border-darkmode-border dark:bg-darkmode-body lg:py-[33px];
 }
 
 // navbar items
 .navbar {
   @apply relative flex items-center justify-between;
-}
-
-.collapse-menu {
-  @apply fixed right-0 top-0 z-10 mx-0 h-[100vh] w-full max-w-[400px] items-center border-l border-l-dark  bg-body p-6 transition-transform duration-300 ease-in-out dark:bg-darkmode-body lg:static lg:flex lg:h-auto lg:w-auto lg:max-w-full lg:space-x-4 lg:border-l-0 lg:bg-transparent lg:p-0 xl:space-x-8;
 }
 
 .navbar-brand {
@@ -22,41 +18,17 @@ body.menu-open {
   }
 }
 
-.navbar-nav {
-  @apply mt-16 lg:mt-0;
-}
-
 .nav-item {
-  @apply mb-5 text-left lg:mb-0;
+  @apply mb-0;
 }
 
 .nav-link {
-  @apply rounded-2xl px-4 py-2 text-left font-secondary text-[16px] capitalize text-dark transition hover:bg-primary/[0.10] hover:text-primary dark:text-darkmode-light dark:hover:text-primary lg:text-center;
-}
-
-.nav-dropdown {
-  @apply mr-0;
-}
-
-.nav-dropdown-list {
-  @apply z-10 rounded-lg  border border-transparent bg-body p-4 shadow dark:border-darkmode-border dark:bg-black;
-}
-
-.nav-dropdown-item {
-  @apply mb-1.5;
-}
-
-.nav-dropdown-link {
-  @apply min-w-[150px] rounded px-3.5 py-2.5 text-base font-semibold  text-dark transition hover:bg-primary/10 hover:text-primary dark:text-darkmode-light;
-
-  &.active {
-    @apply bg-primary/10 text-primary;
-  }
+  @apply rounded-2xl px-3 py-2 text-left font-secondary text-[15px] capitalize text-dark transition hover:bg-primary/[0.10] hover:text-primary dark:text-darkmode-light dark:hover:text-primary sm:px-4 sm:py-2 sm:text-base lg:px-4 lg:py-2 lg:text-[16px] lg:text-center;
 }
 
 // search style
 .search-icon {
-  @apply inline-block h-10 w-10 cursor-pointer rounded-full bg-primary p-2.5 text-xl text-white;
+  @apply inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-primary text-base text-white sm:h-10 sm:w-10 sm:text-xl;
 }
 .search-modal {
   @apply invisible absolute left-0 right-0 top-0 z-10 h-10 bg-body opacity-0 transition dark:bg-black md:h-full;

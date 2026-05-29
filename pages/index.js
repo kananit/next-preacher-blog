@@ -71,10 +71,11 @@ const Home = ({ banner, posts, recent_posts }) => {
       <section className="section lg:py-8">
         <div className="container">
           <div className="row">
-            <div className="mb-12 lg:col-8 lg:mb-0">
+            <div className="mb-4 lg:col-8 lg:mb-0">
               {/* Recent Posts */}
               {recent_posts.enable && (
                 <div className="pt-0">
+                  <h2 className="section-title mb-8 lg:hidden">{recent_posts.title}</h2>
                   <div className="row">
                     {sortPostByDate.slice(0, 4).map((post) => (
                       <div className="mb-8 md:col-6" key={post.slug}>
