@@ -10,7 +10,6 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
 import Post from "./partials/Post";
-import Sidebar from "./partials/Sidebar";
 import shortcodes from "./shortcodes/all";
 const { disqus } = config;
 const { meta_author } = config.metadata;
@@ -40,8 +39,8 @@ const PostSingle = ({
       <section className="section single-blog mt-2">
         <div className="container">
           <div className="row">
-            <div className="lg:col-8">
-              <article>
+            <div className="lg:col-12">
+              <article className="mx-auto max-w-[720px]">
                 <div className="relative">
                   <GeneratedCover
                     post={{ frontmatter, slug }}
@@ -65,7 +64,7 @@ const PostSingle = ({
                 </div>
                 {config.settings.InnerPaginationOptions.enableTop && (
                   <div className="mt-4">
-                    <InnerPagination posts={posts} date={date} />
+                    <InnerPagination posts={posts} slug={slug} />
                   </div>
                 )}
                 {markdownify(title, "h1", "lg:text-[42px] my-4 mb-3")}
@@ -88,7 +87,7 @@ const PostSingle = ({
                   <MDXRemote {...mdxContent} components={shortcodes} />
                 </div>
                 {config.settings.InnerPaginationOptions.enableBottom && (
-                  <InnerPagination posts={posts} date={date} />
+                  <InnerPagination posts={posts} slug={slug} />
                 )}
               </article>
               <div className="mt-16">
@@ -101,24 +100,22 @@ const PostSingle = ({
                 )}
               </div>
             </div>
-            <Sidebar
-              posts={posts.filter((post) => post.slug !== slug)}
-              categories={allCategories}
-            />
           </div>
         </div>
 
-        {/* Related posts */}
-        <div className="container mt-20">
-          <h2 className="section-title">Похожие записи</h2>
-          <div className="row mt-16">
-            {relatedPosts.slice(0, 3).map((post, index) => (
-              <div key={"post-" + index} className="mb-12 lg:col-4">
-                <Post post={post} />
-              </div>
-            ))}
+        {/* Related posts — only show if 2+ */}
+        {relatedPosts.length >= 2 && (
+          <div className="container mt-20">
+            <h2 className="section-title">Похожие записи</h2>
+            <div className="row mt-16">
+              {relatedPosts.slice(0, 3).map((post, index) => (
+                <div key={"post-" + index} className="mb-12 lg:col-4">
+                  <Post post={post} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </section>
     </Base>
   );

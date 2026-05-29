@@ -17,7 +17,7 @@ featured_posts:
   title: Популярные записи
 
 promotion:
-  enable: true
+  enable: false
   image: /images/promotion.png
   link: "#"
 

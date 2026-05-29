@@ -51,12 +51,19 @@ export const getStaticProps = async ({ params }) => {
   const posts = getSinglePage(`content/${blog_folder}`);
   const post = posts.find((p) => p.slug == single);
   const mdxContent = await parseMDX(post.content);
-  // related posts
-  const relatedPosts = posts.filter((p) =>
-    post.frontmatter.categories.some((cate) =>
-      p.frontmatter.categories.includes(cate)
+  // related posts — exclude current, sort by date descending
+  const relatedPosts = posts
+    .filter(
+      (p) =>
+        p.slug !== single &&
+        post.frontmatter.categories.some((cate) =>
+          p.frontmatter.categories.includes(cate)
+        )
     )
-  );
+    .sort(
+      (a, b) =>
+        new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+    );
 
   //all categories
   const categories = getTaxonomyMeta(`content/${blog_folder}`, "categories");

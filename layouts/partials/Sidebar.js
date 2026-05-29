@@ -42,7 +42,7 @@ const Sidebar = ({ posts, categories, className }) => {
       {categories.enable && (
         <div className="mt-6 rounded border border-border p-6 dark:border-darkmode-border">
           <h4 className="section-title mb-12 text-center">
-            {featured_posts.title}
+            {categories.title}
           </h4>
           <ul>
             {categories.map((category, i) => (

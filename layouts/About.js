@@ -5,11 +5,16 @@ import Image from "next/image";
 
 const About = ({ data }) => {
   const { frontmatter, mdxContent } = data;
-  const { title, image, education, experience } = frontmatter;
+  const { title, image } = frontmatter;
 
   return (
-    <section className="section lg:mt-8">
-      <div className="container text-center">
+    <section className="section pt-0">
+      {markdownify(
+        title,
+        "h1",
+        "h2 lg:mb-4 bg-theme-light dark:bg-darkmode-theme-dark py-12 text-center lg:text-[55px]"
+      )}
+      <div className="container text-left">
         {image && (
           <div className="mb-8">
             <Image
@@ -22,48 +27,10 @@ const About = ({ data }) => {
             />
           </div>
         )}
-        {markdownify(
-          title,
-          "h1",
-          "h1 text-left text-[40px] lg:text-[54px] my-4"
-        )}
 
-        <div className="content text-left">
+        <div className="content">
           <MDXRemote {...mdxContent} components={shortcodes} />
         </div>
-
-        {/* <div className="row mt-24 text-left lg:flex-nowrap">
-          <div className="lg:col-6 ">
-            <div className="rounded border border-border p-6 dark:border-darkmode-border ">
-              {markdownify(education.title, "h2", "section-title mb-12")}
-              <div className="row">
-                {education.degrees.map((degree, index) => (
-                  <div className="mb-7 md:col-6" key={"degree-" + index}>
-                    <h4 className="text-base lg:text-[25px]">
-                      {degree.university}
-                    </h4>
-                    <p className="mt-2">{degree.content}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="experience mt-10 lg:col-6 lg:mt-0">
-            <div className="rounded border border-border p-6 dark:border-darkmode-border ">
-              {markdownify(experience.title, "h2", "section-title mb-12")}
-              <ul className="row">
-                {experience?.list?.map((item, index) => (
-                  <li
-                    className="mb-5 text-lg font-bold text-dark lg:col-6 dark:text-darkmode-light"
-                    key={"experience-" + index}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div> */}
       </div>
     </section>
   );
