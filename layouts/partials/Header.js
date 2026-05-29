@@ -98,9 +98,7 @@ const Header = () => {
                     <li className="nav-item">
                       <Link
                         href={menu.url}
-                        className={`nav-link block ${
-                          router.asPath === menu.url && "active"
-                        }`}
+                        className="nav-link block"
                       >
                         {menu.name}
                       </Link>

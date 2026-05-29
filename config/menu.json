@@ -12,19 +12,5 @@
       "name": "Инфо",
       "url": "/about"
     }
-  ],
-  "footer": [
-    {
-      "name": "Конспекты",
-      "url": "/"
-    },
-    {
-      "name": "Категории",
-      "url": "/categories"
-    },
-    {
-      "name": "Инфо",
-      "url": "/about"
-    }
   ]
 }

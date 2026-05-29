@@ -1,3 +1,4 @@
+import { getCategoryDotColor } from "@lib/utils/categoryColors";
 import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import GeneratedCover from "@layouts/components/GeneratedCover";
@@ -46,26 +47,39 @@ const PostSingle = ({
                     post={{ frontmatter, slug }}
                     className="min-h-[180px] md:min-h-[230px] lg:min-h-[280px]"
                   />
-                  <ul className="absolute left-2 top-3 flex flex-wrap items-center gap-y-2">
-                    {categories.map((tag, index) => (
-                      <li
-                        className="mx-1 inline-flex h-7 rounded-[35px] bg-primary px-3 text-white sm:mx-1.5"
-                        key={"tag-" + index}
-                      >
-                        <Link
-                          className="capitalize"
-                          href={`/categories/${slugify(tag)}`}
-                        >
-                          {tag}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Categories now rendered below the cover */}
                 </div>
                 {config.settings.InnerPaginationOptions.enableTop && (
                   <div className="mt-4">
                     <InnerPagination posts={posts} slug={slug} />
                   </div>
+                )}
+                {/* Categories */}
+                {categories.length > 0 && (
+                  <ul className="mb-4 mt-4 flex flex-wrap items-center gap-1.5">
+                    {categories.slice(0, 2).map((tag, index) => {
+                      const dotColor = getCategoryDotColor(tag);
+                      return (
+                        <li key={"tag-" + index}>
+                          <Link
+                            className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary transition hover:bg-primary/20 dark:bg-primary/15 dark:hover:bg-primary/25"
+                            href={`/categories/${slugify(tag)}`}
+                          >
+                            <span
+                              className="inline-block h-1.5 w-1.5 rounded-full shrink-0"
+                              style={{ backgroundColor: dotColor || "currentColor" }}
+                            />
+                            <span className="capitalize">{tag}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                    {categories.length > 2 && (
+                      <li className="text-xs text-text dark:text-darkmode-text">
+                        +{categories.length - 2}
+                      </li>
+                    )}
+                  </ul>
                 )}
                 {markdownify(title, "h1", "lg:text-[42px] my-4 mb-3")}
                 <ul className="flex items-center space-x-4">

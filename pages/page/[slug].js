@@ -1,11 +1,11 @@
+import PageHeader from "@layouts/components/PageHeader";
+import PostGrid from "@layouts/components/PostGrid";
 import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import Pagination from "@layouts/components/Pagination";
 import { getListPage, getSinglePage } from "@lib/contentParser";
-import { markdownify } from "@lib/utils/textConverter";
 import { sortByDate } from "@lib/utils/sortFunctions";
-import Post from "@partials/Post";
-const { blog_folder, summary_length } = config.settings;
+const { blog_folder } = config.settings;
 
 // blog pagination
 const BlogPagination = ({ postIndex, posts, currentPage, pagination }) => {
@@ -19,19 +19,24 @@ const BlogPagination = ({ postIndex, posts, currentPage, pagination }) => {
 
   return (
     <Base title={title}>
-      <section className="section mt-4">
+      <div className="section pt-4">
         <div className="container">
-          {markdownify(title, "h1", "h2 mb-8 text-center")}
-          <div className="row mt-12 lg:mb-4">
-            {currentPosts.map((post, i) => (
-              <div className="mb-8 md:col-6 lg:col-4" key={post.slug}>
-                <Post post={post} />
-              </div>
-            ))}
-          </div>
+          <PageHeader
+            badge={
+              <>
+                <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                </svg>
+                Все записи
+              </>
+            }
+            title={title}
+            meta={`Страница ${currentPage} из ${totalPages}`}
+          />
+          <PostGrid posts={currentPosts} />
           <Pagination totalPages={totalPages} currentPage={currentPage} />
         </div>
-      </section>
+      </div>
     </Base>
   );
 };

@@ -1,3 +1,4 @@
+import { getCategoryDotColor } from "@lib/utils/categoryColors";
 import config from "@config/config.json";
 import GeneratedCover from "@layouts/components/GeneratedCover";
 import dateFormat from "@lib/utils/dateFormat";
@@ -5,17 +6,6 @@ import { highlightText } from "@lib/utils/highlight";
 import { plainify, slugify } from "@lib/utils/textConverter";
 import Link from "next/link";
 import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
-
-// Category palette mapping — matches GeneratedCover colors
-const CATEGORY_PALETTE = {
-  аш: { accent: "#2c4fa0", light: "#b8c8e0" },
-  "олег мамонтов": { accent: "#7d2ca0", light: "#d4b8e0" },
-  "владимир михайлов": { accent: "#a02c4f", light: "#e8b8c8" },
-};
-const getCategoryColor = (category) => {
-  const key = (category || "").toLowerCase().trim();
-  return CATEGORY_PALETTE[key] || null;
-};
 
 const Post = ({ post, highlight }) => {
   const { summary_length, blog_folder } = config.settings;
@@ -33,31 +23,35 @@ const Post = ({ post, highlight }) => {
 
       <div className="relative">
         <GeneratedCover post={post} />
-        <ul className="absolute left-2 top-3 flex flex-wrap items-center gap-y-2">
-          {categories.map((tag, index) => {
-            const catColor = getCategoryColor(tag);
-            return (
-              <li
-                className="mx-1 inline-flex h-7 items-center gap-1.5 rounded-[35px] bg-primary px-3 text-white sm:mx-1.5"
-                key={"tag-" + index}
-                style={catColor ? { backgroundColor: catColor.accent } : {}}
-              >
-                <span
-                  className="inline-block h-2 w-2 rounded-full bg-white/60 shrink-0"
-                  style={{ backgroundColor: catColor?.light || "#fff" }}
-                />
-                <Link
-                  className="capitalize"
-                  href={`/categories/${slugify(tag)}`}
-                >
-                  {tag}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
       </div>
       <div className="flex flex-1 flex-col p-5">
+        {/* Categories */}
+        {categories.length > 0 && (
+          <ul className="mb-3 flex flex-wrap items-center gap-1.5">
+            {categories.slice(0, 2).map((tag, index) => {
+              const dotColor = getCategoryDotColor(tag);
+              return (
+                <li key={"tag-" + index}>
+                  <Link
+                    className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary transition hover:bg-primary/20 dark:bg-primary/15 dark:hover:bg-primary/25"
+                    href={`/categories/${slugify(tag)}`}
+                  >
+                    <span
+                      className="inline-block h-1.5 w-1.5 rounded-full shrink-0"
+                      style={{ backgroundColor: dotColor || "currentColor" }}
+                    />
+                    <span className="capitalize">{tag}</span>
+                  </Link>
+                </li>
+              );
+            })}
+            {categories.length > 2 && (
+              <li className="text-xs text-text dark:text-darkmode-text">
+                +{categories.length - 2}
+              </li>
+            )}
+          </ul>
+        )}
         <h3 className="h5 mb-2">
           <Link
             href={`/${blog_folder}/${post.slug}`}
