@@ -8,7 +8,7 @@ banner:
   # image: /images/banner-author.png
   button:
     enable: true
-    label: Читать блог
+    label: Все записи
     link: /page/1
     rel: ""
 

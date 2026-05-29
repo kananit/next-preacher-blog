@@ -37,7 +37,7 @@ const PostSingle = ({
 
   return (
     <Base title={title} description={description}>
-      <section className="section single-blog mt-2">
+      <section className="section single-blog mt-2 pb-0">
         <div className="container">
           <div className="row">
             <div className="lg:col-12">
@@ -57,7 +57,7 @@ const PostSingle = ({
                 {/* Categories */}
                 {categories.length > 0 && (
                   <ul className="mb-4 mt-4 flex flex-wrap items-center gap-1.5">
-                    {categories.slice(0, 2).map((tag, index) => {
+                    {categories.map((tag, index) => {
                       const dotColor = getCategoryDotColor(tag);
                       return (
                         <li key={"tag-" + index}>
@@ -74,11 +74,6 @@ const PostSingle = ({
                         </li>
                       );
                     })}
-                    {categories.length > 2 && (
-                      <li className="text-xs text-text dark:text-darkmode-text">
-                        +{categories.length - 2}
-                      </li>
-                    )}
                   </ul>
                 )}
                 {markdownify(title, "h1", "lg:text-[42px] my-4 mb-3")}
@@ -97,11 +92,13 @@ const PostSingle = ({
                     {dateFormat(date)}
                   </li>
                 </ul>
-                <div className="content mb-16">
+                <div className="content mb-8">
                   <MDXRemote {...mdxContent} components={shortcodes} />
                 </div>
                 {config.settings.InnerPaginationOptions.enableBottom && (
-                  <InnerPagination posts={posts} slug={slug} />
+                  <div className="mt-8 mb-2">
+                    <InnerPagination posts={posts} slug={slug} />
+                  </div>
                 )}
               </article>
               <div className="mt-16">
@@ -119,11 +116,11 @@ const PostSingle = ({
 
         {/* Related posts — only show if 2+ */}
         {relatedPosts.length >= 2 && (
-          <div className="container mt-20">
-            <h2 className="section-title">Похожие записи</h2>
-            <div className="row mt-16">
+          <div className="container mt-4">
+            <h2 className="section-title mb-8">Похожие записи</h2>
+            <div className="row mt-8">
               {relatedPosts.slice(0, 3).map((post, index) => (
-                <div key={"post-" + index} className="mb-12 lg:col-4">
+                <div key={"post-" + index} className="mb-8 lg:col-4">
                   <Post post={post} />
                 </div>
               ))}

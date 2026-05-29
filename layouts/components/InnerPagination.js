@@ -12,11 +12,11 @@ const InnerPagination = ({ posts, slug }) => {
     postIndex == lastIndex ? undefined : orderedPosts[postIndex + 1].slug;
 
   return (
-    <div className="-mx-2 flex flex-wrap items-center justify-between gap-4">
+    <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
       {prev ? (
         <Link
           href={prev}
-          className="group inline-flex items-center gap-2 rounded-lg border border-border px-5 py-3 font-secondary text-sm font-bold text-dark transition hover:border-primary hover:text-primary dark:border-darkmode-border dark:text-darkmode-light dark:hover:border-primary dark:hover:text-primary"
+          className="group inline-flex items-center gap-2 rounded-2xl border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary/20"
         >
           <svg
             className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5"
@@ -40,7 +40,7 @@ const InnerPagination = ({ posts, slug }) => {
       {next ? (
         <Link
           href={next}
-          className="group inline-flex items-center gap-2 rounded-lg border border-border px-5 py-3 font-secondary text-sm font-bold text-dark transition hover:border-primary hover:text-primary dark:border-darkmode-border dark:text-darkmode-light dark:hover:border-primary dark:hover:text-primary"
+          className="group inline-flex items-center gap-2 rounded-2xl border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary/20"
         >
           Следующее
           <svg

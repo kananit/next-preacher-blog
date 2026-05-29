@@ -60,6 +60,11 @@
   img + em {
     @apply -mt-4 block text-center text-gray-500;
   }
+  hr {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
   blockquote {
     & > p {
       @apply relative px-1 text-[17px] leading-7 text-black sm:px-2 sm:text-[19px] sm:leading-8 lg:px-3 lg:text-[21px];
@@ -186,10 +191,10 @@ footer .socials {
 .single-blog {
   .content {
     :is(p, ul, ol, blockquote, pre) + h2 {
-      @apply mt-12;
+      @apply mt-4;
 
       &::before {
-        @apply mb-8 block border-t border-border content-[''] dark:border-darkmode-border;
+        @apply mb-6 block border-t border-border content-[''] dark:border-darkmode-border;
       }
     }
   }
