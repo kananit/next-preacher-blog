@@ -5,6 +5,7 @@ date: 02-06-2025
 categories: ["книги"]
 featured: false
 draft: false
+source_url: ""
 ---
 
 **Авторы:** Ревекка Браун и Дэниел Йозер

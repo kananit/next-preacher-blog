@@ -9,7 +9,7 @@ import { DiscussionEmbed } from "disqus-react";
 import { MDXRemote } from "next-mdx-remote";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { FaRegCalendar, FaRegClock } from "react-icons/fa";
+import { FaRegCalendar, FaRegClock, FaExternalLinkAlt } from "react-icons/fa";
 import Post from "./partials/Post";
 import shortcodes from "./shortcodes/all";
 import readingTime from "@lib/utils/readingTime";
@@ -24,7 +24,7 @@ const PostSingle = ({
   allCategories,
   relatedPosts,
 }) => {
-  let { description, title, date, categories } = frontmatter;
+  let { description, title, date, categories, source_url } = frontmatter;
   description = description ? description : plainify(content)?.slice(0, 120);
 
   const { theme } = useTheme();
@@ -85,6 +85,19 @@ const PostSingle = ({
                     <FaRegCalendar className="mr-1.5" />
                     {dateFormat(date)}
                   </li>
+                  {source_url && (
+                    <li className="inline-flex items-center font-secondary text-xs leading-3">
+                      <FaExternalLinkAlt className="mr-1.5" />
+                      <a
+                        href={source_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        Оригинал
+                      </a>
+                    </li>
+                  )}
                 </ul>
                 <div className="content mb-8">
                   <MDXRemote {...mdxContent} components={shortcodes} />
