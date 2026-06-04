@@ -1,5 +1,6 @@
 import config from "@config/config.json";
 import { sortByDate } from "@lib/utils/sortFunctions";
+import { plainify } from "@lib/utils/textConverter";
 import Link from "next/link";
 
 const { blog_folder } = config.settings;
@@ -10,60 +11,65 @@ const InnerPagination = ({ posts, slug }) => {
   const postIndex = orderedPosts.findIndex(
     (post) => post.slug == slug
   );
-  const next = postIndex == 0 ? undefined : orderedPosts[postIndex - 1].slug;
-  const prev =
-    postIndex == lastIndex ? undefined : orderedPosts[postIndex + 1].slug;
+  const prevPost = postIndex == lastIndex ? undefined : orderedPosts[postIndex + 1];
+  const nextPost = postIndex == 0 ? undefined : orderedPosts[postIndex - 1];
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
-      {prev ? (
+    <nav className="flex items-stretch justify-between">
+      {prevPost ? (
         <Link
-          href={`/${blog_folder}/${prev}`}
-          className="group inline-flex items-center gap-2 rounded-2xl border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary/20"
+          href={`/${blog_folder}/${prevPost.slug}`}
+          className="group flex w-1/2 flex-col justify-center gap-1 py-5 pr-4 transition"
         >
-          <svg
-            className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M7 16l-4-4m0 0l4-4m-4 4h18"
-            />
-          </svg>
-          Предыдущее
+          <span className="flex items-center gap-1 text-xs font-medium text-primary">
+            <svg
+              className="h-3 w-3 transition-transform duration-200 group-hover:-translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            Назад
+          </span>
+          <span className="truncate text-sm text-dark dark:text-darkmode-light">
+            {plainify(prevPost.frontmatter.title)}
+          </span>
         </Link>
       ) : (
-        <div />
+        <div className="w-1/2" />
       )}
 
-      {next ? (
+      {prevPost && nextPost && (
+        <div className="my-5 h-auto w-px shrink-0 bg-border dark:bg-darkmode-border" />
+      )}
+
+      {nextPost ? (
         <Link
-          href={`/${blog_folder}/${next}`}
-          className="group inline-flex items-center gap-2 rounded-2xl border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary/20"
+          href={`/${blog_folder}/${nextPost.slug}`}
+          className="group flex w-1/2 flex-col justify-center gap-1 py-5 pl-4 text-right transition"
         >
-          Следующее
-          <svg
-            className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
+          <span className="flex items-center justify-end gap-1 text-xs font-medium text-primary">
+            Вперёд
+            <svg
+              className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+          <span className="truncate text-sm text-dark dark:text-darkmode-light">
+            {plainify(nextPost.frontmatter.title)}
+          </span>
         </Link>
       ) : (
-        <div />
+        <div className="w-1/2" />
       )}
-    </div>
+    </nav>
   );
 };
 
