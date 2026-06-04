@@ -43,7 +43,7 @@
   @apply prose-h4:mb-[.5em] prose-h5:mb-[.5em] prose-h6:mb-[.5em];
   @apply prose-hr:border-border prose-hr:dark:border-darkmode-border;
   @apply prose-p:text-base prose-p:text-text prose-p:dark:text-darkmode-text;
-  @apply prose-blockquote:my-12 prose-blockquote:rounded prose-blockquote:border-0 prose-blockquote:bg-theme-light prose-blockquote:px-6 prose-blockquote:py-0.5 prose-blockquote:not-italic prose-blockquote:dark:bg-darkmode-theme-dark sm:prose-blockquote:px-8 sm:prose-blockquote:py-1 prose-blockquote:lg:px-12;
+  @apply prose-blockquote:my-6 prose-blockquote:rounded prose-blockquote:border-0 prose-blockquote:bg-theme-light prose-blockquote:px-4 prose-blockquote:py-0.5 prose-blockquote:not-italic prose-blockquote:dark:bg-darkmode-theme-dark sm:prose-blockquote:px-5 sm:prose-blockquote:py-1;
   @apply prose-code:px-1 prose-code:text-primary;
   @apply prose-pre:rounded;
   @apply prose-img:rounded;
@@ -200,23 +200,21 @@ footer .socials {
   }
 
   blockquote {
-    @apply px-6 py-0.5 sm:px-8 sm:py-1 lg:mx-auto lg:max-w-3xl lg:px-12 xl:max-w-4xl xl:px-16;
+    @apply px-2 py-0.5 sm:px-3 sm:py-1;
 
     & > p {
-      @apply relative px-1 text-[17px] leading-7 text-black sm:px-2 sm:text-[19px] sm:leading-8 lg:px-3 lg:text-[21px];
+      @apply relative pl-5 pr-5 text-base leading-7 text-black sm:pl-6 sm:pr-6 sm:text-base sm:leading-7;
       &::after,
       &::before {
-        @apply absolute inline-block h-5 w-5 bg-[url('/images/quote.svg')] bg-[length:20px_20px] bg-no-repeat content-[''] sm:h-6 sm:w-6 sm:bg-[length:24px_24px] lg:h-8 lg:w-8 lg:bg-[length:32px_32px];
+        @apply absolute inline-block h-3 w-3 bg-[url('/images/quote.svg')] bg-[length:12px_12px] bg-no-repeat content-[''] sm:h-3.5 sm:w-3.5 sm:bg-[length:14px_14px];
       }
 
       &::before {
-        @apply left-0 top-0;
-        @apply -left-4 sm:-left-6 lg:-left-8;
+        @apply left-0.5 top-0 sm:left-1;
       }
 
       &::after {
-        @apply bottom-0 right-0 rotate-180;
-        @apply -right-4 sm:-right-6 lg:-right-8;
+        @apply bottom-0 right-0.5 rotate-180 sm:right-1;
       }
     }
   }
