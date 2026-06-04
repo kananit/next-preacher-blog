@@ -14,7 +14,7 @@ const Base = ({
   canonical,
   children,
 }) => {
-  const { meta_image, meta_author, meta_description } = config.metadata;
+  const { meta_image, meta_description } = config.metadata;
   const { base_url } = config.site;
   const router = useRouter();
 
@@ -39,9 +39,6 @@ const Base = ({
           name="description"
           content={plainify(description ? description : meta_description)}
         />
-
-        {/* author from config.json */}
-        <meta name="author" content={meta_author} />
 
         {/* og-title */}
         <meta
