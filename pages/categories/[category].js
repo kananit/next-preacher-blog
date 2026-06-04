@@ -2,31 +2,14 @@ import PageHeader from "@layouts/components/PageHeader";
 import PostGrid from "@layouts/components/PostGrid";
 import EmptyState from "@layouts/components/EmptyState";
 import pluralize from "@lib/utils/pluralize";
-import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomyMeta } from "@lib/taxonomyParser";
 import { slugify } from "@lib/utils/textConverter";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { FaArrowLeft, FaBook, FaBookOpen } from "react-icons/fa";
-const { blog_folder } = config.settings;
-
-// Section metadata (keep in sync with categories/index.js)
-const SECTION_META = {
-  posts: {
-    name: "Проповеди",
-    icon: FaBook,
-    iconClass: "text-primary",
-    linkColor: "text-primary hover:text-primary/80",
-  },
-  notes: {
-    name: "Конспекты",
-    icon: FaBookOpen,
-    iconClass: "text-primary",
-    linkColor: "text-primary hover:text-primary/80",
-  },
-};
+import { FaArrowLeft } from "react-icons/fa";
+import { getSectionIds, getSectionMeta } from "@config/sections";
 
 // category page
 const Category = ({ postsByCategories, categoryLabel, defaultSectionId }) => {
@@ -36,7 +19,7 @@ const Category = ({ postsByCategories, categoryLabel, defaultSectionId }) => {
     (p) => !p._section || p._section === sectionId
   );
   const postsCount = filteredPosts.length;
-  const section = SECTION_META[sectionId] || SECTION_META["posts"];
+  const section = getSectionMeta(sectionId);
   const SectionIcon = section.icon;
 
   return (
@@ -92,7 +75,7 @@ export default Category;
 
 // category page routes — collect from ALL sections
 export const getStaticPaths = () => {
-  const sectionIds = ["posts", "notes"];
+  const sectionIds = getSectionIds();
 
   const paths = sectionIds.flatMap((sectionId) => {
     const folder = `content/${sectionId}`;
@@ -112,10 +95,10 @@ export const getStaticProps = ({ params }) => {
   const { category } = params;
 
   // Load posts from all sections
-  const allSections = [
-    { id: "posts", posts: getSinglePage(`content/posts`) },
-    { id: "notes", posts: getSinglePage(`content/notes`) },
-  ];
+  const allSections = getSectionIds().map((id) => ({
+    id,
+    posts: getSinglePage(`content/${id}`),
+  }));
 
   // Find which section(s) have this category
   const sectionsWithCategory = allSections.filter(({ posts }) =>

@@ -1,5 +1,8 @@
+import config from "@config/config.json";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import Link from "next/link";
+
+const { blog_folder } = config.settings;
 
 const InnerPagination = ({ posts, slug }) => {
   const orderedPosts = sortByDate(posts);
@@ -15,7 +18,7 @@ const InnerPagination = ({ posts, slug }) => {
     <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
       {prev ? (
         <Link
-          href={prev}
+          href={`/${blog_folder}/${prev}`}
           className="group inline-flex items-center gap-2 rounded-2xl border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary/20"
         >
           <svg
@@ -39,7 +42,7 @@ const InnerPagination = ({ posts, slug }) => {
 
       {next ? (
         <Link
-          href={next}
+          href={`/${blog_folder}/${next}`}
           className="group inline-flex items-center gap-2 rounded-2xl border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary/20"
         >
           Следующее

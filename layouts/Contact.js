@@ -15,7 +15,7 @@ const Contact = ({ data }) => {
           <ImageFallback
             className="-z-[1] object-cover object-top"
             src={"/images/map.svg"}
-            fill="true"
+            fill={true}
             alt="map bg"
             priority={true}
           />
