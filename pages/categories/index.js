@@ -83,7 +83,7 @@ const Categories = ({ sectionsData }) => {
         <div className="container pt-8">
           {/* Section Switcher */}
           <div className="mb-8 flex justify-center">
-            <div className="inline-flex flex-wrap items-center gap-3 rounded-2xl bg-theme-light p-2 dark:bg-darkmode-theme-dark">
+            <div className="inline-flex flex-nowrap items-center gap-3 rounded-2xl bg-theme-light p-2 dark:bg-darkmode-theme-dark">
               {sections.map((section) => (
                 <SectionTab
                   key={section.id}

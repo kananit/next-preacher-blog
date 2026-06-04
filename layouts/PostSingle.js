@@ -1,4 +1,4 @@
-import { getCategoryDotColor } from "@lib/utils/categoryColors";
+import { getCategoryDotColor, FALLBACK_COLOR } from "@lib/utils/categoryColors";
 import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import GeneratedCover from "@layouts/components/GeneratedCover";
@@ -58,7 +58,7 @@ const PostSingle = ({
                 {categories.length > 0 && (
                   <ul className="mb-4 mt-4 flex flex-wrap items-center gap-1.5">
                     {categories.map((tag, index) => {
-                      const dotColor = getCategoryDotColor(tag);
+                      const dotColor = getCategoryDotColor(tag) || (index === 0 ? FALLBACK_COLOR : "currentColor");
                       return (
                         <li key={"tag-" + index}>
                           <Link
@@ -67,7 +67,7 @@ const PostSingle = ({
                           >
                             <span
                               className="inline-block h-1.5 w-1.5 rounded-full shrink-0"
-                              style={{ backgroundColor: dotColor || "currentColor" }}
+                              style={{ backgroundColor: dotColor }}
                             />
                             <span className="capitalize">{tag}</span>
                           </Link>
