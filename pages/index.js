@@ -41,7 +41,7 @@ const Home = ({ banner, posts, recent_posts }) => {
                 {markdownify(banner.title_small, "span")}
               </div>
               {markdownify(banner.content, "p", "mt-4 sm:block hidden")}
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+              <div className="mt-6 flex flex-nowrap items-center justify-center gap-2 lg:justify-start lg:gap-4">
                 <Link
                   className="btn btn-primary"
                   href="/posts"

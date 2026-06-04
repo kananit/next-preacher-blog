@@ -5,6 +5,7 @@ date: 01-06-2025
 categories: ["статьи", "multiplying-freedom"]
 featured: false
 draft: false
+source_url: ""
 ---
 
 ## Готов ли я пройти процесс освобождения?

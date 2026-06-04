@@ -1,26 +1,11 @@
-import config from "@config/config.json";
 import Base from "@layouts/Baseof";
-import { getTaxonomyMeta } from "@lib/taxonomyParser";
-import { markdownify, slugify } from "@lib/utils/textConverter";
+import { getCategoriesWithCount } from "@lib/taxonomyParser";
+import { getSinglePage } from "@lib/contentParser";
+import { markdownify } from "@lib/utils/textConverter";
 import Link from "next/link";
 import { useRouter } from "next/router";
-const { blog_folder } = config.settings;
-import { getSinglePage } from "@lib/contentParser";
-import { FaBook, FaFire, FaFolder, FaStar, FaBookOpen } from "react-icons/fa";
-
-// Section definitions — defined in the component scope to avoid serialization issues
-const SECTION_DEFS = [
-  {
-    id: "posts",
-    name: "Проповеди",
-    icon: FaBook,
-  },
-  {
-    id: "notes",
-    name: "Конспекты",
-    icon: FaBookOpen,
-  },
-];
+import { FaFire, FaFolder, FaStar } from "react-icons/fa";
+import SECTIONS, { getSectionIds } from "@config/sections";
 
 const SectionTab = ({ section, isActive, onClick }) => {
   const Icon = section.icon;
@@ -48,7 +33,7 @@ const Categories = ({ sectionsData }) => {
   const activeSectionId = router.query.section || "posts";
 
   // Merge static defs with server data
-  const sections = SECTION_DEFS.map((def) => ({
+  const sections = SECTIONS.map((def) => ({
     ...def,
     ...(sectionsData.find((s) => s.id === def.id) || {}),
   }));
@@ -83,7 +68,7 @@ const Categories = ({ sectionsData }) => {
         <div className="container pt-8">
           {/* Section Switcher */}
           <div className="mb-8 flex justify-center">
-            <div className="inline-flex flex-wrap items-center gap-3 rounded-2xl bg-theme-light p-2 dark:bg-darkmode-theme-dark">
+            <div className="inline-flex flex-nowrap items-center gap-3 rounded-2xl bg-theme-light p-2 dark:bg-darkmode-theme-dark">
               {sections.map((section) => (
                 <SectionTab
                   key={section.id}
@@ -165,27 +150,15 @@ const Categories = ({ sectionsData }) => {
 export default Categories;
 
 export const getStaticProps = () => {
-  const sectionIds = ["posts", "notes"];
+  const sectionIds = getSectionIds();
 
   const sectionsData = sectionIds.map((id) => {
     const folder = `content/${id}`;
     const posts = getSinglePage(folder);
-    const categories = getTaxonomyMeta(folder, "categories");
-    const categoriesWithPostsCount = categories.map((category) => {
-      const filteredPosts = posts.filter((post) =>
-        post.frontmatter.categories
-          .map((e) => slugify(e))
-          .includes(category.slug)
-      );
-      return {
-        slug: category.slug,
-        label: category.label,
-        posts: filteredPosts.length,
-      };
-    });
+    const categories = getCategoriesWithCount(folder);
     return {
       id,
-      categories: categoriesWithPostsCount,
+      categories,
       totalPosts: posts.length,
     };
   });

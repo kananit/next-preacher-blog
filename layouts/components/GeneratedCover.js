@@ -1,3 +1,5 @@
+import { getCoverPalette } from "@lib/utils/categoryPalette";
+
 // Deterministic hash — used for stable fallback angle only
 const hashString = (value = "") => {
   let hash = 0;
@@ -7,18 +9,6 @@ const hashString = (value = "") => {
   }
   return Math.abs(hash);
 };
-
-// Only first categories determine color.
-// palette: [c1 base-light, c2 base-dark, c3 overlay-light, c4 overlay-dark]
-const FIRST_CATEGORY_MAP = {
-  аш: ["#8aacd4", "#2c4fa0", "#dae0f0", "#183a6e"],
-  "олег мамонтов": ["#d4a0b0", "#a02c4f", "#f5e0e7", "#6e1832"],
-  "владимир михайлов": ["#d4a0b0", "#a02c4f", "#f5e0e7", "#6e1832"],
-  статьи: ["#a0d0c8", "#0e7c7b", "#dcefec", "#075754"],
-  книги: ["#c0a0d4", "#7d2ca0", "#eadaf0", "#4e186e"],
-};
-
-const FALLBACK_PALETTE = ["#e0d9cd", "#8a7f6f", "#efe9df", "#5f5548"];
 
 const getCategoryGlyph = (category = "") => {
   const normalized = category.trim().toUpperCase();
@@ -43,7 +33,7 @@ const GeneratedCover = ({ post, className = "", mode = "full" }) => {
 
   // First category sets the color palette
   const firstCat = (categories[0] || "").toLowerCase().trim();
-  const palette = FIRST_CATEGORY_MAP[firstCat] || FALLBACK_PALETTE;
+  const palette = getCoverPalette(firstCat);
 
   const seed = `${post.slug || ""}-${post.frontmatter.title || ""}`;
   const hash = hashString(seed);

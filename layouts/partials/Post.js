@@ -5,15 +5,11 @@ import dateFormat from "@lib/utils/dateFormat";
 import { highlightText } from "@lib/utils/highlight";
 import { plainify, slugify } from "@lib/utils/textConverter";
 import Link from "next/link";
-import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
+import { FaRegCalendar } from "react-icons/fa";
 
 const Post = ({ post, highlight, section }) => {
   const { summary_length, blog_folder } = config.settings;
-  const { meta_author } = config.metadata;
   const excerpt = plainify(post.frontmatter.description || post.content) || "";
-  const author = post.frontmatter.author
-    ? post.frontmatter.author
-    : meta_author;
   const categories = post.frontmatter.categories || [];
 
   return (
@@ -29,16 +25,16 @@ const Post = ({ post, highlight, section }) => {
         {categories.length > 0 && (
           <ul className="mb-3 flex flex-wrap items-center gap-1.5">
             {categories.slice(0, 2).map((tag, index) => {
-              const dotColor = getCategoryDotColor(tag);
+              const dotColor = index === 0 ? getCategoryDotColor(tag) : "currentColor";
               return (
-                <li key={"tag-" + index}>
+                <li className="inline-flex items-center" key={"tag-" + index}>
                   <Link
-                    className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary transition hover:bg-primary/20 dark:bg-primary/15 dark:hover:bg-primary/25"
+                    className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium leading-none text-primary transition hover:bg-primary/20 dark:bg-primary/15 dark:hover:bg-primary/25"
                     href={`/categories/${slugify(tag)}`}
                   >
                     <span
                       className="inline-block h-1.5 w-1.5 rounded-full shrink-0"
-                      style={{ backgroundColor: dotColor || "currentColor" }}
+                      style={{ backgroundColor: dotColor }}
                     />
                     <span className="capitalize">{tag}</span>
                   </Link>
@@ -46,7 +42,7 @@ const Post = ({ post, highlight, section }) => {
               );
             })}
             {categories.length > 2 && (
-              <li className="text-xs text-text dark:text-darkmode-text">
+              <li className="inline-flex items-center py-0.5 text-xs font-medium leading-none text-text dark:text-darkmode-text">
                 +{categories.length - 2}
               </li>
             )}
@@ -61,15 +57,6 @@ const Post = ({ post, highlight, section }) => {
           </Link>
         </h3>
         <ul className="mb-3 flex items-center space-x-4">
-          <li>
-            <Link
-              className="inline-flex items-center font-secondary text-xs leading-3"
-              href="/about"
-            >
-              <FaUserAlt className="mr-1.5" />
-              {author}
-            </Link>
-          </li>
           <li className="inline-flex items-center font-secondary text-xs leading-3">
             <FaRegCalendar className="mr-1.5" />
             {dateFormat(post.frontmatter.date)}

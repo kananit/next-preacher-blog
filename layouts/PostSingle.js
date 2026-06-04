@@ -9,11 +9,11 @@ import { DiscussionEmbed } from "disqus-react";
 import { MDXRemote } from "next-mdx-remote";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
+import { FaRegCalendar, FaRegClock, FaExternalLinkAlt } from "react-icons/fa";
 import Post from "./partials/Post";
 import shortcodes from "./shortcodes/all";
+import readingTime from "@lib/utils/readingTime";
 const { disqus } = config;
-const { meta_author } = config.metadata;
 
 const PostSingle = ({
   frontmatter,
@@ -24,11 +24,10 @@ const PostSingle = ({
   allCategories,
   relatedPosts,
 }) => {
-  let { description, title, date, categories } = frontmatter;
+  let { description, title, date, categories, source_url } = frontmatter;
   description = description ? description : plainify(content)?.slice(0, 120);
 
   const { theme } = useTheme();
-  const author = frontmatter.author ? frontmatter.author : meta_author;
   // Local copy so we don't modify global config.
   let disqusConfig = config.disqus.settings;
   disqusConfig.identifier = frontmatter.disqusId
@@ -58,7 +57,7 @@ const PostSingle = ({
                 {categories.length > 0 && (
                   <ul className="mb-4 mt-4 flex flex-wrap items-center gap-1.5">
                     {categories.map((tag, index) => {
-                      const dotColor = getCategoryDotColor(tag);
+                      const dotColor = index === 0 ? getCategoryDotColor(tag) : "currentColor";
                       return (
                         <li key={"tag-" + index}>
                           <Link
@@ -67,7 +66,7 @@ const PostSingle = ({
                           >
                             <span
                               className="inline-block h-1.5 w-1.5 rounded-full shrink-0"
-                              style={{ backgroundColor: dotColor || "currentColor" }}
+                              style={{ backgroundColor: dotColor }}
                             />
                             <span className="capitalize">{tag}</span>
                           </Link>
@@ -78,19 +77,27 @@ const PostSingle = ({
                 )}
                 {markdownify(title, "h1", "lg:text-[42px] my-4 mb-3")}
                 <ul className="flex items-center space-x-4">
-                  <li>
-                    <Link
-                      className="flex items-center font-secondary text-xs leading-3"
-                      href="/about"
-                    >
-                      <FaUserAlt className="mr-1.5" />
-                      {author}
-                    </Link>
+                  <li className="inline-flex items-center font-secondary text-xs leading-3">
+                    <FaRegClock className="mr-1.5" />
+                    {readingTime(content)}
                   </li>
                   <li className="inline-flex items-center font-secondary text-xs leading-3">
                     <FaRegCalendar className="mr-1.5" />
                     {dateFormat(date)}
                   </li>
+                  {source_url && (
+                    <li className="inline-flex items-center font-secondary text-xs leading-3">
+                      <FaExternalLinkAlt className="mr-1.5" />
+                      <a
+                        href={source_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        Оригинал
+                      </a>
+                    </li>
+                  )}
                 </ul>
                 <div className="content mb-8">
                   <MDXRemote {...mdxContent} components={shortcodes} />

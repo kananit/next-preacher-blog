@@ -1,9 +1,8 @@
 import config from "@config/config.json";
 import PostSingle from "@layouts/PostSingle";
 import { getSinglePage } from "@lib/contentParser";
-import { getTaxonomyMeta } from "@lib/taxonomyParser";
+import { getCategoriesWithCount } from "@lib/taxonomyParser";
 import parseMDX from "@lib/utils/mdxParser";
-import { slugify } from "@lib/utils/textConverter";
 const { blog_folder } = config.settings;
 
 // post single layout
@@ -66,19 +65,7 @@ export const getStaticProps = async ({ params }) => {
     );
 
   //all categories
-  const categories = getTaxonomyMeta(`content/${blog_folder}`, "categories");
-  const categoriesWithPostsCount = categories.map((category) => {
-    const filteredPosts = posts.filter((post) =>
-      post.frontmatter.categories
-        .map((item) => slugify(item))
-        .includes(category.slug)
-    );
-    return {
-      slug: category.slug,
-      label: category.label,
-      posts: filteredPosts.length,
-    };
-  });
+  const categoriesWithPostsCount = getCategoriesWithCount(`content/${blog_folder}`);
   return {
     props: {
       post: post,
