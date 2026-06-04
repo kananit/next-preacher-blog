@@ -18,6 +18,10 @@ body.menu-open {
   }
 }
 
+.header .navbar-brand img {
+  @apply -mt-[0.4rem];
+}
+
 .nav-item {
   @apply mb-0;
 }
