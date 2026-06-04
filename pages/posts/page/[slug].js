@@ -1,14 +1,16 @@
 import PageHeader from "@layouts/components/PageHeader";
 import PostGrid from "@layouts/components/PostGrid";
-import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import Pagination from "@layouts/components/Pagination";
 import { getListPage, getSinglePage } from "@lib/contentParser";
 import { sortByDate } from "@lib/utils/sortFunctions";
+import config from "@config/config.json";
 const { blog_folder } = config.settings;
 
-// blog pagination
-const BlogPagination = ({ postIndex, posts, currentPage, pagination }) => {
+const SECTION = "posts";
+
+// posts pagination
+const PostsPagination = ({ postIndex, posts, currentPage, pagination }) => {
   const indexOfLastPost = currentPage * pagination;
   const indexOfFirstPost = indexOfLastPost - pagination;
   const orderedPosts = sortByDate(posts);
@@ -33,17 +35,21 @@ const BlogPagination = ({ postIndex, posts, currentPage, pagination }) => {
             title={title}
             meta={`Страница ${currentPage} из ${totalPages}`}
           />
-          <PostGrid posts={currentPosts} />
-          <Pagination totalPages={totalPages} currentPage={currentPage} />
+          <PostGrid posts={currentPosts} section={SECTION} />
+          <Pagination
+            section={SECTION}
+            totalPages={totalPages}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </Base>
   );
 };
 
-export default BlogPagination;
+export default PostsPagination;
 
-// get blog pagination slug
+// get posts pagination slug
 export const getStaticPaths = () => {
   const getAllSlug = getSinglePage(`content/${blog_folder}`);
   const allSlug = getAllSlug.map((item) => item.slug);
@@ -65,7 +71,7 @@ export const getStaticPaths = () => {
   };
 };
 
-// get blog pagination content
+// get posts pagination content
 export const getStaticProps = async ({ params }) => {
   const currentPage = parseInt((params && params.slug) || 1);
   const { pagination } = config.settings;

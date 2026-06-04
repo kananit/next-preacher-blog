@@ -7,19 +7,52 @@ import Base from "@layouts/Baseof";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomyMeta } from "@lib/taxonomyParser";
 import { slugify } from "@lib/utils/textConverter";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { FaArrowLeft, FaBook, FaBookOpen } from "react-icons/fa";
 const { blog_folder } = config.settings;
 
+// Section metadata (keep in sync with categories/index.js)
+const SECTION_META = {
+  posts: {
+    name: "Проповеди",
+    icon: FaBook,
+    iconClass: "text-primary",
+    linkColor: "text-primary hover:text-primary/80",
+  },
+  notes: {
+    name: "Конспекты",
+    icon: FaBookOpen,
+    iconClass: "text-primary",
+    linkColor: "text-primary hover:text-primary/80",
+  },
+};
+
 // category page
-const Category = ({
-  postsByCategories,
-  categoryLabel,
-}) => {
-  const postsCount = postsByCategories.length;
+const Category = ({ postsByCategories, categoryLabel, defaultSectionId }) => {
+  const router = useRouter();
+  const sectionId = router.query.section || defaultSectionId;
+  const filteredPosts = postsByCategories.filter(
+    (p) => !p._section || p._section === sectionId
+  );
+  const postsCount = filteredPosts.length;
+  const section = SECTION_META[sectionId] || SECTION_META["posts"];
+  const SectionIcon = section.icon;
 
   return (
     <Base title={categoryLabel}>
       <div className="section pt-4">
         <div className="container">
+          {/* Back link */}
+          <Link
+            href={`/categories?section=${sectionId}`}
+            className={`mb-4 inline-flex items-center gap-1.5 text-sm font-medium transition ${section.linkColor}`}
+          >
+            <FaArrowLeft className="text-xs" />
+            <SectionIcon className="text-xs" />
+            {section.name}
+          </Link>
+
           <PageHeader
             badge={
               <>
@@ -33,8 +66,8 @@ const Category = ({
             meta={postsCount === 0 ? "нет записей" : `${postsCount} ${pluralize(postsCount, ["запись", "записи", "записей"])}`}
           />
 
-          {postsByCategories.length > 0 ? (
-            <PostGrid posts={postsByCategories} />
+          {filteredPosts.length > 0 ? (
+            <PostGrid posts={filteredPosts} section={sectionId} />
           ) : (
             <EmptyState
               icon={
@@ -57,36 +90,73 @@ const Category = ({
 
 export default Category;
 
-// category page routes
+// category page routes — collect from ALL sections
 export const getStaticPaths = () => {
-  const allCategories = getTaxonomyMeta(`content/${blog_folder}`, "categories");
+  const sectionIds = ["posts", "notes"];
 
-  const paths = allCategories.map((category) => ({
-    params: {
-      category: category.slug,
-    },
-  }));
+  const paths = sectionIds.flatMap((sectionId) => {
+    const folder = `content/${sectionId}`;
+    const allCategories = getTaxonomyMeta(folder, "categories");
+    return allCategories.map((category) => ({
+      params: {
+        category: category.slug,
+      },
+    }));
+  });
 
   return { paths, fallback: false };
 };
 
-// category page data
+// category page data — loads posts from all sections, filtering is done client-side
 export const getStaticProps = ({ params }) => {
-  const posts = getSinglePage(`content/${blog_folder}`);
-  const filterPosts = posts.filter((post) =>
-    post.frontmatter.categories.find(
-      (category) => slugify(category) === params.category
+  const { category } = params;
+
+  // Load posts from all sections
+  const allSections = [
+    { id: "posts", posts: getSinglePage(`content/posts`) },
+    { id: "notes", posts: getSinglePage(`content/notes`) },
+  ];
+
+  // Find which section(s) have this category
+  const sectionsWithCategory = allSections.filter(({ posts }) =>
+    posts.some((post) =>
+      post.frontmatter.categories
+        ?.map((e) => slugify(e))
+        .includes(category)
     )
   );
-  const categories = getTaxonomyMeta(`content/${blog_folder}`, "categories");
+
+  // Default section: prefer the first one that has this category
+  const defaultSectionId = sectionsWithCategory[0]?.id || "posts";
+
+  // Collect all posts matching this category from all sections
+  const allMatchingPosts = allSections.flatMap(({ id, posts }) =>
+    posts
+      .filter((post) =>
+        post.frontmatter.categories
+          ?.map((e) => slugify(e))
+          .includes(category)
+      )
+      .map((post) => ({
+        ...post,
+        _section: id, // tag each post with its section
+      }))
+  );
+
+  // Get category label from the default section
+  const categories = getTaxonomyMeta(
+    `content/${defaultSectionId}`,
+    "categories"
+  );
   const activeCategory = categories.find(
-    (category) => category.slug === params.category
+    (cat) => cat.slug === category
   );
 
   return {
     props: {
-      postsByCategories: filterPosts,
-      categoryLabel: activeCategory?.label || params.category,
+      postsByCategories: allMatchingPosts,
+      categoryLabel: activeCategory?.label || category,
+      defaultSectionId,
     },
   };
 };

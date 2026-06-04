@@ -7,7 +7,7 @@ import { plainify, slugify } from "@lib/utils/textConverter";
 import Link from "next/link";
 import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
 
-const Post = ({ post, highlight }) => {
+const Post = ({ post, highlight, section }) => {
   const { summary_length, blog_folder } = config.settings;
   const { meta_author } = config.metadata;
   const excerpt = plainify(post.frontmatter.description || post.content) || "";
@@ -54,7 +54,7 @@ const Post = ({ post, highlight }) => {
         )}
         <h3 className="h5 mb-2">
           <Link
-            href={`/${blog_folder}/${post.slug}`}
+            href={`/${section || blog_folder}/${post.slug}`}
             className="block hover:text-primary"
           >
             {highlight ? highlightText(post.frontmatter.title, highlight) : post.frontmatter.title}
@@ -82,7 +82,7 @@ const Post = ({ post, highlight }) => {
         </p>
         <Link
           className="group mt-4 inline-flex items-center gap-1.5 font-secondary text-sm font-bold text-primary transition hover:gap-2"
-          href={`/${blog_folder}/${post.slug}`}
+          href={`/${section || blog_folder}/${post.slug}`}
         >
           Читать
           <svg

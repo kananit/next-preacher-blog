@@ -41,15 +41,20 @@ const Home = ({ banner, posts, recent_posts }) => {
                 {markdownify(banner.title_small, "span")}
               </div>
               {markdownify(banner.content, "p", "mt-4 sm:block hidden")}
-              {banner.button.enable && (
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
                 <Link
-                  className="btn btn-primary mt-6"
-                  href={banner.button.link}
-                  rel={banner.button.rel}
+                  className="btn btn-primary"
+                  href="/posts"
                 >
-                  {banner.button.label}
+                  📖 Проповеди
                 </Link>
-              )}
+                <Link
+                  className="btn btn-outline-primary"
+                  href="/notes"
+                >
+                  📂 Конспекты
+                </Link>
+              </div>
             </div>
             {banner.image_enable && (
               <div className="col-9 lg:col-6">

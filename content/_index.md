@@ -7,10 +7,7 @@ banner:
   image_enable: false
   # image: /images/banner-author.png
   button:
-    enable: true
-    label: Все записи
-    link: /page/1
-    rel: ""
+    enable: false
 
 featured_posts:
   enable: true

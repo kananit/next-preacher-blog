@@ -3,12 +3,73 @@ import Base from "@layouts/Baseof";
 import { getTaxonomyMeta } from "@lib/taxonomyParser";
 import { markdownify, slugify } from "@lib/utils/textConverter";
 import Link from "next/link";
+import { useRouter } from "next/router";
 const { blog_folder } = config.settings;
 import { getSinglePage } from "@lib/contentParser";
-import { FaFolder, FaFire, FaStar } from "react-icons/fa";
+import { FaBook, FaFire, FaFolder, FaStar, FaBookOpen } from "react-icons/fa";
 
-const Categories = ({ categories, totalPosts }) => {
-  const sortedCategories = [...categories].sort((a, b) => b.posts - a.posts);
+// Section definitions — defined in the component scope to avoid serialization issues
+const SECTION_DEFS = [
+  {
+    id: "posts",
+    name: "Проповеди",
+    icon: FaBook,
+  },
+  {
+    id: "notes",
+    name: "Конспекты",
+    icon: FaBookOpen,
+  },
+];
+
+const SectionTab = ({ section, isActive, onClick }) => {
+  const Icon = section.icon;
+  return (
+    <button
+      onClick={onClick}
+      className={`group relative flex items-center gap-2.5 rounded-xl px-5 py-3 text-sm font-bold transition-all duration-200 ${
+        isActive
+          ? "bg-primary text-white shadow-lg shadow-primary/20 dark:bg-primary dark:text-white"
+          : "bg-theme-light text-dark hover:bg-primary/10 dark:bg-darkmode-theme-dark dark:text-darkmode-light dark:hover:bg-primary/10"
+      }`}
+    >
+      <Icon
+        className={`text-lg ${
+          isActive ? "text-white" : "text-primary"
+        }`}
+      />
+      <span>{section.name}</span>
+    </button>
+  );
+};
+
+const Categories = ({ sectionsData }) => {
+  const router = useRouter();
+  const activeSectionId = router.query.section || "posts";
+
+  // Merge static defs with server data
+  const sections = SECTION_DEFS.map((def) => ({
+    ...def,
+    ...(sectionsData.find((s) => s.id === def.id) || {}),
+  }));
+
+  const activeSection = sections.find((s) => s.id === activeSectionId) || sections[0];
+
+  const switchSection = (sectionId) => {
+    router.push(
+      {
+        pathname: "/categories",
+        query: { section: sectionId },
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
+
+  const sortedCategories = [...(activeSection.categories || [])].sort(
+    (a, b) => b.posts - a.posts
+  );
+  const totalPosts = activeSection.totalPosts || 0;
 
   return (
     <Base title={"categories"}>
@@ -18,52 +79,83 @@ const Categories = ({ categories, totalPosts }) => {
           "h1",
           "h2 lg:mb-4 bg-theme-light dark:bg-darkmode-theme-dark py-8 sm:py-12 text-center lg:text-[55px]"
         )}
-        <div className="container pt-8 text-center">
-          <p className="mb-10 text-lg text-text dark:text-darkmode-text">
-            Все рубрики блога — {totalPosts} записей в {categories.length} категориях
-          </p>
-          <ul className="row">
-            {sortedCategories.map((category, i) => {
-              const isTop = i === 0;
-              const isSecond = i === 1;
-              const isThird = i === 2;
 
-              return (
-                <li
-                  key={`category-${i}`}
-                  className="mt-4 block lg:col-4 xl:col-3"
-                >
-                  <Link
-                    href={`/categories/${category.slug}`}
-                    className={`flex w-full items-center justify-center rounded-lg px-4 py-4 font-bold text-dark transition hover:bg-primary hover:text-white dark:text-darkmode-light dark:hover:bg-primary dark:hover:text-white ${
-                      isTop
-                        ? "bg-primary/10 ring-2 ring-primary/30 dark:bg-darkmode-theme-dark"
-                        : isSecond
-                        ? "bg-primary/[0.07] ring-1 ring-primary/15 dark:bg-darkmode-theme-dark"
-                        : "bg-theme-light dark:bg-darkmode-theme-dark"
-                    }`}
-                  >
-                    {isTop ? (
-                      <FaFire className="mr-1.5 text-primary" />
-                    ) : (
-                      <FaFolder className="mr-1.5" />
-                    )}
-                    {category.label}
-                    <span
-                      className={`ml-2 flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                        isTop
-                          ? "bg-primary text-white"
-                          : "bg-white text-dark dark:bg-darkmode-border dark:text-darkmode-light"
-                      }`}
+        <div className="container pt-8">
+          {/* Section Switcher */}
+          <div className="mb-8 flex justify-center">
+            <div className="inline-flex flex-wrap items-center gap-3 rounded-2xl bg-theme-light p-2 dark:bg-darkmode-theme-dark">
+              {sections.map((section) => (
+                <SectionTab
+                  key={section.id}
+                  section={section}
+                  isActive={activeSectionId === section.id}
+                  onClick={() => switchSection(section.id)}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center">
+            <p className="mb-10 text-lg text-text dark:text-darkmode-text">
+              Рубрики раздела «{activeSection.name}» — {totalPosts}{" "}
+              {totalPosts === 1 ? "запись" : totalPosts > 4 ? "записей" : "записи"}{" "}
+              в {activeSection.categories?.length || 0}{" "}
+              {(activeSection.categories?.length || 0) === 1
+                ? "категории"
+                : "категориях"}
+            </p>
+
+            {sortedCategories.length > 0 ? (
+              <ul className="row">
+                {sortedCategories.map((category, i) => {
+                  const isTop = i === 0;
+                  const isSecond = i === 1;
+                  const isThird = i === 2;
+
+                  return (
+                    <li
+                      key={`category-${i}`}
+                      className="mt-4 block lg:col-4 xl:col-3"
                     >
-                      {isTop && <FaStar className="text-[10px]" />}
-                      {category.posts}
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+                      <Link
+                        href={`/categories/${category.slug}?section=${activeSectionId}`}
+                        className={`flex w-full items-center justify-center rounded-lg px-4 py-4 font-bold text-dark transition hover:bg-primary hover:text-white dark:text-darkmode-light dark:hover:bg-primary dark:hover:text-white ${
+                          isTop
+                            ? "bg-primary/10 ring-2 ring-primary/30 dark:bg-darkmode-theme-dark"
+                            : isSecond
+                            ? "bg-primary/[0.07] ring-1 ring-primary/15 dark:bg-darkmode-theme-dark"
+                            : "bg-theme-light dark:bg-darkmode-theme-dark"
+                        }`}
+                      >
+                        {isTop ? (
+                          <FaFire className="mr-1.5 text-primary" />
+                        ) : (
+                          <FaFolder className="mr-1.5" />
+                        )}
+                        {category.label}
+                        <span
+                          className={`ml-2 flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                            isTop
+                              ? "bg-primary text-white"
+                              : "bg-white text-dark dark:bg-darkmode-border dark:text-darkmode-light"
+                          }`}
+                        >
+                          {isTop && <FaStar className="text-[10px]" />}
+                          {category.posts}
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <div className="rounded-lg border border-dashed border-border py-16 dark:border-darkmode-border">
+                <p className="text-lg text-text dark:text-darkmode-text">
+                  В этом разделе пока нет категорий
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </section>
     </Base>
@@ -73,22 +165,34 @@ const Categories = ({ categories, totalPosts }) => {
 export default Categories;
 
 export const getStaticProps = () => {
-  const posts = getSinglePage(`content/${blog_folder}`);
-  const categories = getTaxonomyMeta(`content/${blog_folder}`, "categories");
-  const categoriesWithPostsCount = categories.map((category) => {
-    const filteredPosts = posts.filter((post) =>
-      post.frontmatter.categories.map((e) => slugify(e)).includes(category.slug)
-    );
+  const sectionIds = ["posts", "notes"];
+
+  const sectionsData = sectionIds.map((id) => {
+    const folder = `content/${id}`;
+    const posts = getSinglePage(folder);
+    const categories = getTaxonomyMeta(folder, "categories");
+    const categoriesWithPostsCount = categories.map((category) => {
+      const filteredPosts = posts.filter((post) =>
+        post.frontmatter.categories
+          .map((e) => slugify(e))
+          .includes(category.slug)
+      );
+      return {
+        slug: category.slug,
+        label: category.label,
+        posts: filteredPosts.length,
+      };
+    });
     return {
-      slug: category.slug,
-      label: category.label,
-      posts: filteredPosts.length,
-    };
-  });
-  return {
-    props: {
+      id,
       categories: categoriesWithPostsCount,
       totalPosts: posts.length,
+    };
+  });
+
+  return {
+    props: {
+      sectionsData,
     },
   };
 };

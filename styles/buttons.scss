@@ -7,15 +7,5 @@
 }
 
 .btn-outline-primary {
-  @apply border-primary bg-transparent hover:bg-primary hover:text-white  rounded-[50px] text-primary font-bold relative transition-all ease-[cubic-bezier(.42,0,.58,1)] duration-75 overflow-hidden h-12;
-
-  &::before {
-    @apply content-[''] absolute  h-full right-0  bg-black/5 w-0 top-0 transition-all duration-500 rounded-[50px];
-  }
-
-  &:hover {
-     &::before {
-      @apply w-full right-auto left-0;
-    }
-  }
+  @apply inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-primary bg-transparent px-6 py-3 text-base font-semibold text-primary transition hover:bg-primary hover:text-white sm:px-5 sm:py-2 sm:text-sm;
 }
