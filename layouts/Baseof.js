@@ -2,6 +2,7 @@ import config from "@config/config.json";
 import { plainify } from "@lib/utils/textConverter";
 import Footer from "@partials/Footer";
 import Header from "@partials/Header";
+import ScrollToTop from "@components/ScrollToTop";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -90,6 +91,7 @@ const Base = ({
       {/* main site */}
       <main>{children}</main>
       <Footer />
+      <ScrollToTop />
     </>
   );
 };
