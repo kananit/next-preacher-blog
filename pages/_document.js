@@ -13,15 +13,18 @@ const Document = () => {
         {/* theme meta */}
         <meta name="theme-name" content="geeky-nextjs" />
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content="#f7f7f7"
-        />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: dark)"
-          content="#191919"
+        <meta name="theme-color" content="#f7f7f7" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var meta = document.querySelector('meta[name="theme-color"]');
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                  meta.setAttribute('content', '#191919');
+                }
+              })();
+            `,
+          }}
         />
       </Head>
       <body>
