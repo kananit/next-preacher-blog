@@ -1,11 +1,32 @@
 import config from "@config/config.json";
 import theme from "@config/theme.json";
 import { JsonContext } from "context/state";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider, useTheme } from "next-themes";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import TagManager from "react-gtm-module";
 import "styles/style.scss";
+
+const THEME_COLORS = {
+  light: "#f7f7f7",
+  dark: "#191919",
+};
+
+/** Updates the theme-color meta tag based on the current theme. */
+const ThemeColorUpdater = () => {
+  const { theme, resolvedTheme } = useTheme();
+  const activeTheme = theme === "system" ? resolvedTheme : theme;
+
+  useEffect(() => {
+    const color = THEME_COLORS[activeTheme] || THEME_COLORS.light;
+    let meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute("content", color);
+    }
+  }, [activeTheme]);
+
+  return null;
+};
 
 const App = ({ Component, pageProps }) => {
   // default theme setup
@@ -61,6 +82,7 @@ const App = ({ Component, pageProps }) => {
         defaultTheme={default_theme}
         enableSystem={true}
       >
+        <ThemeColorUpdater />
         <Component {...pageProps} />
       </ThemeProvider>
     </JsonContext>

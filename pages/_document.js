@@ -16,17 +16,12 @@ const Document = () => {
         <meta
           name="theme-color"
           media="(prefers-color-scheme: light)"
-          content="#fff"
+          content="#f7f7f7"
         />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: dark)"
-          content="#1a1a1a"
-        />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content="#fff"
+          content="#191919"
         />
       </Head>
       <body>
