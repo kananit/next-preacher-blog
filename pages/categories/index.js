@@ -51,9 +51,15 @@ const Categories = ({ sectionsData }) => {
     );
   };
 
-  const sortedCategories = [...(activeSection.categories || [])].sort(
-    (a, b) => b.posts - a.posts
-  );
+  const allCategories = activeSection.categories || [];
+
+  // Все категории в одном списке: сначала основные (primary), потом остальные,
+  // внутри каждой группы сортировка по количеству постов
+  const sortedCategories = [
+    ...allCategories.filter((c) => c.isPrimary).sort((a, b) => b.posts - a.posts),
+    ...allCategories.filter((c) => !c.isPrimary).sort((a, b) => b.posts - a.posts),
+  ];
+
   const totalPosts = activeSection.totalPosts || 0;
 
   return (
@@ -93,9 +99,8 @@ const Categories = ({ sectionsData }) => {
             {sortedCategories.length > 0 ? (
               <ul className="row">
                 {sortedCategories.map((category, i) => {
+                  const isPrimary = category.isPrimary;
                   const isTop = i === 0;
-                  const isSecond = i === 1;
-                  const isThird = i === 2;
 
                   return (
                     <li
@@ -105,27 +110,27 @@ const Categories = ({ sectionsData }) => {
                       <Link
                         href={`/categories/${category.slug}?section=${activeSectionId}`}
                         className={`flex w-full items-center justify-center rounded-lg px-4 py-4 font-bold text-dark transition hover:bg-primary hover:text-white dark:text-darkmode-light dark:hover:bg-primary dark:hover:text-white ${
-                          isTop
-                            ? "bg-primary/10 ring-2 ring-primary/30 dark:bg-darkmode-theme-dark"
-                            : isSecond
-                            ? "bg-primary/[0.07] ring-1 ring-primary/15 dark:bg-darkmode-theme-dark"
+                          isPrimary
+                            ? isTop
+                              ? "bg-primary/10 ring-2 ring-primary/30 dark:bg-darkmode-theme-dark"
+                              : "bg-primary/[0.07] ring-1 ring-primary/15 dark:bg-darkmode-theme-dark"
                             : "bg-theme-light dark:bg-darkmode-theme-dark"
                         }`}
                       >
-                        {isTop ? (
-                          <FaFire className="mr-1.5 text-primary" />
+                        {isPrimary ? (
+                          <FaStar className="mr-1.5 text-primary" />
                         ) : (
                           <FaFolder className="mr-1.5" />
                         )}
                         {category.label}
                         <span
                           className={`ml-2 flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                            isTop
+                            isTop && isPrimary
                               ? "bg-primary text-white"
                               : "bg-white text-dark dark:bg-darkmode-border dark:text-darkmode-light"
                           }`}
                         >
-                          {isTop && <FaStar className="text-[10px]" />}
+                          {isTop && isPrimary && <FaFire className="text-[10px]" />}
                           {category.posts}
                         </span>
                       </Link>
