@@ -23,6 +23,7 @@ const PostSingle = ({
   posts,
   allCategories,
   relatedPosts,
+  section,
 }) => {
   let { description, title, date, categories, source_url } = frontmatter;
   description = description ? description : plainify(content)?.slice(0, 120);
@@ -50,7 +51,7 @@ const PostSingle = ({
                 </div>
                 {config.settings.InnerPaginationOptions.enableTop && (
                   <div className="mt-4">
-                    <InnerPagination posts={posts} slug={slug} />
+                    <InnerPagination posts={posts} slug={slug} section={section} />
                   </div>
                 )}
                 {/* Categories */}
@@ -104,7 +105,7 @@ const PostSingle = ({
                 </div>
                 {config.settings.InnerPaginationOptions.enableBottom && (
                   <div className="mt-8 mb-2">
-                    <InnerPagination posts={posts} slug={slug} />
+                    <InnerPagination posts={posts} slug={slug} section={section} />
                   </div>
                 )}
               </article>

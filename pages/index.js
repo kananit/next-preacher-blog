@@ -17,7 +17,7 @@ const Home = ({ banner, posts, recent_posts }) => {
   return (
     <Base>
       {/* Banner */}
-      <section className="section banner relative pb-0 lg:mt-8">
+      <section className="section banner relative pb-8 lg:mt-8">
         <ImageFallback
           className="absolute bottom-0 left-0 z-[-1] w-full"
           src={"/images/banner-bg-shape.svg"}
@@ -41,7 +41,7 @@ const Home = ({ banner, posts, recent_posts }) => {
                 {markdownify(banner.title_small, "span")}
               </div>
               {markdownify(banner.content, "p", "mt-4 sm:block hidden")}
-              <div className="mt-6 flex flex-nowrap items-center justify-center gap-2 lg:justify-start lg:gap-4">
+              <div className="mt-8 flex flex-nowrap items-center justify-center gap-2 lg:justify-start lg:gap-4">
                 <Link
                   className="btn btn-primary"
                   href="/posts"

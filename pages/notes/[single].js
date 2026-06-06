@@ -26,6 +26,7 @@ const NotesArticle = ({
       allCategories={allCategories}
       relatedPosts={relatedPosts}
       posts={posts}
+      section={SECTION}
     />
   );
 };

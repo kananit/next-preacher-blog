@@ -5,7 +5,8 @@ import Link from "next/link";
 
 const { blog_folder } = config.settings;
 
-const InnerPagination = ({ posts, slug }) => {
+const InnerPagination = ({ posts, slug, section }) => {
+  const folder = section || blog_folder;
   const orderedPosts = sortByDate(posts);
   const lastIndex = orderedPosts.length - 1;
   const postIndex = orderedPosts.findIndex(
@@ -18,7 +19,7 @@ const InnerPagination = ({ posts, slug }) => {
     <nav className="flex items-stretch justify-between">
       {prevPost ? (
         <Link
-          href={`/${blog_folder}/${prevPost.slug}`}
+          href={`/${folder}/${prevPost.slug}`}
           className="group flex w-1/2 flex-col justify-center gap-1 py-5 pr-4 transition"
         >
           <span className="flex items-center gap-1 text-xs font-medium text-primary">
@@ -47,7 +48,7 @@ const InnerPagination = ({ posts, slug }) => {
 
       {nextPost ? (
         <Link
-          href={`/${blog_folder}/${nextPost.slug}`}
+          href={`/${folder}/${nextPost.slug}`}
           className="group flex w-1/2 flex-col justify-center gap-1 py-5 pl-4 text-right transition"
         >
           <span className="flex items-center justify-end gap-1 text-xs font-medium text-primary">

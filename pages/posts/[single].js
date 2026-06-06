@@ -25,6 +25,7 @@ const Article = ({
       allCategories={allCategories}
       relatedPosts={relatedPosts}
       posts={posts}
+      section={blog_folder}
     />
   );
 };
