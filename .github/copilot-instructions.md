@@ -34,7 +34,8 @@
 ## Структура notes
 
 - `content/notes/` содержит подпапки:
-  - `multiplying-freedom/` — статьи и шаги к свободе (категория `["статьи", "multiplying-freedom", "шаги к свободе"]`)
+  - `multiplying-freedom/` — статьи и шаги к свободе (категория `["статьи", "multiplying-freedom", "шаги к свободе"]`).
+    `source_url` для всех файлов: `https://multiplyingfreedom.com/free-stuff/`
   - `books/` — конспекты книг (категория `["книги"]`)
 - Файлы читаются рекурсивно из всех поддиректорий функциями `getSinglePage` и `jsonGenerator`.
 - Несмотря на вложенность папок, URL остаётся плоским: `/notes/{slug}`.
