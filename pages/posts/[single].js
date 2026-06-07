@@ -2,6 +2,7 @@ import config from "@config/config.json";
 import PostSingle from "@layouts/PostSingle";
 import { getSinglePage } from "@lib/contentParser";
 import { getCategoriesWithCount } from "@lib/taxonomyParser";
+import { stripContent } from "@lib/utils/textConverter";
 import parseMDX from "@lib/utils/mdxParser";
 const { blog_folder } = config.settings;
 
@@ -48,11 +49,12 @@ export const getStaticPaths = () => {
 // get post single content
 export const getStaticProps = async ({ params }) => {
   const { single } = params;
-  const posts = getSinglePage(`content/${blog_folder}`);
-  const post = posts.find((p) => p.slug == single);
+  const allPosts = getSinglePage(`content/${blog_folder}`);
+  const post = allPosts.find((p) => p.slug == single);
+  const posts = stripContent(allPosts);
   const mdxContent = await parseMDX(post.content);
   // related posts — exclude current, sort by date descending
-  const relatedPosts = posts
+  const relatedPosts = allPosts
     .filter(
       (p) =>
         p.slug !== single &&

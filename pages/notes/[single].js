@@ -1,8 +1,8 @@
 import PostSingle from "@layouts/PostSingle";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomyMeta } from "@lib/taxonomyParser";
+import { stripContent, slugify } from "@lib/utils/textConverter";
 import parseMDX from "@lib/utils/mdxParser";
-import { slugify } from "@lib/utils/textConverter";
 
 const SECTION = "notes";
 
@@ -49,11 +49,12 @@ export const getStaticPaths = () => {
 // get post single content
 export const getStaticProps = async ({ params }) => {
   const { single } = params;
-  const posts = getSinglePage(`content/${SECTION}`);
-  const post = posts.find((p) => p.slug == single);
+  const allPosts = getSinglePage(`content/${SECTION}`);
+  const post = allPosts.find((p) => p.slug == single);
+  const posts = stripContent(allPosts);
   const mdxContent = await parseMDX(post.content);
   // related posts — exclude current, sort by date descending
-  const relatedPosts = posts
+  const relatedPosts = allPosts
     .filter(
       (p) =>
         p.slug !== single &&

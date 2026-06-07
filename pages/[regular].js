@@ -9,12 +9,12 @@ import { getRegularPage, getSinglePage } from "@lib/contentParser";
 const RegularPages = ({ data }) => {
   const { title, meta_title, description, image, noindex, canonical, layout } =
     data.frontmatter;
-  const { content } = data;
+  const { _excerpt } = data;
 
   return (
     <Base
       title={title}
-      description={description ? description : content.slice(0, 120)}
+      description={description ? description : _excerpt}
       meta_title={meta_title}
       image={image}
       noindex={noindex}
@@ -53,10 +53,15 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   const { regular } = params;
   const allPages = await getRegularPage(regular);
+  const { frontmatter, content, mdxContent } = allPages;
   return {
     props: {
       slug: regular,
-      data: allPages,
+      data: {
+        frontmatter,
+        mdxContent,
+        _excerpt: content.slice(0, 120),
+      },
     },
   };
 };

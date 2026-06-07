@@ -6,7 +6,7 @@ import Post from "@layouts/partials/Post";
 import Sidebar from "@layouts/partials/Sidebar";
 import { getListPage, getSinglePage } from "@lib/contentParser";
 import { sortByDate } from "@lib/utils/sortFunctions";
-import { markdownify } from "@lib/utils/textConverter";
+import { markdownify, stripContent } from "@lib/utils/textConverter";
 import Link from "next/link";
 const { blog_folder } = config.settings;
 const { about } = config.widgets;
@@ -121,7 +121,7 @@ export const getStaticProps = async () => {
   const homepage = await getListPage("content/_index.md");
   const { frontmatter } = homepage;
   const { banner, recent_posts } = frontmatter;
-  const posts = getSinglePage(`content/${blog_folder}`);
+  const posts = stripContent(getSinglePage(`content/${blog_folder}`));
 
   return {
     props: {

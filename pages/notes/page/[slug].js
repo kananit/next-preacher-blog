@@ -4,6 +4,7 @@ import Base from "@layouts/Baseof";
 import Pagination from "@layouts/components/Pagination";
 import { getListPage, getSinglePage } from "@lib/contentParser";
 import { sortByDate } from "@lib/utils/sortFunctions";
+import { stripContent } from "@lib/utils/textConverter";
 import config from "@config/config.json";
 
 const SECTION = "notes";
@@ -74,7 +75,7 @@ export const getStaticPaths = () => {
 export const getStaticProps = async ({ params }) => {
   const currentPage = parseInt((params && params.slug) || 1);
   const { pagination } = config.settings;
-  const posts = getSinglePage(`content/${SECTION}`);
+  const posts = stripContent(getSinglePage(`content/${SECTION}`));
   const postIndex = await getListPage(`content/${SECTION}/_index.md`);
 
   return {

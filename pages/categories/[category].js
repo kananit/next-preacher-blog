@@ -5,7 +5,7 @@ import pluralize from "@lib/utils/pluralize";
 import Base from "@layouts/Baseof";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomyMeta } from "@lib/taxonomyParser";
-import { slugify } from "@lib/utils/textConverter";
+import { slugify, stripContent } from "@lib/utils/textConverter";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
@@ -94,10 +94,10 @@ export const getStaticPaths = () => {
 export const getStaticProps = ({ params }) => {
   const { category } = params;
 
-  // Load posts from all sections
+  // Load posts from all sections (without content body)
   const allSections = getSectionIds().map((id) => ({
     id,
-    posts: getSinglePage(`content/${id}`),
+    posts: stripContent(getSinglePage(`content/${id}`)),
   }));
 
   // Find which section(s) have this category
