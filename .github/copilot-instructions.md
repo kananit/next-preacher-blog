@@ -83,16 +83,14 @@
 
 Если пользователь просит «fix translate», «посмотри ещё раз перевод, можно ли поправить?» или аналогичное — запускай следующий процесс:
 
-1. Прочитай и примени правила из **`../ai-toolkit/skills/text/post-translation-polisher.md`**
-   > ⚠️ Репозиторий приватный — читай файл через терминал: `cat ../ai-toolkit/skills/text/post-translation-polisher.md`
+1. Используй `skill` tool для получения правил из **`spirit-translation-polisher`**
+   > ⚠️ Скил глобальный: `~/.agents/skills/spirit-translation-polisher/SKILL.md`
 
-### Post-translation polishing skill
+### Post-translation polishing skill (spirit-translation-polisher)
 
-После завершения перевода (особенно когда пользователь просит пересмотреть и поправить), сначала примени правила из:
+После завершения перевода (особенно когда пользователь просит пересмотреть и поправить), сначала примени правила из скила **`spirit-translation-polisher`**:
 
-**`../ai-toolkit/skills/text/post-translation-polisher.md`**
-
-> ⚠️ Репозиторий приватный — читай файл через терминал: `cat ../ai-toolkit/skills/text/post-translation-polisher.md`
+> Используй `skill` tool: `skill` с параметром `name: "spirit-translation-polisher"`
 
 Правила покрывают:
 - Удаление калькирования (calque removal)
