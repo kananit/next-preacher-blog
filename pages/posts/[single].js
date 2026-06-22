@@ -2,7 +2,7 @@ import config from "@config/config.json";
 import PostSingle from "@layouts/PostSingle";
 import { getSinglePage } from "@lib/contentParser";
 import { getCategoriesWithCount } from "@lib/taxonomyParser";
-import { stripContent } from "@lib/utils/textConverter";
+import { stripContent, stripContentItem } from "@lib/utils/textConverter";
 import parseMDX from "@lib/utils/mdxParser";
 const { blog_folder } = config.settings;
 
@@ -65,7 +65,8 @@ export const getStaticProps = async ({ params }) => {
     .sort(
       (a, b) =>
         new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
-    );
+    )
+    .map(stripContentItem);
 
   //all categories
   const categoriesWithPostsCount = getCategoriesWithCount(`content/${blog_folder}`);

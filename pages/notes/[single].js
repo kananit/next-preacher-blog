@@ -1,7 +1,7 @@
 import PostSingle from "@layouts/PostSingle";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomyMeta } from "@lib/taxonomyParser";
-import { stripContent, slugify } from "@lib/utils/textConverter";
+import { stripContent, stripContentItem, slugify } from "@lib/utils/textConverter";
 import parseMDX from "@lib/utils/mdxParser";
 
 const SECTION = "notes";
@@ -65,7 +65,8 @@ export const getStaticProps = async ({ params }) => {
     .sort(
       (a, b) =>
         new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
-    );
+    )
+    .map(stripContentItem);
 
   // all categories
   const categories = getTaxonomyMeta(`content/${SECTION}`, "categories");
