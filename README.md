@@ -1,8 +1,6 @@
 <h1 align=center>Blog Nextjs</h1>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b6db5f90-b2b7-4d26-aee4-1222a576cc5f/deploy-status)](https://app.netlify.com/projects/preacher-blog/deploys)
-
-https://preacher-blog.netlify.app
+https://hosea.ru
 
 ## Key Features
 
