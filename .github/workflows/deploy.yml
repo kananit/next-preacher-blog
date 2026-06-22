@@ -1,0 +1,48 @@
+name: Deploy to Yandex Cloud
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build (static export)
+        run: npm run build
+
+      - name: Copy 404 page to root
+        run: |
+          if [ -f out/404/index.html ]; then
+            cp out/404/index.html out/404.html
+          fi
+
+      - name: Install AWS CLI
+        run: |
+          pip3 install awscli --user
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Sync to Yandex Cloud Object Storage
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.YC_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.YC_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ru-central1
+        run: |
+          aws s3 sync out/ s3://hosea.ru \
+            --endpoint-url https://storage.yandexcloud.net \
+            --delete \
+            --exclude ".DS_Store"
