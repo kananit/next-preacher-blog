@@ -3,6 +3,7 @@ import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomyMeta } from "@lib/taxonomyParser";
 import { stripContent, stripContentItem, slugify } from "@lib/utils/textConverter";
 import parseMDX from "@lib/utils/mdxParser";
+import readingTime from "@lib/utils/readingTime";
 
 const SECTION = "notes";
 
@@ -10,17 +11,18 @@ const SECTION = "notes";
 const NotesArticle = ({
   post,
   mdxContent,
+  readTime,
   slug,
   allCategories,
   relatedPosts,
   posts,
 }) => {
-  const { frontmatter, content } = post;
+  const { frontmatter } = post;
 
   return (
     <PostSingle
       frontmatter={frontmatter}
-      content={content}
+      readTime={readTime}
       mdxContent={mdxContent}
       slug={slug}
       allCategories={allCategories}
@@ -53,6 +55,7 @@ export const getStaticProps = async ({ params }) => {
   const post = allPosts.find((p) => p.slug == single);
   const posts = stripContent(allPosts);
   const mdxContent = await parseMDX(post.content);
+  const readTime = readingTime(post.content);
   // related posts — exclude current, sort by date descending
   const relatedPosts = allPosts
     .filter(
@@ -85,8 +88,9 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
-      post: post,
+      post: { frontmatter: post.frontmatter, slug: post.slug },
       mdxContent: mdxContent,
+      readTime: readTime,
       slug: single,
       allCategories: categoriesWithPostsCount,
       relatedPosts: relatedPosts,

@@ -4,7 +4,7 @@ import Base from "@layouts/Baseof";
 import GeneratedCover from "@layouts/components/GeneratedCover";
 import InnerPagination from "@layouts/components/InnerPagination";
 import dateFormat from "@lib/utils/dateFormat";
-import { markdownify, plainify, slugify } from "@lib/utils/textConverter";
+import { markdownify, slugify } from "@lib/utils/textConverter";
 import { DiscussionEmbed } from "disqus-react";
 import { MDXRemote } from "next-mdx-remote";
 import { useTheme } from "next-themes";
@@ -12,12 +12,11 @@ import Link from "next/link";
 import { FaRegCalendar, FaRegClock, FaExternalLinkAlt } from "react-icons/fa";
 import Post from "./partials/Post";
 import shortcodes from "./shortcodes/all";
-import readingTime from "@lib/utils/readingTime";
 const { disqus } = config;
 
 const PostSingle = ({
   frontmatter,
-  content,
+  readTime,
   mdxContent,
   slug,
   posts,
@@ -26,7 +25,7 @@ const PostSingle = ({
   section,
 }) => {
   let { description, title, date, categories, source_url } = frontmatter;
-  description = description ? description : plainify(content)?.slice(0, 120);
+  description = description ? description : "";
 
   const { theme } = useTheme();
   // Local copy so we don't modify global config.
@@ -80,7 +79,7 @@ const PostSingle = ({
                 <ul className="flex items-center space-x-4">
                   <li className="inline-flex items-center font-secondary text-xs leading-3">
                     <FaRegClock className="mr-1.5" />
-                    {readingTime(content)}
+                    {readTime}
                   </li>
                   <li className="inline-flex items-center font-secondary text-xs leading-3">
                     <FaRegCalendar className="mr-1.5" />
