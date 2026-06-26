@@ -1,6 +1,7 @@
 import PageHeader from "@layouts/components/PageHeader";
 import PostGrid from "@layouts/components/PostGrid";
 import EmptyState from "@layouts/components/EmptyState";
+import Pagination from "@layouts/components/Pagination";
 import pluralize from "@lib/utils/pluralize";
 import Base from "@layouts/Baseof";
 import { getSinglePage } from "@lib/contentParser";
@@ -10,6 +11,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { getSectionIds, getSectionMeta } from "@config/sections";
+import config from "@config/config.json";
 
 // category page
 const Category = ({ postsByCategories, categoryLabel, defaultSectionId }) => {
@@ -21,6 +23,23 @@ const Category = ({ postsByCategories, categoryLabel, defaultSectionId }) => {
   const postsCount = filteredPosts.length;
   const section = getSectionMeta(sectionId);
   const SectionIcon = section.icon;
+
+  // Client-side pagination
+  const { pagination } = config.settings;
+  const currentPage = parseInt(router.query.page, 10) || 1;
+  const totalPages = Math.ceil(filteredPosts.length / pagination);
+  const indexOfLastPost = currentPage * pagination;
+  const indexOfFirstPost = indexOfLastPost - pagination;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Build pagination URLs with category slug and section query param
+  const formatPageLink = (page) => {
+    const params = new URLSearchParams();
+    if (sectionId !== defaultSectionId) params.set("section", sectionId);
+    if (page > 1) params.set("page", String(page));
+    const qs = params.toString();
+    return `/categories/${router.query.category}${qs ? `?${qs}` : ""}`;
+  };
 
   return (
     <Base title={categoryLabel}>
@@ -49,8 +68,16 @@ const Category = ({ postsByCategories, categoryLabel, defaultSectionId }) => {
             meta={postsCount === 0 ? "нет записей" : `${postsCount} ${pluralize(postsCount, ["запись", "записи", "записей"])}`}
           />
 
-          {filteredPosts.length > 0 ? (
-            <PostGrid posts={filteredPosts} section={sectionId} />
+          {currentPosts.length > 0 ? (
+            <>
+              <PostGrid posts={currentPosts} section={sectionId} />
+              <Pagination
+                section={sectionId}
+                currentPage={currentPage}
+                totalPages={totalPages}
+                formatPageLink={formatPageLink}
+              />
+            </>
           ) : (
             <EmptyState
               icon={

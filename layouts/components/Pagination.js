@@ -2,10 +2,15 @@ import Link from "next/link";
 import React from "react";
 import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
 
-const Pagination = ({ section, currentPage, totalPages }) => {
-  const indexPageLink = currentPage === 2;
+const Pagination = ({ section, currentPage, totalPages, formatPageLink }) => {
   const hasPrevPage = currentPage > 1;
   const hasNextPage = totalPages > currentPage;
+
+  const buildHref = (page) => {
+    if (formatPageLink) return formatPageLink(page);
+    if (page === 1) return section ? `/${section}` : "/";
+    return `${section ? "/" + section : ""}/page/${page}`;
+  };
 
   let pageList = [];
   for (let i = 1; i <= totalPages; i++) {
@@ -22,11 +27,7 @@ const Pagination = ({ section, currentPage, totalPages }) => {
           {/* previous */}
           {hasPrevPage ? (
             <Link
-              href={
-                indexPageLink
-                  ? `${section ? "/" + section : "/"}`
-                  : `${section ? "/" + section : ""}/page/${currentPage - 1}`
-              }
+              href={buildHref(currentPage - 1)}
               className="inline-flex h-9 w-9 items-center justify-center rounded-2xl text-xl text-dark transition hover:bg-primary/10 hover:text-primary dark:text-darkmode-light dark:hover:text-primary"
             >
               <BsArrowLeftShort />
@@ -49,11 +50,7 @@ const Pagination = ({ section, currentPage, totalPages }) => {
                 </span>
               ) : (
                 <Link
-                  href={
-                    i === 0
-                      ? `${section ? "/" + section : "/"}`
-                      : `${section ? "/" + section : ""}/page/${pagination}`
-                  }
+                  href={buildHref(pagination)}
                   passHref
                   className="inline-flex h-9 w-9 items-center justify-center rounded-2xl text-sm font-medium text-dark transition hover:bg-primary/10 hover:text-primary dark:text-darkmode-light dark:hover:text-primary"
                 >
@@ -66,7 +63,7 @@ const Pagination = ({ section, currentPage, totalPages }) => {
           {/* next page */}
           {hasNextPage ? (
             <Link
-              href={`${section ? "/" + section : ""}/page/${currentPage + 1}`}
+              href={buildHref(currentPage + 1)}
               className="inline-flex h-9 w-9 items-center justify-center rounded-2xl text-xl text-dark transition hover:bg-primary/10 hover:text-primary dark:text-darkmode-light dark:hover:text-primary"
             >
               <BsArrowRightShort />
