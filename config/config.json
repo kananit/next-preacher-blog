@@ -1,13 +1,13 @@
 {
   "site": {
-    "title": "Konspekt",
+    "title": "Конспекты проповедей"
     "base_url": "/",
     "favicon": "/images/favicon.png",
     "logo": "/images/logo.png",
     "logo_white": "/images/logo-light.png",
     "logo_width": "190",
     "logo_height": "39",
-    "logo_text": "Konspekt"
+    "logo_text": "Конспекты проповедей"
   },
   "settings": {
     "theme_switcher": true,
