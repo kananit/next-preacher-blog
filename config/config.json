@@ -21,7 +21,8 @@
     "blog_folder": "posts"
   },
   "params": {
-    "tag_manager_id": "",
+      "yandex_metrika_id": "110177059",
+      "tag_manager_id": "",
     "footer_content": "Краткое содержание проповедей и ключевые моменты, извлеченные с помощью искусственного интеллекта.",
     "copyright": "2024"
   },

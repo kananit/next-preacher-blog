@@ -5,6 +5,7 @@ import { ThemeProvider, useTheme } from "next-themes";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import TagManager from "react-gtm-module";
+import YandexMetrika from "@layouts/components/YandexMetrika";
 import "styles/style.scss";
 
 const THEME_COLORS = {
@@ -58,7 +59,9 @@ const App = ({ Component, pageProps }) => {
   }, []);
 
   return (
-    <JsonContext>
+    <>
+      <YandexMetrika counterId={config.params.yandex_metrika_id} />
+      <JsonContext>
       <Head>
         {/* google font css */}
         <link
@@ -86,6 +89,7 @@ const App = ({ Component, pageProps }) => {
         <Component {...pageProps} />
       </ThemeProvider>
     </JsonContext>
+    </>
   );
 };
 

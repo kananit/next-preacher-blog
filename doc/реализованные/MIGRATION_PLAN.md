@@ -366,18 +366,19 @@ AWS_SECRET_ACCESS_KEY=<secret>
 
 ---
 
-## 6. Аналитика — Яндекс Метрика
+## 6. Аналитика — Яндекс Метрика ✅
 
-### 6.1 Регистрация счётчика
+> **Статус: выполнено** — счётчик `110177059` подключён.
 
-1. Зайти в [metrika.yandex.ru](https://metrika.yandex.ru)
-2. Создать счётчик для `hosea.ru`
-3. Получить ID счётчика (например, `12345678`)
-4. Выбрать: вебвизор, тепловые карты, точный расчёт отказов
+### 6.1 Регистрация счётчика ✅
 
-### 6.2 Компонент для Next.js
+1. ✅ Зайти в [metrika.yandex.ru](https://metrika.yandex.ru)
+2. ✅ Создать счётчик для `hosea.ru` — ID `110177059`
+3. ✅ Выбрать: вебвизор, тепловые карты, точный расчёт отказов
 
-Создать `layouts/components/YandexMetrika.js`:
+### 6.2 Компонент для Next.js ✅
+
+`layouts/components/YandexMetrika.js`:
 
 ```jsx
 "use client";
@@ -412,9 +413,9 @@ const YandexMetrika = ({ counterId }) => {
 export default YandexMetrika;
 ```
 
-### 6.3 Подключение в _app.js
+### 6.3 Подключение в _app.js ✅
 
-В `pages/_app.js` добавить:
+В `pages/_app.js` добавлено:
 
 ```jsx
 import YandexMetrika from "@layouts/components/YandexMetrika";
@@ -433,14 +434,14 @@ return (
 );
 ```
 
-### 6.4 Добавление ID счётчика в config.json
+### 6.4 Добавление ID счётчика в config.json ✅
 
-В `config/config.json` добавить:
+В `config/config.json` добавлено:
 
 ```json
 {
   "params": {
-    "yandex_metrika_id": "ВАШ_НОМЕР_СЧЁТЧИКА",
+    "yandex_metrika_id": "110177059",
     "tag_manager_id": "",
     "footer_content": "...",
     "copyright": "2024"
