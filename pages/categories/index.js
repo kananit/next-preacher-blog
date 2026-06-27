@@ -63,7 +63,7 @@ const Categories = ({ sectionsData }) => {
   const totalPosts = activeSection.totalPosts || 0;
 
   return (
-    <Base title={"categories"}>
+    <Base title={"Категории"}>
       <section className="section pt-0">
         {markdownify(
           "Категории",
