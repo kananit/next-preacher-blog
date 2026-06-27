@@ -64,7 +64,7 @@ const Category = ({ postsByCategories, categoryLabel, defaultSectionId }) => {
                 Категория
               </>
             }
-            title={<span className="capitalize">{categoryLabel}</span>}
+            title={<span>{categoryLabel}</span>}
             meta={postsCount === 0 ? "нет записей" : `${postsCount} ${pluralize(postsCount, ["запись", "записи", "записей"])}`}
           />
 
