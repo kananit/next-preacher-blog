@@ -79,6 +79,8 @@ const App = ({ Component, pageProps }) => {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5"
         />
+        {/* yandex webmaster verification */}
+        <meta name="yandex-verification" content="a8e801bca5e46df2" />
       </Head>
       <ThemeProvider
         attribute="class"
