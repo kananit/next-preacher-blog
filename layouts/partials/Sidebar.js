@@ -46,7 +46,7 @@ const Sidebar = ({ posts, className }) => {
                 <h3 className="h6 mb-1">
                   <Link
                     href={`/${blog_folder}/${post.slug}`}
-                    className="block hover:text-primary line-clamp-2"
+                    className="block hover:text-primary"
                   >
                     {post.frontmatter.title}
                   </Link>
