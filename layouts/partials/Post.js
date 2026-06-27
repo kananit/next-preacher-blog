@@ -51,7 +51,7 @@ const Post = ({ post, highlight, section }) => {
         <h3 className="h5 mb-2">
           <Link
             href={`/${section || blog_folder}/${post.slug}`}
-            className="block hover:text-primary"
+            className="block hover:text-primary line-clamp-2"
           >
             {highlight ? highlightText(post.frontmatter.title, highlight) : post.frontmatter.title}
           </Link>
