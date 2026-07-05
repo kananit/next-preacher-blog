@@ -35,6 +35,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# sitemap
+/public/sitemap.xml
+
 # vercel
 .vercel
 
