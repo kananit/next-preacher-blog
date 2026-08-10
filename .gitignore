@@ -18,6 +18,14 @@ package-lock.json
 /build
 /.json
 
+# python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# vscode (локальные/машинные настройки)
+.vscode/
+
 # misc
 .DS_Store
 *.pem

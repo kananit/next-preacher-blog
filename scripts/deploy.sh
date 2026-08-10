@@ -24,9 +24,11 @@ fi
 # ── Parse flags ──────────────────────────────────
 DRY_RUN=false
 FULL_SYNC=false
+APPLY_CACHE=false
 for arg in "$@"; do
   if [ "$arg" = "--dry-run" ]; then DRY_RUN=true; fi
   if [ "$arg" = "--full" ]; then FULL_SYNC=true; fi
+  if [ "$arg" = "--apply-cache" ]; then APPLY_CACHE=true; fi
 done
 
 if [ "$DRY_RUN" = true ]; then
@@ -37,9 +39,25 @@ fi
 # Assets (CSS/JS/images): filenames contain content hashes → size-only is safe.
 # HTML files: content can change without size changing (same-length chunk names)
 # → use MD5 manifest via sync-manifest.py.
-SYNC_ASSET_OPTS="--exclude=.DS_Store --delete --exclude=*.html --exclude=.deploy/*"
+#
+# Cache-Control: у файлов со стабильными URL между деплоями (HTML и _next/data/*.json)
+# браузер кэширует старую версию и после SPA-навигации показывает устаревшие данные
+# (свежий пост «пропадает» с главной). Поэтому:
+#  - хешированные ассеты (_next/static/*) — новый URL при изменении → immutable
+#  - HTML и данные (_next/data/*.json) — URL стабилен → no-cache (всегда ревалидируем)
+CACHE_IMMUTABLE="public, max-age=31536000, immutable"
+CACHE_NO_CACHE="no-cache"
+
+# Общие исключения для не-HTML ассетов
+ASSET_BASE="--exclude=.DS_Store --exclude=*.html --exclude=.deploy/*"
+
+# Pass 1a: только хешированные ассеты → immutable
+SYNC_STATIC_OPTS="--exclude=* --include=_next/static/* $ASSET_BASE --delete --cache-control=\"$CACHE_IMMUTABLE\""
+# Pass 1b: всё остальное (картинки, _next/data, robots…) → no-cache
+SYNC_DATA_OPTS="$ASSET_BASE --exclude=_next/static/* --delete --cache-control=\"$CACHE_NO_CACHE\""
 if [ "$FULL_SYNC" = false ]; then
-  SYNC_ASSET_OPTS="$SYNC_ASSET_OPTS --size-only"
+  SYNC_STATIC_OPTS="$SYNC_STATIC_OPTS --size-only"
+  SYNC_DATA_OPTS="$SYNC_DATA_OPTS --size-only"
 fi
 
 # ── Pre-flight: bucket config ────────────────────
@@ -115,10 +133,15 @@ sys.stderr.write('\n')
 }
 
 if [ "$DRY_RUN" = true ]; then
-  echo -e "${YELLOW}   --- dry-run (assets) ---${NC}"
+  echo -e "${YELLOW}   --- dry-run (static, immutable) ---${NC}"
   eval aws s3 sync "$BUILD_DIR" "s3://${BUCKET}" \
     --endpoint-url "$ENDPOINT" \
-    $SYNC_ASSET_OPTS \
+    $SYNC_STATIC_OPTS \
+    --dryrun
+  echo -e "${YELLOW}   --- dry-run (data, no-cache) ---${NC}"
+  eval aws s3 sync "$BUILD_DIR" "s3://${BUCKET}" \
+    --endpoint-url "$ENDPOINT" \
+    $SYNC_DATA_OPTS \
     --dryrun
   echo -e "${YELLOW}   --- dry-run (HTML) ---${NC}"
   # Для HTML показываем diff через manifest
@@ -126,13 +149,32 @@ if [ "$DRY_RUN" = true ]; then
 else
   START_TIME=$(date +%s)
 
-  # ── Phase 1: assets (CSS, JS, images) ─────────
-  echo -e "   ${YELLOW}── Ассеты (CSS/JS/images) ──${NC}"
-  ASSETS_COUNT=$(sync_with_progress "Ассеты" "$SYNC_ASSET_OPTS")
+  # ── Phase 1a: hashed static assets → immutable ─
+  echo -e "   ${YELLOW}── Ассеты (_next/static, immutable) ──${NC}"
+  STATIC_COUNT=$(sync_with_progress "Статика (immutable)" "$SYNC_STATIC_OPTS")
 
-  # ── Phase 2: HTML (manifest-based) ────────────
-  echo -e "   ${YELLOW}── HTML ──${NC}"
+  # ── Phase 1b: data/JSON/images → no-cache ─────
+  echo -e "   ${YELLOW}── Данные/картинки (no-cache) ──${NC}"
+  DATA_COUNT=$(sync_with_progress "Данные/картинки" "$SYNC_DATA_OPTS")
+
+  # ── Phase 2: HTML (manifest-based) → no-cache ─
+  echo -e "   ${YELLOW}── HTML (no-cache) ──${NC}"
   HTML_COUNT=$(python3 scripts/sync-manifest.py "$BUILD_DIR" "$BUCKET" "$ENDPOINT" "$MANIFEST_KEY")
+
+  # ── Phase 3 (одноразово): применить Cache-Control к уже загруженным файлам ──
+  if [ "$APPLY_CACHE" = true ]; then
+    echo -e "   ${YELLOW}── Применяю Cache-Control ко всем файлам (одноразово) ──${NC}"
+    # HTML → no-cache
+    aws s3 cp "$BUILD_DIR" "s3://${BUCKET}" --recursive \
+      --exclude "*" --include "*.html" \
+      --endpoint-url "$ENDPOINT" --cache-control "$CACHE_NO_CACHE" --no-progress
+    # Next.js data JSON → no-cache
+    aws s3 cp "$BUILD_DIR/_next/data" "s3://${BUCKET}/_next/data" --recursive \
+      --endpoint-url "$ENDPOINT" --cache-control "$CACHE_NO_CACHE" --no-progress
+    # Хешированные ассеты → immutable
+    aws s3 cp "$BUILD_DIR/_next/static" "s3://${BUCKET}/_next/static" --recursive \
+      --endpoint-url "$ENDPOINT" --cache-control "$CACHE_IMMUTABLE" --no-progress
+  fi
 
   SYNC_ELAPSED=$(( $(date +%s) - START_TIME ))
 fi

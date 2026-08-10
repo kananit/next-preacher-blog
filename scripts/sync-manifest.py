@@ -79,6 +79,8 @@ def main():
             proc = subprocess.Popen([
                 'aws', 's3', 'sync', tmpdir, f's3://{bucket}',
                 '--endpoint-url', endpoint,
+                # URL стабилен между деплоями → всегда ревалидируем
+                '--cache-control', 'no-cache',
             ], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
 
             count = 0
