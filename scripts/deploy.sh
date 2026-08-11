@@ -7,7 +7,6 @@ ENDPOINT="https://storage.yandexcloud.net"
 MANIFEST_KEY=".deploy/manifest.json"
 
 GREEN='\033[0;32m'
-RED='\033[0;31m'
 YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m'
@@ -53,11 +52,14 @@ ASSET_BASE="--exclude=.DS_Store --exclude=*.html --exclude=.deploy/*"
 
 # Pass 1a: только хешированные ассеты → immutable
 SYNC_STATIC_OPTS="--exclude=* --include=_next/static/* $ASSET_BASE --delete --cache-control=\"$CACHE_IMMUTABLE\""
-# Pass 1b: всё остальное (картинки, _next/data, robots…) → no-cache
-SYNC_DATA_OPTS="$ASSET_BASE --exclude=_next/static/* --delete --cache-control=\"$CACHE_NO_CACHE\""
+# Pass 1b1: данные Next.js (_next/data) → no-cache. БЕЗ --size-only:
+#   контент может измениться при том же размере, а URL стабилен → синхронизируем всегда
+SYNC_DATA_OPTS="--exclude=* --include=_next/data/* $ASSET_BASE --delete --cache-control=\"$CACHE_NO_CACHE\""
+# Pass 1b2: картинки и прочее (robots, favicon…) → no-cache
+SYNC_IMAGES_OPTS="$ASSET_BASE --exclude=_next/static/* --exclude=_next/data/* --delete --cache-control=\"$CACHE_NO_CACHE\""
 if [ "$FULL_SYNC" = false ]; then
   SYNC_STATIC_OPTS="$SYNC_STATIC_OPTS --size-only"
-  SYNC_DATA_OPTS="$SYNC_DATA_OPTS --size-only"
+  SYNC_IMAGES_OPTS="$SYNC_IMAGES_OPTS --size-only"
 fi
 
 # ── Pre-flight: bucket config ────────────────────
@@ -138,10 +140,15 @@ if [ "$DRY_RUN" = true ]; then
     --endpoint-url "$ENDPOINT" \
     $SYNC_STATIC_OPTS \
     --dryrun
-  echo -e "${YELLOW}   --- dry-run (data, no-cache) ---${NC}"
+  echo -e "${YELLOW}   --- dry-run (data, no-cache, always) ---${NC}"
   eval aws s3 sync "$BUILD_DIR" "s3://${BUCKET}" \
     --endpoint-url "$ENDPOINT" \
     $SYNC_DATA_OPTS \
+    --dryrun
+  echo -e "${YELLOW}   --- dry-run (images, no-cache) ---${NC}"
+  eval aws s3 sync "$BUILD_DIR" "s3://${BUCKET}" \
+    --endpoint-url "$ENDPOINT" \
+    $SYNC_IMAGES_OPTS \
     --dryrun
   echo -e "${YELLOW}   --- dry-run (HTML) ---${NC}"
   # Для HTML показываем diff через manifest
@@ -153,9 +160,13 @@ else
   echo -e "   ${YELLOW}── Ассеты (_next/static, immutable) ──${NC}"
   STATIC_COUNT=$(sync_with_progress "Статика (immutable)" "$SYNC_STATIC_OPTS")
 
-  # ── Phase 1b: data/JSON/images → no-cache ─────
-  echo -e "   ${YELLOW}── Данные/картинки (no-cache) ──${NC}"
-  DATA_COUNT=$(sync_with_progress "Данные/картинки" "$SYNC_DATA_OPTS")
+  # ── Phase 1b1: данные Next.js → no-cache (всегда) ─
+  echo -e "   ${YELLOW}── Данные (_next/data, no-cache, всегда) ──${NC}"
+  DATA_COUNT=$(sync_with_progress "Данные (no-cache)" "$SYNC_DATA_OPTS")
+
+  # ── Phase 1b2: картинки/прочее → no-cache ─────
+  echo -e "   ${YELLOW}── Картинки/прочее (no-cache) ──${NC}"
+  IMAGES_COUNT=$(sync_with_progress "Картинки/прочее" "$SYNC_IMAGES_OPTS")
 
   # ── Phase 2: HTML (manifest-based) → no-cache ─
   echo -e "   ${YELLOW}── HTML (no-cache) ──${NC}"
@@ -189,4 +200,5 @@ echo -e "${CYAN}═════════════════════�
 echo -e "${GREEN}✅ Деплой завершён${NC}"
 echo ""
 echo -e "   ${CYAN}⏱  Время: ${TOTAL_ELAPSED} с (загрузка: ${SYNC_ELAPSED} с)${NC}"
-echo -e "   ${CYAN}📄 HTML-страниц: ${FILE_COUNT}${NC}"
+echo -e "   ${CYAN}Загружено: статика ${STATIC_COUNT:-0} · данные ${DATA_COUNT:-0} · картинки ${IMAGES_COUNT:-0} · HTML ${HTML_COUNT:-0}${NC}"
+echo -e "   ${CYAN}HTML-страниц: ${FILE_COUNT}${NC}"
