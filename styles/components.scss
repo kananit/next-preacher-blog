@@ -38,18 +38,18 @@
   @apply prose max-w-none;
   @apply prose-headings:mb-[.9em] prose-headings:mt-[.5em] prose-headings:font-bold prose-headings:text-dark prose-headings:dark:text-darkmode-light;
   @apply prose-h1:text-h1-sm md:prose-h1:text-h1;
-  @apply prose-h2:text-h2-sm md:prose-h2:text-h2;
-  @apply prose-h3:mb-[.5em] prose-h3:text-h3-sm md:prose-h3:text-h3;
-  @apply prose-h4:mb-[.5em] prose-h5:mb-[.5em] prose-h6:mb-[.5em];
+  @apply prose-h2:relative prose-h2:border-b prose-h2:border-primary/20 prose-h2:pb-3 prose-h2:leading-snug prose-h2:tracking-tight prose-h2:text-h2-sm md:prose-h2:text-h2;
+  @apply prose-h3:mt-[.75em] prose-h3:mb-[.6em] prose-h3:font-semibold prose-h3:tracking-tight prose-h3:text-h3-sm md:prose-h3:text-h3;
+  @apply prose-h4:font-medium prose-h4:mb-[.5em] prose-h4:tracking-tight prose-h5:mb-[.5em] prose-h6:mb-[.5em];
   @apply prose-hr:border-border prose-hr:dark:border-darkmode-border;
-  @apply prose-p:text-base prose-p:text-text prose-p:dark:text-darkmode-text;
+  @apply prose-p:leading-7 prose-p:text-base prose-p:text-text prose-p:dark:text-darkmode-text;
   @apply prose-blockquote:my-6 prose-blockquote:rounded prose-blockquote:border-0 prose-blockquote:bg-theme-light prose-blockquote:px-4 prose-blockquote:py-0.5 prose-blockquote:not-italic prose-blockquote:dark:bg-darkmode-theme-dark sm:prose-blockquote:px-5 sm:prose-blockquote:py-1;
   @apply prose-code:px-1 prose-code:text-primary;
   @apply prose-pre:rounded;
   @apply prose-img:rounded;
   @apply prose-table:rounded;
   @apply prose-strong:text-dark prose-strong:dark:text-darkmode-light;
-  @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline;
+  @apply prose-a:text-primary prose-a:underline prose-a:underline-offset-[3px] prose-a:decoration-primary/40 hover:prose-a:decoration-primary;
   @apply prose-li:text-text prose-li:dark:text-darkmode-text;
   @apply prose-table:border prose-table:border-border prose-table:dark:border-darkmode-border;
   @apply prose-thead:border-border prose-thead:bg-theme-light prose-th:px-4 prose-th:py-4 prose-th:text-dark prose-thead:dark:border-darkmode-border prose-thead:dark:bg-darkmode-theme-dark prose-th:dark:text-darkmode-light;
@@ -66,8 +66,15 @@
     @apply -mt-4 block text-center text-gray-500;
   }
   hr {
-    margin-top: 0.5rem !important;
-    margin-bottom: 0.5rem !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 1.25rem !important;
+    opacity: 0.45;
+  }
+
+  h2 {
+    &::after {
+      @apply absolute bottom-[-1px] left-0 block h-[2px] w-16 rounded-full bg-primary content-[''];
+    }
   }
 
   blockquote {
@@ -196,11 +203,7 @@ footer .socials {
 .single-blog {
   .content {
     :is(p, ul, ol, blockquote, pre) + h2 {
-      @apply mt-4;
-
-      &::before {
-        @apply mb-6 block border-t border-border content-[''] dark:border-darkmode-border;
-      }
+      @apply mt-8;
     }
   }
 

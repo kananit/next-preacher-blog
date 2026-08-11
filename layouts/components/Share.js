@@ -1,58 +1,41 @@
 import config from "@config/config.json";
-import {
-  IoLogoFacebook,
-  IoLogoLinkedin,
-  IoLogoPinterest,
-  IoLogoTwitter,
-} from "react-icons/io5";
+import { IoLogoVk, IoPaperPlane } from "react-icons/io5";
 
 const Share = ({ title, description, slug, className }) => {
   // destructuring items from config object
   const { base_url } = config.site;
+  const url = `${base_url}/${slug}`;
 
   return (
-    <ul className={`${className}`}>
-      <li className="inline-block">
+    <ul className={`flex items-center gap-3 ${className}`}>
+      <li>
         <a
-          aria-label="facebook share button"
-          href={`https://facebook.com/sharer/sharer.php?u=${base_url}/${slug}`}
+          aria-label="Поделиться ВКонтакте"
+          title="ВКонтакте"
+          href={`https://vk.com/share.php?url=${encodeURIComponent(
+            url,
+          )}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(
+            description,
+          )}`}
           target="_blank"
-          rel="noreferrer noopener"
-          button="true"
+          rel="noopener noreferrer"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/15 transition hover:bg-primary hover:text-white hover:ring-primary dark:bg-primary/15"
         >
-          <IoLogoFacebook />
+          <IoLogoVk className="text-lg" />
         </a>
       </li>
-      <li className="inline-block">
+      <li>
         <a
-          aria-label="twitter share button"
-          href={`https://twitter.com/intent/tweet/?text=${title}&amp;url=${base_url}/${slug}`}
+          aria-label="Поделиться в Telegram"
+          title="Telegram"
+          href={`https://t.me/share/url?url=${encodeURIComponent(
+            url,
+          )}&text=${encodeURIComponent(title)}`}
           target="_blank"
-          rel="noreferrer noopener"
-          button="true"
+          rel="noopener noreferrer"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/15 transition hover:bg-primary hover:text-white hover:ring-primary dark:bg-primary/15"
         >
-          <IoLogoTwitter />
-        </a>
-      </li>
-      <li className="inline-block">
-        <a
-          aria-label="linkedin share button"
-          href={`https://www.linkedin.com/shareArticle?mini=true&url=${base_url}/${slug}&title=${title}&summary=${description}&source=${base_url}`}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <IoLogoLinkedin />
-        </a>
-      </li>
-      <li className="inline-block">
-        <a
-          aria-label="pinterest share button"
-          href={`https://pinterest.com/pin/create/button/?url=${base_url}/${slug}&media=&description=${description}`}
-          target="_blank"
-          rel="noreferrer noopener"
-          button="true"
-        >
-          <IoLogoPinterest />
+          <IoPaperPlane className="text-lg" />
         </a>
       </li>
     </ul>

@@ -3,6 +3,9 @@ import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import GeneratedCover from "@layouts/components/GeneratedCover";
 import InnerPagination from "@layouts/components/InnerPagination";
+import SectionHeading from "@layouts/components/SectionHeading";
+import Share from "@layouts/components/Share";
+import TableOfContents from "@layouts/components/TableOfContents";
 import dateFormat from "@lib/utils/dateFormat";
 import { markdownify, slugify } from "@lib/utils/textConverter";
 import { DiscussionEmbed } from "disqus-react";
@@ -23,6 +26,7 @@ const PostSingle = ({
   allCategories,
   relatedPosts,
   section,
+  toc,
 }) => {
   let { description, title, date, categories, source_url } = frontmatter;
   description = description ? description : "";
@@ -50,32 +54,18 @@ const PostSingle = ({
                 </div>
                 {config.settings.InnerPaginationOptions.enableTop && (
                   <div className="mt-4">
-                    <InnerPagination posts={posts} slug={slug} section={section} />
+                    <InnerPagination
+                      posts={posts}
+                      slug={slug}
+                      section={section}
+                    />
                   </div>
                 )}
-                {/* Categories */}
-                {categories.length > 0 && (
-                  <ul className="mb-4 mt-4 flex flex-wrap items-center gap-1.5">
-                    {categories.map((tag, index) => {
-                      const dotColor = index === 0 ? getCategoryDotColor(tag) : "currentColor";
-                      return (
-                        <li key={"tag-" + index}>
-                          <Link
-                            className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary transition hover:bg-primary/20 dark:bg-primary/15 dark:hover:bg-primary/25"
-                            href={`/categories/${slugify(tag)}`}
-                          >
-                            <span
-                              className="inline-block h-1.5 w-1.5 rounded-full shrink-0"
-                              style={{ backgroundColor: dotColor }}
-                            />
-                            <span className="capitalize">{tag}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                {markdownify(
+                  title,
+                  "h1",
+                  "lg:text-[42px] my-4 mb-3 text-dark dark:text-darkmode-light",
                 )}
-                {markdownify(title, "h1", "lg:text-[42px] my-4 mb-3")}
                 <ul className="flex items-center space-x-4">
                   <li className="inline-flex items-center font-secondary text-xs leading-3">
                     <FaRegClock className="mr-1.5" />
@@ -99,12 +89,52 @@ const PostSingle = ({
                     </li>
                   )}
                 </ul>
+                {/* Categories */}
+                {categories.length > 0 && (
+                  <ul className="mb-6 mt-4 flex flex-wrap items-center gap-1.5">
+                    {categories.map((tag, index) => {
+                      const dotColor =
+                        index === 0 ? getCategoryDotColor(tag) : "currentColor";
+                      return (
+                        <li key={"tag-" + index}>
+                          <Link
+                            className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary transition hover:bg-primary/20 dark:bg-primary/15 dark:hover:bg-primary/25"
+                            href={`/categories/${slugify(tag)}`}
+                          >
+                            <span
+                              className="inline-block h-1.5 w-1.5 rounded-full shrink-0"
+                              style={{ backgroundColor: dotColor }}
+                            />
+                            <span className="capitalize">{tag}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+                {/* Table of contents */}
+                <TableOfContents toc={toc} />
                 <div className="content mb-8">
                   <MDXRemote {...mdxContent} components={shortcodes} />
                 </div>
+                {/* Share */}
+                <div className="mt-8">
+                  <SectionHeading>Поделиться</SectionHeading>
+                  <div className="flex items-center gap-3">
+                    <Share
+                      title={title}
+                      description={description}
+                      slug={slug}
+                    />
+                  </div>
+                </div>
                 {config.settings.InnerPaginationOptions.enableBottom && (
                   <div className="mt-8 mb-2">
-                    <InnerPagination posts={posts} slug={slug} section={section} />
+                    <InnerPagination
+                      posts={posts}
+                      slug={slug}
+                      section={section}
+                    />
                   </div>
                 )}
               </article>

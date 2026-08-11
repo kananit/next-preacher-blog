@@ -3,6 +3,7 @@ import PostSingle from "@layouts/PostSingle";
 import { getSinglePage } from "@lib/contentParser";
 import { getCategoriesWithCount } from "@lib/taxonomyParser";
 import { stripContent, stripContentItem } from "@lib/utils/textConverter";
+import { extractToc } from "@lib/utils/toc";
 import parseMDX from "@lib/utils/mdxParser";
 import readingTime from "@lib/utils/readingTime";
 const { blog_folder } = config.settings;
@@ -16,6 +17,7 @@ const Article = ({
   allCategories,
   relatedPosts,
   posts,
+  toc,
 }) => {
   const { frontmatter } = post;
 
@@ -28,6 +30,7 @@ const Article = ({
       allCategories={allCategories}
       relatedPosts={relatedPosts}
       posts={posts}
+      toc={toc}
       section={blog_folder}
     />
   );
@@ -62,17 +65,16 @@ export const getStaticProps = async ({ params }) => {
       (p) =>
         p.slug !== single &&
         post.frontmatter.categories.some((cate) =>
-          p.frontmatter.categories.includes(cate)
-        )
+          p.frontmatter.categories.includes(cate),
+        ),
     )
-    .sort(
-      (a, b) =>
-        new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
-    )
+    .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
     .map(stripContentItem);
 
   //all categories
-  const categoriesWithPostsCount = getCategoriesWithCount(`content/${blog_folder}`);
+  const categoriesWithPostsCount = getCategoriesWithCount(
+    `content/${blog_folder}`,
+  );
   return {
     props: {
       post: { frontmatter: post.frontmatter, slug: post.slug },
@@ -82,6 +84,7 @@ export const getStaticProps = async ({ params }) => {
       allCategories: categoriesWithPostsCount,
       relatedPosts: relatedPosts,
       posts: posts,
+      toc: extractToc(post.content),
     },
   };
 };
