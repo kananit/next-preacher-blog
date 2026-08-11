@@ -57,9 +57,7 @@ const GeneratedCover = ({ post, className = "", mode = "full" }) => {
   const glyphCategory = categories.length >= 2 ? categories[1] : categories[0];
   const glyph = glyphCategory ? getCategoryGlyph(glyphCategory) : "";
 
-  const layers = glyph
-    ? [{ palette, glyph }]
-    : [];
+  const layers = glyph ? [{ palette, glyph }] : [];
 
   return (
     <div
@@ -67,6 +65,8 @@ const GeneratedCover = ({ post, className = "", mode = "full" }) => {
       style={{
         "--cover-c1": palette[0],
         "--cover-c2": palette[1],
+        "--cover-c3": palette[2],
+        "--cover-c4": palette[3],
         "--cover-angle": `${angle}deg`,
       }}
       aria-hidden="true"
@@ -81,7 +81,7 @@ const GeneratedCover = ({ post, className = "", mode = "full" }) => {
             "--glyph-x": "50%",
             "--glyph-y": "50%",
             "--glyph-size": "clamp(7rem, 20vw, 14rem)",
-            "--glyph-opacity": "0.64",
+            "--glyph-opacity": "0.8",
           }}
         />
       ))}

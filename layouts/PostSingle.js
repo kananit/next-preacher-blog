@@ -64,7 +64,7 @@ const PostSingle = ({
                 {markdownify(
                   title,
                   "h1",
-                  "lg:text-[42px] my-4 mb-3 text-dark dark:text-darkmode-light",
+                  "lg:text-[42px] mt-6 mb-3 text-dark dark:text-darkmode-light",
                 )}
                 <ul className="flex items-center space-x-4">
                   <li className="inline-flex items-center font-secondary text-xs leading-3">

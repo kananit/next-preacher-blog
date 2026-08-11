@@ -43,23 +43,65 @@
   @apply prose-h4:font-medium prose-h4:mb-[.5em] prose-h4:tracking-tight prose-h5:mb-[.5em] prose-h6:mb-[.5em];
   @apply prose-hr:border-border prose-hr:dark:border-darkmode-border;
   @apply prose-p:leading-7 prose-p:text-base prose-p:text-text prose-p:dark:text-darkmode-text;
-  @apply prose-blockquote:my-6 prose-blockquote:rounded prose-blockquote:border-0 prose-blockquote:bg-theme-light prose-blockquote:px-4 prose-blockquote:py-0.5 prose-blockquote:not-italic prose-blockquote:dark:bg-darkmode-theme-dark sm:prose-blockquote:px-5 sm:prose-blockquote:py-1;
-  @apply prose-code:px-1 prose-code:text-primary;
+  @apply prose-blockquote:my-6 prose-blockquote:rounded prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-theme-light prose-blockquote:px-5 prose-blockquote:py-4 prose-blockquote:not-italic prose-blockquote:dark:border-primary prose-blockquote:dark:bg-darkmode-theme-dark sm:prose-blockquote:px-6;
+  /* Inline code: subtle chip, no fake backticks */
+  :not(pre) > code {
+    @apply rounded bg-theme-light px-1.5 py-0.5 font-normal text-dark dark:bg-darkmode-theme-dark dark:text-darkmode-light;
+    &::before,
+    &::after {
+      content: none;
+    }
+  }
+
+  /* Code blocks: keep the previous base style (teal + small padding) */
+  pre code {
+    @apply px-1 text-primary;
+  }
   @apply prose-pre:rounded;
   @apply prose-img:rounded;
   @apply prose-table:rounded;
   @apply prose-strong:text-dark prose-strong:dark:text-darkmode-light;
   @apply prose-a:text-primary prose-a:underline prose-a:underline-offset-[3px] prose-a:decoration-primary/40 hover:prose-a:decoration-primary;
   @apply prose-li:text-text prose-li:dark:text-darkmode-text;
-  @apply prose-table:border prose-table:border-border prose-table:dark:border-darkmode-border;
-  @apply prose-thead:border-border prose-thead:bg-theme-light prose-th:px-4 prose-th:py-4 prose-th:text-dark prose-thead:dark:border-darkmode-border prose-thead:dark:bg-darkmode-theme-dark prose-th:dark:text-darkmode-light;
-  @apply prose-tr:border-border prose-tr:dark:border-darkmode-border;
-  @apply prose-td:px-3 prose-td:py-4 prose-td:dark:text-darkmode-light;
   @apply prose-li:marker:dark:text-darkmode-light;
 
-  /* Tables: allow horizontal scroll within the table instead of the page */
+  /* Tables: clean, scannable design */
   table {
-    @apply block overflow-x-auto;
+    @apply block overflow-x-auto border border-border dark:border-darkmode-border;
+    width: max-content;
+    max-width: 100%;
+    border-collapse: collapse;
+
+    thead {
+      @apply border-b-2 border-primary/30 bg-theme-light dark:border-primary/40 dark:bg-darkmode-theme-dark;
+
+      th {
+        @apply px-4 py-3 text-left font-bold tracking-wide text-dark dark:text-darkmode-light;
+      }
+    }
+
+    tbody {
+      tr {
+        @apply border-b border-border dark:border-darkmode-border;
+
+        &:last-child {
+          border-bottom: 0;
+        }
+
+        &:nth-child(even) {
+          @apply bg-theme-light/40 dark:bg-darkmode-theme-dark/40;
+        }
+      }
+
+      td {
+        @apply px-4 py-3 align-top text-dark dark:text-darkmode-light;
+      }
+    }
+  }
+
+  /* Don't break inline code inside table cells (e.g. terms like `нечистый дух`) */
+  table code {
+    white-space: nowrap;
   }
 
   img + em {
@@ -79,18 +121,12 @@
 
   blockquote {
     & > p {
-      @apply relative px-1 text-[17px] leading-7 text-black sm:px-2 sm:text-[19px] sm:leading-8 lg:px-3 lg:text-[21px];
-      &::after,
-      &::before {
-        @apply absolute inline-block h-5 w-5 bg-[url('/images/quote.svg')] bg-[length:20px_20px] bg-no-repeat content-[''] lg:h-8 lg:w-8 lg:bg-[length:32px_32px];
-      }
+      @apply m-0 text-[17px] leading-7 text-dark dark:text-darkmode-light sm:text-[18px] sm:leading-8;
 
-      &::before {
-        @apply -left-6 top-0 lg:-left-8;
-      }
-
+      /* suppress typography's automatic curly quotes — content manages its own «» marks */
+      &::before,
       &::after {
-        @apply -right-6 bottom-0 rotate-180 lg:-right-8;
+        content: none;
       }
     }
   }
@@ -204,26 +240,6 @@ footer .socials {
   .content {
     :is(p, ul, ol, blockquote, pre) + h2 {
       @apply mt-8;
-    }
-  }
-
-  blockquote {
-    @apply px-2 py-0.5 sm:px-3 sm:py-1;
-
-    & > p {
-      @apply relative pl-5 pr-5 text-base leading-7 text-black sm:pl-6 sm:pr-6 sm:text-base sm:leading-7;
-      &::after,
-      &::before {
-        @apply absolute inline-block h-3 w-3 bg-[url('/images/quote.svg')] bg-[length:12px_12px] bg-no-repeat content-[''] sm:h-3.5 sm:w-3.5 sm:bg-[length:14px_14px];
-      }
-
-      &::before {
-        @apply left-0.5 top-0 sm:left-1;
-      }
-
-      &::after {
-        @apply bottom-0 right-0.5 rotate-180 sm:right-1;
-      }
     }
   }
 }

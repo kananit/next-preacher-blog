@@ -6,9 +6,29 @@
   overflow: hidden;
   background: linear-gradient(
     var(--cover-angle),
-    var(--cover-c1),
-    var(--cover-c2)
+    var(--cover-c1) 0%,
+    color-mix(in srgb, var(--cover-c1) 42%, var(--cover-c2) 58%) 52%,
+    var(--cover-c2) 100%
   );
+
+  // Depth — soft highlight (top-left) and soft shade (bottom-right), pure gradients
+  &::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    pointer-events: none;
+    background:
+      radial-gradient(
+        130% 130% at 12% -5%,
+        color-mix(in srgb, var(--cover-c3, #fff) 55%, transparent),
+        transparent 55%
+      ),
+      radial-gradient(
+        140% 140% at 92% 115%,
+        color-mix(in srgb, var(--cover-c4, #000) 38%, transparent),
+        transparent 60%
+      );
+  }
 
   // Category monograms — <span> per visible category
   &__layer {
@@ -26,10 +46,17 @@
       font-family: "Nunito", sans-serif;
       font-size: var(--glyph-size, clamp(6.2rem, 16vw, 12rem));
       font-weight: 700;
-      letter-spacing: -0.14em;
+      letter-spacing: 0;
       line-height: 0.72;
-      color: color-mix(in srgb, var(--layer-c4) 22%, white 78%);
-      opacity: var(--glyph-opacity, 0.64);
+      /* solid light fill — background-clip:text + filter dropshadow clips glyphs in Chromium */
+      color: color-mix(in srgb, var(--layer-c4) 15%, white 85%);
+      opacity: var(--glyph-opacity, 0.8);
+      filter: drop-shadow(
+          0 2px 6px color-mix(in srgb, var(--layer-c4) 35%, transparent)
+        )
+        drop-shadow(
+          0 18px 30px color-mix(in srgb, var(--layer-c4) 45%, transparent)
+        );
       white-space: nowrap;
       pointer-events: none;
     }
@@ -45,6 +72,10 @@
   min-height: 0;
   aspect-ratio: auto;
   background: color-mix(in srgb, var(--cover-c2) 88%, white 12%);
+
+  &::before {
+    display: none;
+  }
 
   .generated-cover__layer {
     display: none;
