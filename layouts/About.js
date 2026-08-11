@@ -1,4 +1,4 @@
-import { markdownify } from "@lib/utils/textConverter";
+import PageTitle from "@layouts/components/PageTitle";
 import shortcodes from "@shortcodes/all";
 import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
@@ -9,11 +9,7 @@ const About = ({ data }) => {
 
   return (
     <section className="section pt-0">
-      {markdownify(
-        title,
-        "h1",
-        "h2 lg:mb-4 bg-theme-light dark:bg-darkmode-theme-dark py-8 sm:py-12 text-center lg:text-[55px]"
-      )}
+      <PageTitle title={title} />
       <div className="container text-left">
         {image && (
           <div className="mb-8">

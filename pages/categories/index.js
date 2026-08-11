@@ -1,7 +1,7 @@
 import Base from "@layouts/Baseof";
 import { getCategoriesWithCount } from "@lib/taxonomyParser";
 import { getSinglePage } from "@lib/contentParser";
-import { markdownify } from "@lib/utils/textConverter";
+import PageTitle from "@layouts/components/PageTitle";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FaFire, FaFolder, FaStar } from "react-icons/fa";
@@ -18,11 +18,7 @@ const SectionTab = ({ section, isActive, onClick }) => {
           : "bg-theme-light text-dark hover:bg-primary/10 dark:bg-darkmode-theme-dark dark:text-darkmode-light dark:hover:bg-primary/10"
       }`}
     >
-      <Icon
-        className={`text-lg ${
-          isActive ? "text-white" : "text-primary"
-        }`}
-      />
+      <Icon className={`text-lg ${isActive ? "text-white" : "text-primary"}`} />
       <span>{section.name}</span>
     </button>
   );
@@ -38,7 +34,8 @@ const Categories = ({ sectionsData }) => {
     ...(sectionsData.find((s) => s.id === def.id) || {}),
   }));
 
-  const activeSection = sections.find((s) => s.id === activeSectionId) || sections[0];
+  const activeSection =
+    sections.find((s) => s.id === activeSectionId) || sections[0];
 
   const switchSection = (sectionId) => {
     router.push(
@@ -47,7 +44,7 @@ const Categories = ({ sectionsData }) => {
         query: { section: sectionId },
       },
       undefined,
-      { shallow: true }
+      { shallow: true },
     );
   };
 
@@ -56,8 +53,12 @@ const Categories = ({ sectionsData }) => {
   // Все категории в одном списке: сначала основные (primary), потом остальные,
   // внутри каждой группы сортировка по количеству постов
   const sortedCategories = [
-    ...allCategories.filter((c) => c.isPrimary).sort((a, b) => b.posts - a.posts),
-    ...allCategories.filter((c) => !c.isPrimary).sort((a, b) => b.posts - a.posts),
+    ...allCategories
+      .filter((c) => c.isPrimary)
+      .sort((a, b) => b.posts - a.posts),
+    ...allCategories
+      .filter((c) => !c.isPrimary)
+      .sort((a, b) => b.posts - a.posts),
   ];
 
   const totalPosts = activeSection.totalPosts || 0;
@@ -65,11 +66,7 @@ const Categories = ({ sectionsData }) => {
   return (
     <Base title={"Категории"}>
       <section className="section pt-0">
-        {markdownify(
-          "Категории",
-          "h1",
-          "h2 lg:mb-4 bg-theme-light dark:bg-darkmode-theme-dark py-8 sm:py-12 text-center lg:text-[55px]"
-        )}
+        <PageTitle title="Категории" />
 
         <div className="container pt-8">
           {/* Section Switcher */}
@@ -89,7 +86,11 @@ const Categories = ({ sectionsData }) => {
           <div className="text-center">
             <p className="mb-10 text-lg text-text dark:text-darkmode-text">
               Рубрики раздела «{activeSection.name}» — {totalPosts}{" "}
-              {totalPosts === 1 ? "запись" : totalPosts > 4 ? "записей" : "записи"}{" "}
+              {totalPosts === 1
+                ? "запись"
+                : totalPosts > 4
+                  ? "записей"
+                  : "записи"}{" "}
               в {activeSection.categories?.length || 0}{" "}
               {(activeSection.categories?.length || 0) === 1
                 ? "категории"
@@ -118,11 +119,13 @@ const Categories = ({ sectionsData }) => {
                         }`}
                       >
                         {isPrimary ? (
-                          <FaStar className="mr-1.5 text-primary" />
+                          <FaStar className="mr-1.5 shrink-0 text-primary" />
                         ) : (
-                          <FaFolder className="mr-1.5" />
+                          <FaFolder className="mr-1.5 shrink-0" />
                         )}
-                        {category.label}
+                        <span className="min-w-0 truncate">
+                          {category.label}
+                        </span>
                         <span
                           className={`ml-2 flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                             isTop && isPrimary
@@ -130,7 +133,9 @@ const Categories = ({ sectionsData }) => {
                               : "bg-white text-dark dark:bg-darkmode-border dark:text-darkmode-light"
                           }`}
                         >
-                          {isTop && isPrimary && <FaFire className="text-[10px]" />}
+                          {isTop && isPrimary && (
+                            <FaFire className="text-[10px]" />
+                          )}
                           {category.posts}
                         </span>
                       </Link>

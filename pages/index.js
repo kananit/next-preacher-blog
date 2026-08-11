@@ -19,7 +19,7 @@ const Home = ({ banner, posts, recent_posts }) => {
       {/* Banner */}
       <section className="section banner relative pb-8 lg:mt-8">
         <ImageFallback
-          className="absolute bottom-0 left-0 z-[-1] w-full"
+          className="absolute bottom-0 left-0 z-[-1] w-full dark:invert"
           src={"/images/banner-bg-shape.svg"}
           width={1905}
           height={295}
@@ -42,16 +42,10 @@ const Home = ({ banner, posts, recent_posts }) => {
               </div>
               {markdownify(banner.content, "p", "mt-4 sm:block hidden")}
               <div className="mt-8 flex flex-nowrap items-center justify-center gap-2 lg:justify-start lg:gap-4">
-                <Link
-                  className="btn btn-primary"
-                  href="/posts"
-                >
+                <Link className="btn btn-primary" href="/posts">
                   📖 Проповеди
                 </Link>
-                <Link
-                  className="btn btn-outline-primary"
-                  href="/notes"
-                >
+                <Link className="btn btn-primary" href="/notes">
                   📂 Конспекты
                 </Link>
               </div>
@@ -80,7 +74,9 @@ const Home = ({ banner, posts, recent_posts }) => {
               {/* Recent Posts */}
               {recent_posts.enable && (
                 <div className="pt-0">
-                  <h2 className="section-title mb-8 lg:hidden">{recent_posts.title}</h2>
+                  <h2 className="section-title mb-8 lg:hidden">
+                    {recent_posts.title}
+                  </h2>
                   <div className="row">
                     {sortPostByDate.slice(0, 4).map((post) => (
                       <div className="mb-8 md:col-6" key={post.slug}>

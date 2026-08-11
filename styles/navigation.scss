@@ -27,7 +27,7 @@ body.menu-open {
 }
 
 .nav-link {
-  @apply rounded-2xl px-3 py-2 text-left font-secondary text-[15px] capitalize text-dark transition hover:bg-primary/[0.10] hover:text-primary dark:text-darkmode-light dark:hover:text-primary sm:px-4 sm:py-2 sm:text-base lg:px-4 lg:py-2 lg:text-[16px] lg:text-center;
+  @apply rounded-2xl px-3 py-2 text-left font-secondary text-[15px] capitalize text-dark transition hover:bg-primary/[0.10] hover:text-primary dark:text-darkmode-light dark:hover:text-primary sm:px-4 sm:py-2 sm:text-base lg:px-4 lg:py-2 lg:text-center;
 }
 
 // search style
