@@ -182,3 +182,9 @@
 - **Problem:** user still sees the file in git — `.gitignore` only prevents tracking new files, it doesn't stop tracking files already in the index
 - **Solution:** use `git rm --cached public/sitemap.xml` to remove from index without deleting the file on disk
 - **Source: learn-from-session**
+
+**🐛 FOUC Google-шрифтов:** не подключай шрифты клиентским `fetch()` + инжектом `<style>` в `_app.js` — CSS приходит после первой отрисовки, текст скачет на каждой загрузке/переходе. Подключай статическим `<link rel="stylesheet">` (из `config/theme.json`) в `_document.js` `<Head>` + `preconnect` к fonts.googleapis.com/gstatic.com.
+
+**⚠️ mounted-gate иконки/логотипа темы:** не переключай иконку темы и логотип через `mounted && (theme === "dark" ...)` — при каждом монтировании шапки сначала рисуется fallback-вариант (мигает луна в тёмной теме). Используй чисто CSS `dark:` классы (`hidden dark:block` / `block dark:hidden`) — `next-themes` ставит класс `dark` на `<html>` синхронно до отрисовки.
+
+**🧩 Двойная загрузка логотипа:** при переключении логотипа двумя `<img>` (dark/light) через `dark:` оба качаются, даже скрытый. Ставь `loading="lazy"` на оба — `display:none` lazy-картинка не качается, пока не станет видимой (первое переключение темы может показать логотип на долю секунды позже — приемлемо).
