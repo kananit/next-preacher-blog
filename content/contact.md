@@ -1,6 +1,6 @@
 ---
 title: "Let’s, Talk </br> About You"
-description: "meta description"
+description: "Контакты автора проекта: ВКонтакте и почта. Вопросы, идеи, предложения по материалам сайта."
 phone: "+211234565523"
 mail: "info@email.com"
 location: "9567 Turner Trace Apt. BC C3G8A4"
