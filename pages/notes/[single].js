@@ -61,6 +61,14 @@ export const getStaticProps = async ({ params }) => {
   const allPosts = getSinglePage(`content/${SECTION}`);
   const post = allPosts.find((p) => p.slug == single);
   const posts = stripContent(allPosts);
+  // InnerPagination читает только slug/title/date. Полный frontmatter (описание,
+  // обложка, категории) уезжал в props каждой страницы — ~22 КБ на страницу.
+  const paginationPosts = posts.map(
+    ({ slug, frontmatter: { title, date } }) => ({
+      slug,
+      frontmatter: { title, date },
+    }),
+  );
   const mdxContent = await parseMDX(post.content);
   const readTime = readingTime(post.content);
   // related posts — exclude current, sort by date descending
@@ -73,7 +81,9 @@ export const getStaticProps = async ({ params }) => {
         ),
     )
     .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
-    .map(stripContentItem);
+    // В layout показываются только 3 — остальные в пропсы не нужны
+    .map(stripContentItem)
+    .slice(0, 3);
 
   // all categories
   const categories = getTaxonomyMeta(`content/${SECTION}`, "categories");
@@ -98,7 +108,7 @@ export const getStaticProps = async ({ params }) => {
       slug: single,
       allCategories: categoriesWithPostsCount,
       relatedPosts: relatedPosts,
-      posts: posts,
+      posts: paginationPosts,
       toc: extractToc(post.content),
     },
   };

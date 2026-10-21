@@ -7,6 +7,7 @@ ENDPOINT="https://storage.yandexcloud.net"
 MANIFEST_KEY=".deploy/manifest.json"
 
 GREEN='\033[0;32m'
+RED='\033[0;31m'
 YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m'
@@ -57,32 +58,57 @@ SYNC_STATIC_OPTS="--exclude=* --include=_next/static/* $ASSET_BASE --delete --ca
 SYNC_DATA_OPTS="--exclude=* --include=_next/data/* $ASSET_BASE --delete --cache-control=\"$CACHE_NO_CACHE\""
 # Pass 1b2: картинки и прочее (robots, favicon…) → no-cache
 SYNC_IMAGES_OPTS="$ASSET_BASE --exclude=_next/static/* --exclude=_next/data/* --delete --cache-control=\"$CACHE_NO_CACHE\""
+# Та же выборка HTML, что собирает sync-manifest.py, но через aws: нужна только
+# в dry-run, где по MD5 не сравнить (боевой проход идёт по манифесту).
+SYNC_HTML_OPTS="--exclude=* --include=*.html --delete --cache-control=\"$CACHE_NO_CACHE\""
 if [ "$FULL_SYNC" = false ]; then
   SYNC_STATIC_OPTS="$SYNC_STATIC_OPTS --size-only"
   SYNC_IMAGES_OPTS="$SYNC_IMAGES_OPTS --size-only"
 fi
 
-# ── Pre-flight: bucket config ────────────────────
+# ── Pre-flight: доступ к бакету ────────────────
+# Проверяем S3-доступ до сборки: без него `aws s3 sync` падает в самом конце,
+# уже после нескольких минут билда.
 
-if [ "$DRY_RUN" = false ]; then
-  BUCKET_INFO=$(yc storage bucket get --name "$BUCKET" 2>/dev/null || echo "")
+fail() {
+  echo -e "${RED}❌ $1${NC}"
+  exit 1
+}
+
+if ! AWS_ERR=$(aws s3 ls "s3://${BUCKET}/" --endpoint-url "$ENDPOINT" 2>&1 > /dev/null); then
+  fail "Object Storage: нет доступа к s3://${BUCKET} — ${AWS_ERR}"
+fi
+echo -e "   ${GREEN}✓ Object Storage — s3://${BUCKET}${NC}"
+
+# `yc` нужен только для настроек бакета (публичное чтение, хостинг); сама заливка
+# идёт по S3. CLI ходит в API Cloud отдельно и падает в сети без маршрута до его
+# адресов (IPv6), поэтому здесь только предупреждение — остановка была бы ложной.
+if ! BUCKET_INFO=$(yc storage bucket get --name "$BUCKET" 2>&1); then
+  BUCKET_ERR=${BUCKET_INFO%%$'\n'*}
+  BUCKET_INFO=""
+  echo -e "${YELLOW}⚠️  yc: бакет ${BUCKET} не проверен — ${BUCKET_ERR:-нет ответа от yc}${NC}"
+  echo -e "${YELLOW}   Публичное чтение и хостинг в этом деплое не выставляются${NC}"
+fi
+
+if [ "$DRY_RUN" = false ] && [ -n "$BUCKET_INFO" ]; then
   if ! echo "$BUCKET_INFO" | grep -q "read: true"; then
     echo -e "${YELLOW}🔧 Включаю публичный доступ к бакету...${NC}"
     yc storage bucket update --name "$BUCKET" --public-read --public-list > /dev/null 2>&1
   fi
-  if ! echo "$BUCKET_INFO" | grep -q "index: index.html"; then
-    echo -e "${YELLOW}🔧 Включаю статический хостинг...${NC}"
-    yc storage bucket update --name "$BUCKET" \
-      --website-settings '{"index": "index.html", "error": "404.html"}' > /dev/null 2>&1
-  fi
+  # Проверить, включён ли хостинг, нечем: `yc storage bucket get` этой версии CLI
+  # не отдаёт website_settings, поэтому условие из grep было всегда ложным.
+  # Команда идёт каждый деплой — так и написано в сообщении.
+  echo -e "${YELLOW}🔧 Статический хостинг: index.html / 404.html (CLI не показывает — ставлю заново)${NC}"
+  yc storage bucket update --name "$BUCKET" \
+    --website-settings '{"index": "index.html", "error": "404.html"}' > /dev/null 2>&1
 fi
 
 # ─────────── Build ───────────────────────────────
 echo -e "${YELLOW}🗑️  Очистка кеша Next.js...${NC}"
 rm -rf .next/cache
 
-echo -e "${YELLOW}🔨 Сборка статики...${NC}"
-npm run build
+echo -e "${YELLOW}🔨 Сборка (yarn build)...${NC}"
+yarn build
 
 # 404 страница в корень (Object Storage ожидает 404.html)
 if [ -f "$BUILD_DIR/404/index.html" ]; then
@@ -105,7 +131,9 @@ sync_with_progress() {
     --dryrun 2>&1 | grep -cE '^\(dryrun\)' || true)
 
   if [ "$to_sync" -eq 0 ] 2>/dev/null; then
-    echo -e "   ${GREEN}✓ $label — всё актуально${NC}" >&2
+    # Сравнение идёт по размеру (и дате в --full), поэтому честно только
+    # «заливать нечего», а не «всё актуально».
+    echo -e "   ${GREEN}✓ заливать нечего${NC}" >&2
     echo "0"
   else
     eval aws s3 sync "$BUILD_DIR" "s3://${BUCKET}" \
@@ -130,6 +158,14 @@ for line in sys.stdin:
 
 sys.stderr.write('\n')
 "
+    # Между пайпом и `echo` теряется код возврата aws, а `set -e` внутри функции
+    # не срабатывает: её rc отбрасывается подстановкой `$( )`. Без этой проверки
+    # провал заливки заканчивался «✅ Деплой завершён».
+    rc=${PIPESTATUS[0]}
+    if [ "$rc" -ne 0 ]; then
+      echo -e "${RED}❌ $label: заливка провалилась (aws rc=${rc}), повтори деплой${NC}" >&2
+      exit 1
+    fi
     echo "$to_sync"
   fi
 }
@@ -151,8 +187,13 @@ if [ "$DRY_RUN" = true ]; then
     $SYNC_IMAGES_OPTS \
     --dryrun
   echo -e "${YELLOW}   --- dry-run (HTML) ---${NC}"
-  # Для HTML показываем diff через manifest
-  python3 scripts/sync-manifest.py "$BUILD_DIR" "$BUCKET" "$ENDPOINT" "$MANIFEST_KEY" > /dev/null
+  # Только --dryrun: sync-manifest.py заливает по-настоящему, и прежний вызов
+  # выгружал HTML даже в сухом прогоне. Сравнение тут по размеру, а в бою по MD5,
+  # поэтому список файлов может отличаться.
+  eval aws s3 sync "$BUILD_DIR" "s3://${BUCKET}" \
+    --endpoint-url "$ENDPOINT" \
+    $SYNC_HTML_OPTS \
+    --dryrun
 else
   START_TIME=$(date +%s)
 
@@ -170,7 +211,9 @@ else
 
   # ── Phase 2: HTML (manifest-based) → no-cache ─
   echo -e "   ${YELLOW}── HTML (no-cache) ──${NC}"
-  HTML_COUNT=$(python3 scripts/sync-manifest.py "$BUILD_DIR" "$BUCKET" "$ENDPOINT" "$MANIFEST_KEY")
+  if ! HTML_COUNT=$(python3 scripts/sync-manifest.py "$BUILD_DIR" "$BUCKET" "$ENDPOINT" "$MANIFEST_KEY"); then
+    fail "HTML не залит, повтори деплой"
+  fi
 
   # ── Phase 3 (одноразово): применить Cache-Control к уже загруженным файлам ──
   if [ "$APPLY_CACHE" = true ]; then
@@ -193,12 +236,21 @@ fi
 # ─────────── Summary ─────────────────────────────
 TOTAL_ELAPSED=$(( $(date +%s) - DEPLOY_START ))
 
-FILE_COUNT=$(find "$BUILD_DIR" -type f -name '*.html' | wc -l | tr -d ' ')
+# Копию `out/404.html` не считаю: это тот же `out/404/index.html` под вторым ключом.
+FILE_COUNT=$(find "$BUILD_DIR" -type f -name '*.html' -not -path "$BUILD_DIR/404.html" | wc -l | tr -d ' ')
 
 echo ""
 echo -e "${CYAN}═══════════════════════════════════════${NC}"
-echo -e "${GREEN}✅ Деплой завершён${NC}"
-echo ""
-echo -e "   ${CYAN}⏱  Время: ${TOTAL_ELAPSED} с (загрузка: ${SYNC_ELAPSED} с)${NC}"
+# В dry-run в бакет не улетает ничего: «✅ Деплой завершён» отчитывался об успехе,
+# которого не было.
+if [ "$DRY_RUN" = true ]; then
+  echo -e "${YELLOW}🧪 dry-run завершён — заливки не было${NC}"
+  echo ""
+  echo -e "   ${CYAN}⏱  Время: ${TOTAL_ELAPSED} с (без заливки)${NC}"
+else
+  echo -e "${GREEN}✅ Деплой завершён${NC}"
+  echo ""
+  echo -e "   ${CYAN}⏱  Время: ${TOTAL_ELAPSED} с (загрузка: ${SYNC_ELAPSED} с)${NC}"
+fi
 echo -e "   ${CYAN}Загружено: статика ${STATIC_COUNT:-0} · данные ${DATA_COUNT:-0} · картинки ${IMAGES_COUNT:-0} · HTML ${HTML_COUNT:-0}${NC}"
 echo -e "   ${CYAN}HTML-страниц: ${FILE_COUNT}${NC}"

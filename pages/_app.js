@@ -1,5 +1,4 @@
 import config from "@config/config.json";
-import { JsonContext } from "context/state";
 import { ThemeProvider, useTheme } from "next-themes";
 import Head from "next/head";
 import { useEffect } from "react";
@@ -48,25 +47,23 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <YandexMetrika counterId={config.params.yandex_metrika_id} />
-      <JsonContext>
-        <Head>
-          {/* responsive meta */}
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=5"
-          />
-          {/* yandex webmaster verification */}
-          <meta name="yandex-verification" content="a8e801bca5e46df2" />
-        </Head>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme={default_theme}
-          enableSystem={true}
-        >
-          <ThemeColorUpdater />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </JsonContext>
+      <Head>
+        {/* responsive meta */}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=5"
+        />
+        {/* yandex webmaster verification */}
+        <meta name="yandex-verification" content="a8e801bca5e46df2" />
+      </Head>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme={default_theme}
+        enableSystem={true}
+      >
+        <ThemeColorUpdater />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 };

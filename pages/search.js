@@ -4,8 +4,11 @@ import EmptyState from "@layouts/components/EmptyState";
 import pluralize from "@lib/utils/pluralize";
 import Base from "@layouts/Baseof";
 import { plainify } from "@lib/utils/textConverter";
-import { useSearchContext } from "context/state";
 import { useRouter } from "next/router";
+
+// Посты нужны только поиску: импорт живёт в чанке этой страницы, а не в `_app`.
+// Через `_app` (context/state.js) все 139 страниц тянули 2 МБ индекса поиска.
+import posts from "../.json/posts.json";
 
 /**
  * Extracts a snippet around the first occurrence of `keyword` in `content`.
@@ -38,7 +41,6 @@ const SearchPage = () => {
   const keyword = query.key;
   const escapedKeyword = keyword?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const keywordRegex = escapedKeyword ? new RegExp(escapedKeyword, "i") : null;
-  const { posts } = useSearchContext();
 
   const searchResults = posts
     .filter((product) => {
