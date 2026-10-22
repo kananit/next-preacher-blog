@@ -38,22 +38,22 @@
 - [x] Broadcast + Mind Hacking + Sleep Prayer *(downloads)* — `038-Молитва от вторжения в разум.md`
 - [x] [blog] Broadcast + Mind Hacking Prayer — `038-Молитва от вторжения в разум.md`
 
-## C
+## C — готово
 
 - [x] Can Christians Be Afflicted By Demons? *(downloads)* — `079-Могут ли христиане быть поражены бесами.md`
 - [x] Can Demons Affect Christians? *(downloads)* — `080-Могут ли бесы влиять на христиан.md`
 - [x] Can Using Crystal Meth be Considered Witchcraft? *(downloads)* — `081-Можно ли считать метамфетамин колдовством.md`
-- [ ] Can Using Crystal Meth be Considered Witchcraft? *(blog)*
+- [x] [blog] Can Using Crystal Meth be Considered Witchcraft? — `081-Можно ли считать метамфетамин колдовством.md`
 - [x] Communion -- Study + Prayers *(downloads)* — `082-Причастие — исследование и молитвы.md`
 
-## D
+## D — готово
 
-- [blog] Dealing With Rejection
+- [x] [blog] Dealing With Rejection — `083-Дух отвержения — признаки и советы служителю.md`
 - [x] Defeating the Spirit of Death - Freedom Step 21 *(downloads)* — `024-Дух смерти.md`
 - [x] Defeating the Victim Spirit - Freedom Step 12 *(steps-to-freedom)* — `014-Шаги к свободе 12 — Победа над духом жертвы.md`
 - [x] Deliverance from Incubus, Succubus, Lust and Perverse Spirits *(downloads)* — `074-Освобождение от инкуба, суккуба, похоти и извращений.md`
 - [x] Deliverance Prayers From Serpent Spirits *(downloads)* — `075-Молитвы освобождения от змеиных духов.md`
-- [blog] Disconnect Prayer
+- [x] [blog] Disconnect Prayer — `084-Молитва о разрыве всех нечестивых связей.md`
 - [x] Dismantling the Spirit of Rejection - Steps To Freedom 10 *(steps-to-freedom)* — `012-Шаги к свободе 10 — Разрушение духа отвержения.md`
 
 ## E
