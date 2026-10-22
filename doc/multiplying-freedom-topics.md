@@ -232,7 +232,7 @@
 - [blog] Prayer to Release Sleep
 - [x] Prayer to Remove Demonic Influence *(downloads)* — `044-Молитва об удалении демонического влияния.md`
 - [x] Prayer To Remove Entities *(downloads)* — `056-Молитва об изгнании сущностей.md`
-- [ ] Prayer to Renounce the Hindu Religion *(downloads)*
+- [x] Prayer to Renounce the Hindu Religion *(downloads)* — `064-Молитва отречения от индуизма.md`
 - [ ] Prayer to Renounce the Jezebel Spirit *(downloads)*
 - [ ] Prayer to Restore a Fragmented Soul *(blog)*
 - [ ] Prayer to Restore a Fragmented Soul *(downloads)*
