@@ -6,15 +6,16 @@
 `[ ]` — ещё не переведено.
 `- [x] [blog]` — тема есть только в блоге (без PDF), перевод уже готов; имя файла в конце строки.
 `[blog]` — тема без PDF, перевод пока не сделан.
+`— готово` у буквы раздела — в разделе переведено всё, непомеченных тем не осталось.
 
 
-## A
+## A — готово
 
-- [blog] A New Interactive Study of the Book of Enoch *(downloads)*
-- [ ] Abridged List of Heavenly Powers *(downloads)*
+- [x] [blog] A New Interactive Study of the Book of Enoch *(downloads)* (manual)
+- [x] Abridged List of Heavenly Powers *(downloads)* — `078-Сокращённый список небесных сил.md`
 - [x] Am I Ready For Deliverance Ministry? *(downloads)* — `001-Готов ли я пройти процесс освобождения.md`
 - [x] [blog] An A-Z List of New Age Practices to Avoid, and Why — `069-Практики нью-эйдж от А до Я.md`
-- [blog] Avoiding Post-deliverance Backlash
+- [x] [blog] Avoiding Post-deliverance Backlash — `030-Как избежать ответного удара после освобождения.md`
 - [x] Avoiding Post-Deliverance Backlash *(downloads)* — `030-Как избежать ответного удара после освобождения.md`
 
 ## B
@@ -39,11 +40,11 @@
 
 ## C
 
-- [ ] Can Christians Be Afflicted By Demons? *(downloads)*
-- [ ] Can Demons Affect Christians? *(downloads)*
-- [ ] Can Using Crystal Meth be Considered Witchcraft? *(downloads)*
+- [x] Can Christians Be Afflicted By Demons? *(downloads)* — `079-Могут ли христиане быть поражены бесами.md`
+- [x] Can Demons Affect Christians? *(downloads)* — `080-Могут ли бесы влиять на христиан.md`
+- [x] Can Using Crystal Meth be Considered Witchcraft? *(downloads)* — `081-Можно ли считать метамфетамин колдовством.md`
 - [ ] Can Using Crystal Meth be Considered Witchcraft? *(blog)*
-- [ ] Communion -- Study + Prayers *(downloads)*
+- [x] Communion -- Study + Prayers *(downloads)* — `082-Причастие — исследование и молитвы.md`
 
 ## D
 
@@ -110,9 +111,9 @@
 - [blog] Lilith- Prayer of Renouncement
 - [ ] Listing of Demons *(downloads)*
 
-## M
+## M — готово
 
-- [ ] Maintaining Your Freedom *(mfm)*
+- [x] Maintaining Your Freedom *(mfm)* — `077-Как сохранить свободу после освобождения.md`
 - [x] Morning Prayer *(downloads)* — `035-Утренняя молитва.md`
 
 ## N
@@ -120,7 +121,7 @@
 - [ ] New Testament Authority *(downloads)*
 - [ ] Notes: 1 Enoch 10.1 - 11.2 - Judgement + Restoration *(downloads)*
 
-## O
+## O — готово
 
 - [x] Occult Practices Forbidden *(downloads)* — `067-Девять запрещённых оккультных практик.md`
 - [x] Overcoming the Anti-Christ Spirit - Freedom Step 9 *(steps-to-freedom)* — `011-Шаги к свободе 9 — Преодоление духа антихриста.md`
@@ -296,9 +297,9 @@
 
 - [ ] The Apocrypha + Pseudepigrapha in the New Testament *(downloads)*
 - [ ] The Baptism with The Holy Spirit *(downloads)*
-- [ ] The Book of Enoch - R. H. Charles Translation *(downloads)*
+- [x] The Book of Enoch - R. H. Charles Translation *(downloads)*
 - [ ] The Book of Giants - The Reconstruction *(downloads)*
-- [ ] The Books of Enoch -  Michael Knibb Translation - 1st, 2nd, & 3rd *(downloads)*
+- [x] The Books of Enoch -  Michael Knibb Translation - 1st, 2nd, & 3rd *(downloads)*
 - [x] The Curse of the Vagabond AKA The Spirit of Cain *(downloads)* — `019-Дух Каина.md`
 - [x] The Serious Consequences of Dishonoring Parents + Prayer *(downloads)* — `040-Серьёзные последствия непочтения к родителям.md`
 - [blog] The Spirit of Belial
