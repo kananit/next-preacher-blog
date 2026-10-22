@@ -60,6 +60,7 @@ source_url: "https://multiplyingfreedom.com/free-stuff/"
   ```yaml
   categories: ["статьи", "multiplying-freedom", "шаги к свободе"]
   ```
+- Если документ — набор утверждений/провозглашений от первого лица (affirmations, «от первого лица») — третья категория `"провозглашения"`.
 - Если это общая статья/учение без привязки к шагам — не добавляй «шаги к свободе»:
   ```yaml
   categories: ["статьи", "multiplying-freedom"]

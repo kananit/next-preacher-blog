@@ -21,7 +21,7 @@
 
 - [x] [blog] Being A Person That Affects Eternity — `070-Быть человеком, который влияет на вечность.md`
 - [x] Believer's Position In Christ *(downloads)* — `034-Положение верующего «во Христе».md`
-- [ ] Biblical Affirmations for God's Provision *(downloads)*
+- [x] Biblical Affirmations for God's Provision *(downloads)* — `076-Библейские утверждения о Божьем обеспечении.md`
 - [x] Binding + Loosing - Warfare Prayer *(downloads)* — `062-Молитва связывания и высвобождения.md`
 - [x] [blog] Binding + Loosing - Warfare Prayer — `062-Молитва связывания и высвобождения.md`
 - [blog] Blessing Prayer -Day 3 – Praying For Divine Health, Physical And Spiritual Fitness
@@ -51,7 +51,7 @@
 - [x] Defeating the Spirit of Death - Freedom Step 21 *(downloads)* — `024-Дух смерти.md`
 - [x] Defeating the Victim Spirit - Freedom Step 12 *(steps-to-freedom)* — `014-Шаги к свободе 12 — Победа над духом жертвы.md`
 - [x] Deliverance from Incubus, Succubus, Lust and Perverse Spirits *(downloads)* — `074-Освобождение от инкуба, суккуба, похоти и извращений.md`
-- [ ] Deliverance Prayers From Serpent Spirits *(downloads)*
+- [x] Deliverance Prayers From Serpent Spirits *(downloads)* — `075-Молитвы освобождения от змеиных духов.md`
 - [blog] Disconnect Prayer
 - [x] Dismantling the Spirit of Rejection - Steps To Freedom 10 *(steps-to-freedom)* — `012-Шаги к свободе 10 — Разрушение духа отвержения.md`
 
