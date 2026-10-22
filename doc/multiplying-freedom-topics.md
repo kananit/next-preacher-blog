@@ -50,7 +50,7 @@
 - [blog] Dealing With Rejection
 - [x] Defeating the Spirit of Death - Freedom Step 21 *(downloads)* — `024-Дух смерти.md`
 - [x] Defeating the Victim Spirit - Freedom Step 12 *(steps-to-freedom)* — `014-Шаги к свободе 12 — Победа над духом жертвы.md`
-- [ ] Deliverance from Incubus, Succubus, Lust and Perverse Spirits *(downloads)*
+- [x] Deliverance from Incubus, Succubus, Lust and Perverse Spirits *(downloads)* — `074-Освобождение от инкуба, суккуба, похоти и извращений.md`
 - [ ] Deliverance Prayers From Serpent Spirits *(downloads)*
 - [blog] Disconnect Prayer
 - [x] Dismantling the Spirit of Rejection - Steps To Freedom 10 *(steps-to-freedom)* — `012-Шаги к свободе 10 — Разрушение духа отвержения.md`
