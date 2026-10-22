@@ -16,6 +16,8 @@ description: >
 
 ## Шаг 1. Извлечь текст из PDF
 
+Если точный путь не указан, ищи PDF **в первую очередь в `~/Downloads/books`** (включая подпапки, например `~/Downloads/books/PDF`), а уже потом — в `../ai-text/Христианская/translate/archive/` или спрашивай у пользователя.
+
 ```sh
 pdftotext "/полный/путь/к/файлу.pdf" /tmp/extracted.txt
 wc -l -w /tmp/extracted.txt
