@@ -18,20 +18,20 @@
 - [x] [blog] Avoiding Post-deliverance Backlash — `030-Как избежать ответного удара после освобождения.md`
 - [x] Avoiding Post-Deliverance Backlash *(downloads)* — `030-Как избежать ответного удара после освобождения.md`
 
-## B
+## B — готово
 
 - [x] [blog] Being A Person That Affects Eternity — `070-Быть человеком, который влияет на вечность.md`
 - [x] Believer's Position In Christ *(downloads)* — `034-Положение верующего «во Христе».md`
 - [x] Biblical Affirmations for God's Provision *(downloads)* — `076-Библейские утверждения о Божьем обеспечении.md`
 - [x] Binding + Loosing - Warfare Prayer *(downloads)* — `062-Молитва связывания и высвобождения.md`
 - [x] [blog] Binding + Loosing - Warfare Prayer — `062-Молитва связывания и высвобождения.md`
-- [blog] Blessing Prayer -Day 3 – Praying For Divine Health, Physical And Spiritual Fitness
-- [blog] Blessing Prayer -Day 4 – Praying For Divine Provision And Finances
-- [blog] Blessing Prayer -Day 5 – Praying For Divine Relationships And Connections
-- [blog] Blessing Prayer -Day 6 – Praying For Divine Direction
-- [blog] Blessing Prayer -Day 7 – Praying For Determination, Tenacity And Strength
-- [blog] Blessing Prayer – Day 1 – Praying For Release From The Past
-- [blog] Blessing Prayer – Day 2 – Prayer To Remove Curses
+- [x] [blog] Blessing Prayer -Day 3 – Praying For Divine Health, Physical And Spiritual Fitness — `091-Молитва благословения — день 3. Здоровье тела и духа.md`
+- [x] [blog] Blessing Prayer -Day 4 – Praying For Divine Provision And Finances — `092-Молитва благословения — день 4. Обеспечение и финансы.md`
+- [x] [blog] Blessing Prayer -Day 5 – Praying For Divine Relationships And Connections — `093-Молитва благословения — день 5. Божественные связи.md`
+- [x] [blog] Blessing Prayer -Day 6 – Praying For Divine Direction — `094-Молитва благословения — день 6. Божье направление.md`
+- [x] [blog] Blessing Prayer -Day 7 – Praying For Determination, Tenacity And Strength — `095-Молитва благословения — день 7. Настойчивость и сила.md`
+- [x] [blog] Blessing Prayer – Day 1 – Praying For Release From The Past — `089-Молитва благословения — день 1. Освобождение от прошлого.md`
+- [x] [blog] Blessing Prayer – Day 2 – Prayer To Remove Curses — `090-Молитва благословения — день 2. Снятие проклятий.md`
 - [x] Bondage & Addictions - Freedom Step 8 *(steps-to-freedom)* — `010-Шаги к свободе 8 — Разрушение зависимостей.md`
 - [x] Breaking Witchcraft & Word Curses - Freedom Step 6 *(steps-to-freedom)* — `008-Шаги к свободе 6 — Разрушение колдовства и словесных проклятий.md`
 - [blog] Breakthrough Prayer
