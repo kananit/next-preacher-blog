@@ -21,8 +21,8 @@
 - [ ] Being A Person That Affects Eternity *(blog)*
 - [x] Believer's Position In Christ *(downloads)* — `034-Положение верующего «во Христе».md`
 - [ ] Biblical Affirmations for God's Provision *(downloads)*
-- [ ] Binding + Loosing - Warfare Prayer *(downloads)*
-- [ ] Binding + Loosing - Warfare Prayer *(blog)*
+- [x] Binding + Loosing - Warfare Prayer *(downloads)* — `062-Молитва связывания и высвобождения.md`
+- [x] Binding + Loosing - Warfare Prayer *(blog)* — `062-Молитва связывания и высвобождения.md`
 - [blog] Blessing Prayer -Day 3 – Praying For Divine Health, Physical And Spiritual Fitness
 - [blog] Blessing Prayer -Day 4 – Praying For Divine Provision And Finances
 - [blog] Blessing Prayer -Day 5 – Praying For Divine Relationships And Connections
