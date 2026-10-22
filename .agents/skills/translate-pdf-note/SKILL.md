@@ -103,6 +103,8 @@ get_passage(reference: "Лев 20:9; Мф 15:4", version: "synodal")
 
 Если тип неочевиден — задай **один** вопрос, не угадывай.
 
+Английское название для `multiplying-freedom` берётся не из PDF, а из списка тем `doc/multiplying-freedom-topics.md` (261 тема сайта: `- [ ] Название *(тип)*` — с кнопкой Download, `- [blog] Название` — без PDF). Найди тему в списке до перевода: там же видно, переведена ли она уже (`[x]` + имя файла).
+
 ## Шаг 6. Номер и имя файла
 
 ```sh
@@ -119,6 +121,7 @@ ls "content/notes/multiplying-freedom/" | sort | tail -5
 ```yaml
 ---
 title: "Название до 60 символов"
+title_en: "Точное английское название из doc/multiplying-freedom-topics.md"
 description: "Одно предложение о содержании, 20–200 символов."
 date: ДД-ММ-ГГГГ
 categories: ["статьи", "multiplying-freedom", "молитва"]
@@ -133,6 +136,7 @@ source_url: "https://multiplyingfreedom.com/free-stuff/"
 - `source_url` — только для `multiplying-freedom`.
 - Для `books` — `categories: ["книги"]`, без `source_url`, если его нет в оригинале.
 - `title` в frontmatter обязан совпадать с первым `##` в теле.
+- `title_en` — **дословно** строка из `doc/multiplying-freedom-topics.md` (вместе с хвостами вроде `- Freedom Step 4`), сразу после `title`. Не переводить заново, не «улучшать» опечатки сайта (`Spirit of Arrested Developement`, `Down- Freedom Step 1`). У `notes/books` и постов без темы в списке `title_en` не ставится.
 
 ## Шаг 8. Записать файл
 
@@ -145,6 +149,26 @@ EOF
 ```
 
 `edit_file` на длинных кириллических строках может падать с `Could not find matching text` — тогда сразу переходи на `sed -i ''` или перезапись файла.
+
+## Шаг 8.1. Отметить тему в списке
+
+Файл заметки создан → тема в `doc/multiplying-freedom-topics.md` помечается сделанной. Правка точечная, по точной строке, через Python (в названиях есть `+`, `(`, `?` — `sed` по ним опасен):
+
+```sh
+python3 - <<'EOF'
+p='doc/multiplying-freedom-topics.md'
+s=open(p,encoding='utf-8').read()
+old='- [ ] Название из списка *(downloads)*'
+new='- [x] Название из списка *(downloads)* — `NNN-Название.md`'
+assert old in s, 'нет такой строки — сверь название дословно или возьми второй вариант (blog/PDF)'
+open(p,'w',encoding='utf-8').write(s.replace(old,new,1))
+EOF
+```
+
+- `- [ ]` → `- [x]` и дописать ` — ` + имя файла в обратных кавычках.
+- `- [blog]` (без PDF) — чекбокса там нет, префикс не меняется, дописывается только имя файла: `- [blog] Название — \`NNN-….md\``.
+- Одна и та же тема может стоять дважды (запись блога и PDF). Отмечай строку с PDF (у неё есть `*(downloads)*` / `*(steps-to-freedom)*`), блоговую не трогай.
+- Если темы в списке нет вообще — добавь её в нужный буквенный раздел (`## A`…`## #`) в том же формате и сразу отметь как `[x]`.
 
 ## Шаг 9. Проверки перед отчётом (sweep)
 
@@ -160,14 +184,15 @@ python3 scripts/check-note.py "content/notes/multiplying-freedom/NNN-Назва�
 - [ ] Ссылки: Синодальные сокращения, дефис в номерах книг, Псалмы в Синодальной нумерации.
 - [ ] Цитаты сверены через MCP `bible-ru-synodal` (`synodal`), ссылки соответствуют содержанию стихов.
 - [ ] Смысл и термины: быстрый проход по `CHECKLIST.md` скилов translator и polisher.
-- [ ] `git --no-optional-locks status --short` показывает только новый файл.
+- [ ] Тема отмечена в `doc/multiplying-freedom-topics.md` (`[x]` + имя файла), `title_en` совпадает со строкой списка символ в символ.
+- [ ] `git --no-optional-locks status --short` показывает только новый файл и `doc/multiplying-freedom-topics.md`.
 
 ## Шаг 10. Отчёт
 
 Сообщи пользователю:
 
 1. Путь к файлу и номер.
-2. `title`, `categories`.
+2. `title`, `title_en`, `categories` + пометку в списке тем (номер строки/раздел).
 3. Таблицу правок полировки (было → стало → причина).
 4. В скилы добавлено: N строк и куда — или «ничего нового».
 5. Что пропущено и какой риск остался (одна-две строки).
