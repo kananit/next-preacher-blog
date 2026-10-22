@@ -63,25 +63,25 @@
 - [x] [blog] Exorcism vs. Deliverance - What's the Difference? — `085-Экзорцизм и освобождение — в чём разница.md`
 - [x] Extended List of Evil Heavenly Powers & Principalities *(downloads)* — `086-Расширенный список злых небесных сил и начальств.md`
 
-## F
+## F — готово
 
-- [blog] Fear is a liar
+- [x] [blog] Fear is a liar — `087-Страх — лжец.md`
 - [x] Forgiveness - Lay Your Burdens Down- Freedom Step 1 *(steps-to-freedom)* — `003-Шаги к свободе 1 — Прощение.md`
 - [x] Freedom From Fallen Angel Bloodlines and Genetics *(downloads)* — `041-Освобождение от кровных линий и генетики падших ангелов.md`
 - [x] Freedom from Principalities and Fallen Angels Prayer *(downloads)* — `043-Молитва об освобождении от начальств и падших ангелов.md`
 - [x] Freedom From Witchcraft + Occult- Freedom Step 2 *(steps-to-freedom)* — `004-Шаги к свободе 2 — Отречение от оккультизма и колдовства.md`
-- [ ] Full Armor of God Affirmations *(downloads)*
+- [x] Full Armor of God Affirmations *(downloads)* — `088-Библейские утверждения во всеоружии Божьем.md`
 
-## G
+## G — готово
 
 - [x] Generational Curses - Can Christians Be Affected? *(downloads)* — `025-Родовые проклятия — могут ли они затрагивать христиан.md`
-- [ ] God's Provision - One Page *(downloads)*
+- [x] God's Provision - One Page *(downloads)* — `076-Библейские утверждения о Божьем обеспечении.md` (тот же список, что в PDF)
 
 ## H
 
 - [x] Handling Fear, Anxiety & Panic  - Freedom Step 5 *(steps-to-freedom)* — `007-Шаги к свободе 5 — Свобода от страха, тревоги и паники.md`
 - [x] Head to Toe Deliverance Prayer *(downloads)* — `031-Молитва освобождения от головы до пят.md`
-- [ ] Head To Toe Deliverance Prayer *(blog)*
+- [x] [blog] Head To Toe Deliverance Prayer — `031-Молитва освобождения от головы до пят.md` (та же молитва; blog-статья перенаправляет на PDF)
 - [ ] Healing + Faith Verses + Healings of Christ *(downloads)*
 - [blog] Healing African Americans and Cleansing Bloodline Curses
 - [blog] Healing and Deliverance for Native Americans
