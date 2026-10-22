@@ -4,7 +4,8 @@
 
 `[x]` — перевод уже есть в `content/notes/multiplying-freedom/` (имя файла в конце строки).
 `[ ]` — ещё не переведено.
-`[blog]` — на странице нет кнопки Download (нет PDF), поэтому чекбокса нет. Если в конце строки указан файл — перевод уже есть.
+`- [x] [blog]` — тема есть только в блоге (без PDF), перевод уже готов; имя файла в конце строки.
+`[blog]` — тема без PDF, перевод пока не сделан.
 
 
 ## A
@@ -12,17 +13,17 @@
 - [blog] A New Interactive Study of the Book of Enoch *(downloads)*
 - [ ] Abridged List of Heavenly Powers *(downloads)*
 - [x] Am I Ready For Deliverance Ministry? *(downloads)* — `001-Готов ли я пройти процесс освобождения.md`
-- [blog] An A-Z List of New Age Practices to Avoid, and Why
+- [x] [blog] An A-Z List of New Age Practices to Avoid, and Why — `069-Практики нью-эйдж от А до Я.md`
 - [blog] Avoiding Post-deliverance Backlash
 - [x] Avoiding Post-Deliverance Backlash *(downloads)* — `030-Как избежать ответного удара после освобождения.md`
 
 ## B
 
-- [ ] Being A Person That Affects Eternity *(blog)*
+- [x] [blog] Being A Person That Affects Eternity — `070-Быть человеком, который влияет на вечность.md`
 - [x] Believer's Position In Christ *(downloads)* — `034-Положение верующего «во Христе».md`
 - [ ] Biblical Affirmations for God's Provision *(downloads)*
 - [x] Binding + Loosing - Warfare Prayer *(downloads)* — `062-Молитва связывания и высвобождения.md`
-- [x] Binding + Loosing - Warfare Prayer *(blog)* — `062-Молитва связывания и высвобождения.md`
+- [x] [blog] Binding + Loosing - Warfare Prayer — `062-Молитва связывания и высвобождения.md`
 - [blog] Blessing Prayer -Day 3 – Praying For Divine Health, Physical And Spiritual Fitness
 - [blog] Blessing Prayer -Day 4 – Praying For Divine Provision And Finances
 - [blog] Blessing Prayer -Day 5 – Praying For Divine Relationships And Connections
@@ -33,8 +34,8 @@
 - [x] Bondage & Addictions - Freedom Step 8 *(steps-to-freedom)* — `010-Шаги к свободе 8 — Разрушение зависимостей.md`
 - [x] Breaking Witchcraft & Word Curses - Freedom Step 6 *(steps-to-freedom)* — `008-Шаги к свободе 6 — Разрушение колдовства и словесных проклятий.md`
 - [blog] Breakthrough Prayer
-- [ ] Broadcast + Mind Hacking + Sleep Prayer *(downloads)*
-- [blog] Broadcast + Mind Hacking Prayer — `038-Молитва от вторжения в разум.md`
+- [x] Broadcast + Mind Hacking + Sleep Prayer *(downloads)* — `038-Молитва от вторжения в разум.md`
+- [x] [blog] Broadcast + Mind Hacking Prayer — `038-Молитва от вторжения в разум.md`
 
 ## C
 
@@ -144,7 +145,7 @@
 - [ ] Prayer - Renunciation of Satan's Counterfeit Religious System *(downloads)*
 - [ ] Prayer - Renunciations For Martial Arts - and more... *(downloads)*
 - [ ] Prayer - Spirit Spouses *(downloads)*
-- [ ] Prayer - Spiritual "Bolt Cutter" Prayer *(downloads)*
+- [x] Prayer - Spiritual "Bolt Cutter" Prayer *(downloads)* — `068-Молитва «духовные кусачки».md`
 - [blog] Prayer - Spiritual Warfare For The Family
 - [ ] Prayer - Star Signs and Astrology Renunciations *(downloads)*
 - [ ] Prayer - The Spirit of Pharaoh *(downloads)*
@@ -226,7 +227,7 @@
 - [x] Prayer To Control Thought Life or Tormenting Thoughts *(downloads)* — `053-Молитва об обуздании помыслов и мучительных мыслей.md`
 - [x] Prayer to Denounce the Lewis Curse *(downloads)* — `054-Молитва об отречении от проклятия Льюиса.md`
 - [x] Prayer To Dismantle The Roots Of Rebellion *(downloads)* — `055-Молитва об искоренении непокорности.md`
-- [blog] Prayer To Dismantle The Roots Of Rebellion — `055-Молитва об искоренении непокорности.md`
+- [x] [blog] Prayer To Dismantle The Roots Of Rebellion — `055-Молитва об искоренении непокорности.md`
 - [x] Prayer to Heal Eyes and Recover Sight *(downloads)* — `059-Молитва об исцелении глаз и восстановлении зрения.md`
 - [x] Prayer To Kick Demons Out From Your Meds! *(downloads)* — `058-Молитва об изгнании бесов из лекарств.md`
 - [blog] Prayer to Release Sleep
@@ -238,7 +239,7 @@
 - [x] Prayer to Restore a Fragmented Soul *(downloads)* — `065-Молитва о восстановлении раздробленной души.md`
 - [x] Prayer to Unravel Plan For New World Order (NWO) *(downloads)* — `046-Молитва о разрушении плана нового мирового порядка.md`
 - [x] Prayer- Binding And Loosing? What About It? *(downloads)* — `033-Что такое связывание и высвобождение.md`
-- [ ] Prayer- Broadcast + Mind Hacking + Sleep *(downloads)*
+- [x] Prayer- Broadcast + Mind Hacking + Sleep *(downloads)* — `038-Молитва от вторжения в разум.md`
 - [x] Prayer- Removal of Spiritual Objects *(downloads)* — `061-Молитва об удалении духовных объектов.md`
 - [ ] Prayer- Sealing Off Before Deliverance *(downloads)*
 - [blog] Prayer: for Breaking Power of Schizophrenia & Double-Mindedness
@@ -266,7 +267,7 @@
 ## S
 
 - [blog] Scholars Explain Why the Sons of God in Gen. 6 were Angels *(downloads)*
-- [ ] Scriptures to Pray + Claim for Our Children *(downloads)*
+- [x] Scriptures to Pray + Claim for Our Children *(downloads)* — `073-Молитва и обетования за наших детей.md`
 - [x] Sealing Off Prayer Before Deliverance (#2) *(downloads)* — `027-Молитва защиты перед освобождением.md`
 - [blog] Seeking Prayer Support
 - [x] Severing Soul Ties -  Freedom Step 3 *(steps-to-freedom)* — `005-Шаги к свободе 3 — Разрыв душевных связей.md`
@@ -305,7 +306,7 @@
 - [blog] The Top 3 Strongholds Corrupting Your Gift of Discernment
 - [blog] The Victim Spirit
 - [x] The Warfare Prayer By Mark I. Bubeck *(downloads)* — `063-Молитва духовной войны Марка Бьюбека.md`
-- [ ] The Watchers of 1 Enoch and What They Did *(downloads)*
+- [x] The Watchers of 1 Enoch and What They Did *(downloads)* — `072-Стражи из 1 Еноха и что они сделали.md`
 
 ## U
 
@@ -314,7 +315,7 @@
 ## W
 
 - [blog] Warfare Prayer -By Victor Matthews
-- [ ] Warfare Prayer for An Unsaved Loved One (Or Saved but In Sin) *(downloads)*
+- [x] Warfare Prayer for An Unsaved Loved One (Or Saved but In Sin) *(downloads)* — `071-Молитва войны за неспасённого близкого.md`
 - [x] Warfare Prayers - Gene Moody *(downloads)* — `048-Молитвы духовной войны Джина Муди.md`
 - [blog] What About Generational Curses?
 - [x] What About Generational Issues? - Freedom Step 7 *(steps-to-freedom)* — `009-Шаги к свободе 7 — Как быть с родовыми проклятиями.md`
