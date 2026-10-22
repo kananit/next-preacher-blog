@@ -121,7 +121,7 @@
 
 ## O
 
-- [ ] Occult Practices Forbidden *(downloads)*
+- [x] Occult Practices Forbidden *(downloads)* — `067-Девять запрещённых оккультных практик.md`
 - [x] Overcoming the Anti-Christ Spirit - Freedom Step 9 *(steps-to-freedom)* — `011-Шаги к свободе 9 — Преодоление духа антихриста.md`
 
 ## P
@@ -235,7 +235,7 @@
 - [x] Prayer to Renounce the Hindu Religion *(downloads)* — `064-Молитва отречения от индуизма.md`
 - [ ] Prayer to Renounce the Jezebel Spirit *(downloads)*
 - [ ] Prayer to Restore a Fragmented Soul *(blog)*
-- [ ] Prayer to Restore a Fragmented Soul *(downloads)*
+- [x] Prayer to Restore a Fragmented Soul *(downloads)* — `065-Молитва о восстановлении раздробленной души.md`
 - [x] Prayer to Unravel Plan For New World Order (NWO) *(downloads)* — `046-Молитва о разрушении плана нового мирового порядка.md`
 - [x] Prayer- Binding And Loosing? What About It? *(downloads)* — `033-Что такое связывание и высвобождение.md`
 - [ ] Prayer- Broadcast + Mind Hacking + Sleep *(downloads)*
@@ -272,7 +272,7 @@
 - [x] Severing Soul Ties -  Freedom Step 3 *(steps-to-freedom)* — `005-Шаги к свободе 3 — Разрыв душевных связей.md`
 - [blog] Sexual Healing Prayer
 - [ ] Soul Ties to the Deceased *(downloads)*
-- [ ] Soul Ties Worksheet For Freedom *(steps-to-freedom)*
+- [x] Soul Ties Worksheet For Freedom *(steps-to-freedom)* — `066-Опросник по душевным связям.md`
 - [x] Spirit - Python Spirit - Prayer + Deliverance *(downloads)* — `022-Дух питона.md`
 - [x] Spirit of Arrested Developement *(downloads)* — `021-Дух незрелости.md`
 - [x] Spirit of Depression - Prayer + Proclamations *(downloads)* — `026-Молитва против духа депрессии.md`
