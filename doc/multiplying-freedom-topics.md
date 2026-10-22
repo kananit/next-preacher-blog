@@ -56,12 +56,12 @@
 - [x] [blog] Disconnect Prayer — `084-Молитва о разрыве всех нечестивых связей.md`
 - [x] Dismantling the Spirit of Rejection - Steps To Freedom 10 *(steps-to-freedom)* — `012-Шаги к свободе 10 — Разрушение духа отвержения.md`
 
-## E
+## E — готово
 
-- [blog] Enoch and the Afterlife *(downloads)*
+- [x] [blog] Enoch and the Afterlife *(downloads)* (manual)
 - [x] Evicting the Lying Spirit - Freedom Step 13 *(steps-to-freedom)* — `015-Шаги к свободе 13 — Изгнание духа лжи.md`
-- [blog] Exorcism vs. Deliverance - What's the Difference?
-- [ ] Extended List of Evil Heavenly Powers & Principalities *(downloads)*
+- [x] [blog] Exorcism vs. Deliverance - What's the Difference? — `085-Экзорцизм и освобождение — в чём разница.md`
+- [x] Extended List of Evil Heavenly Powers & Principalities *(downloads)* — `086-Расширенный список злых небесных сил и начальств.md`
 
 ## F
 
