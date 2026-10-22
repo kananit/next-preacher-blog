@@ -304,7 +304,7 @@
 - [blog] THE STRONGHOLD OF LEVIATHAN
 - [blog] The Top 3 Strongholds Corrupting Your Gift of Discernment
 - [blog] The Victim Spirit
-- [ ] The Warfare Prayer By Mark I. Bubeck *(downloads)*
+- [x] The Warfare Prayer By Mark I. Bubeck *(downloads)* — `063-Молитва духовной войны Марка Бьюбека.md`
 - [ ] The Watchers of 1 Enoch and What They Did *(downloads)*
 
 ## U
