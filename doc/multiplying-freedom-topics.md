@@ -130,7 +130,7 @@
 - [blog] Prayer & Declarations For Losing Weight
 - [ ] Prayer + Renunciation For Ancestral Incest *(downloads)*
 - [ ] Prayer + Renunciations For Slavery Roots *(downloads)*
-- [ ] Prayer -  Against Spiritual Attack *(downloads)*
+- [x] Prayer -  Against Spiritual Attack *(downloads)* — `060-Молитва против духовных атак.md`
 - [blog] Prayer - Breaking Generational Curses
 - [ ] Prayer - Cancelling the Jezebel Ahab Curse *(downloads)*
 - [ ] Prayer - Deliverance From Destructive Covenants + Altars *(downloads)*
@@ -227,8 +227,8 @@
 - [x] Prayer to Denounce the Lewis Curse *(downloads)* — `054-Молитва об отречении от проклятия Льюиса.md`
 - [x] Prayer To Dismantle The Roots Of Rebellion *(downloads)* — `055-Молитва об искоренении непокорности.md`
 - [blog] Prayer To Dismantle The Roots Of Rebellion — `055-Молитва об искоренении непокорности.md`
-- [ ] Prayer to Heal Eyes and Recover Sight *(downloads)*
-- [ ] Prayer To Kick Demons Out From Your Meds! *(downloads)*
+- [x] Prayer to Heal Eyes and Recover Sight *(downloads)* — `059-Молитва об исцелении глаз и восстановлении зрения.md`
+- [x] Prayer To Kick Demons Out From Your Meds! *(downloads)* — `058-Молитва об изгнании бесов из лекарств.md`
 - [blog] Prayer to Release Sleep
 - [x] Prayer to Remove Demonic Influence *(downloads)* — `044-Молитва об удалении демонического влияния.md`
 - [x] Prayer To Remove Entities *(downloads)* — `056-Молитва об изгнании сущностей.md`
@@ -256,7 +256,7 @@
 - [blog] Prayers for Ear Ringing
 - [blog] Prayers for Healing - Spiritual Warfare
 - [blog] Prayers for Release From Fantasy Role Playing Games
-- [ ] Prayers For Ritual Abuse Survivors *(downloads)*
+- [x] Prayers For Ritual Abuse Survivors *(downloads)* — `057-Молитва о защите для переживших ритуальное насилие.md`
 - [x] Prayers of Paul - 1st Person *(downloads)* — `037-Молитвы Павла.md`
 - [x] Prayers Renouncing Fallen Angels And Nephilim *(downloads)* — `042-Молитвы об отречении от падших ангелов и нефилимов.md`
 - [ ] Prior to Your Deliverance *(blog)*
