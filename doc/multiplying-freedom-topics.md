@@ -66,7 +66,7 @@
 - [blog] Fear is a liar
 - [x] Forgiveness - Lay Your Burdens Down- Freedom Step 1 *(steps-to-freedom)* — `003-Шаги к свободе 1 — Прощение.md`
 - [x] Freedom From Fallen Angel Bloodlines and Genetics *(downloads)* — `041-Освобождение от кровных линий и генетики падших ангелов.md`
-- [ ] Freedom from Principalities and Fallen Angels Prayer *(downloads)*
+- [x] Freedom from Principalities and Fallen Angels Prayer *(downloads)* — `043-Молитва об освобождении от начальств и падших ангелов.md`
 - [x] Freedom From Witchcraft + Occult- Freedom Step 2 *(steps-to-freedom)* — `004-Шаги к свободе 2 — Отречение от оккультизма и колдовства.md`
 - [ ] Full Armor of God Affirmations *(downloads)*
 
@@ -239,7 +239,7 @@
 - [x] Prayer to Unravel Plan For New World Order (NWO) *(downloads)* — `046-Молитва о разрушении плана нового мирового порядка.md`
 - [x] Prayer- Binding And Loosing? What About It? *(downloads)* — `033-Что такое связывание и высвобождение.md`
 - [ ] Prayer- Broadcast + Mind Hacking + Sleep *(downloads)*
-- [x] Prayer- Removal of Spiritual Objects *(downloads)* — `043-Молитва об удалении духовных объектов.md`
+- [x] Prayer- Removal of Spiritual Objects *(downloads)* — `061-Молитва об удалении духовных объектов.md`
 - [ ] Prayer- Sealing Off Before Deliverance *(downloads)*
 - [blog] Prayer: for Breaking Power of Schizophrenia & Double-Mindedness
 - [ ] Prayer: Return All Witchcraft To The Sender *(downloads)*
