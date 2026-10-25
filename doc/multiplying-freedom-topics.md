@@ -1,11 +1,12 @@
 # Multiplying Freedom — все темы и соответствие переводам
 
-Источник: <https://multiplyingfreedom.com/free-stuff/> · 261 тема · снято 22.10.2026
+Источник: <https://multiplyingfreedom.com/free-stuff/> · 261 тема · снято 22.10.2026, сверено 25.10.2026
 
 `[x]` — перевод уже есть в `content/notes/multiplying-freedom/` (имя файла в конце строки).
 `[ ]` — ещё не переведено.
 `- [x] [blog]` — тема есть только в блоге (без PDF), перевод уже готов; имя файла в конце строки.
 `[blog]` — тема без PDF, перевод пока не сделан.
+`(manual)` — тема не требует перевода, отмечена готовой без файла.
 `— готово` у буквы раздела — в разделе переведено всё, непомеченных тем не осталось.
 
 
@@ -18,7 +19,7 @@
 - [x] [blog] Avoiding Post-deliverance Backlash — `030-Как избежать ответного удара после освобождения.md`
 - [x] Avoiding Post-Deliverance Backlash *(downloads)* — `030-Как избежать ответного удара после освобождения.md`
 
-## B — готово
+## B
 
 - [x] [blog] Being A Person That Affects Eternity — `070-Быть человеком, который влияет на вечность.md`
 - [x] Believer's Position In Christ *(downloads)* — `034-Положение верующего «во Христе».md`
@@ -34,7 +35,7 @@
 - [x] [blog] Blessing Prayer – Day 2 – Prayer To Remove Curses — `090-Молитва благословения — день 2. Снятие проклятий.md`
 - [x] Bondage & Addictions - Freedom Step 8 *(steps-to-freedom)* — `010-Шаги к свободе 8 — Разрушение зависимостей.md`
 - [x] Breaking Witchcraft & Word Curses - Freedom Step 6 *(steps-to-freedom)* — `008-Шаги к свободе 6 — Разрушение колдовства и словесных проклятий.md`
-- [blog] Breakthrough Prayer
+- [x] [blog] Breakthrough Prayer — `113-Молитва о прорыве.md`
 - [x] Broadcast + Mind Hacking + Sleep Prayer *(downloads)* — `038-Молитва от вторжения в разум.md`
 - [x] [blog] Broadcast + Mind Hacking Prayer — `038-Молитва от вторжения в разум.md`
 
@@ -86,10 +87,10 @@
 - [blog] Healing African Americans and Cleansing Bloodline Curses
 - [blog] Healing and Deliverance for Native Americans
 - [blog] How to Command Your Angels
-- [blog] How to Deal With Dreams From the Enemy
-- [blog] HOW TO STOP MOVING OBJECTS IN THE BODY
+- [x] [blog] How to Deal With Dreams From the Enemy — `114-Сны от врага — виды, значение, что делать.md`
+- [x] [blog] HOW TO STOP MOVING OBJECTS IN THE BODY — `117-Как остановить движение объектов в теле.md`
 - [ ] How to Study the Bible Devotionally *(downloads)*
-- [blog] How to Test the Spirits
+- [x] [blog] How to Test the Spirits — `115-Как испытывать духов.md`
 
 ## I — готово
 
@@ -174,7 +175,7 @@
 - [blog] Prayer and Scripture to Cancel Evil Dreams
 - [blog] Prayer Binding + Loosing for Those Not Following Christ
 - [ ] Prayer Binding + Loosing for Those Not Following Christ *(downloads)*
-- [ ] Prayer for An Unsaved Loved One - Warfare Prayer *(blog)*
+- [blog] Prayer for An Unsaved Loved One - Warfare Prayer
 - [blog] PRAYER FOR AUTISM
 - [ ] Prayer For Binding Demonic Spirits *(downloads)*
 - [ ] Prayer For Breaking Word Curses *(downloads)*
@@ -205,7 +206,7 @@
 - [ ] Prayer For Wrapping Up Deliverance Session *(downloads)*
 - [blog] Prayer Of Freedom
 - [ ] Prayer of Refuge -  Warfare Prayers *(downloads)*
-- [ ] Prayer of Refuge - Warfare Prayers *(blog)*
+- [blog] Prayer of Refuge - Warfare Prayers
 - [ ] Prayer Of Release For Roman Catholics & Their Descendants *(downloads)*
 - [blog] Prayer of Release from Fairy Tales, Nursery Rhymes, and Childhood Stories, Etc.
 - [blog] Prayer of Release from the Multi-Dimensional Zodiac System
@@ -224,7 +225,7 @@
 - [x] Prayer To Break Demonic Covenants and Curses *(downloads)* — `051-Молитва о расторжении бесовских заветов и проклятий.md`
 - [x] Prayer To Break The Generational Curse of the Bastard *(downloads)* — `052-Молитва о разрыве родового проклятия незаконнорождённости.md`
 - [ ] Prayer To Break the World Altar of Satan *(downloads)*
-- [ ] Prayer To Break the World Baal Altar of Satan *(blog)*
+- [blog] Prayer To Break the World Baal Altar of Satan
 - [x] Prayer To Control Thought Life or Tormenting Thoughts *(downloads)* — `053-Молитва об обуздании помыслов и мучительных мыслей.md`
 - [x] Prayer to Denounce the Lewis Curse *(downloads)* — `054-Молитва об отречении от проклятия Льюиса.md`
 - [x] Prayer To Dismantle The Roots Of Rebellion *(downloads)* — `055-Молитва об искоренении непокорности.md`
@@ -236,7 +237,7 @@
 - [x] Prayer To Remove Entities *(downloads)* — `056-Молитва об изгнании сущностей.md`
 - [x] Prayer to Renounce the Hindu Religion *(downloads)* — `064-Молитва отречения от индуизма.md`
 - [ ] Prayer to Renounce the Jezebel Spirit *(downloads)*
-- [ ] Prayer to Restore a Fragmented Soul *(blog)*
+- [x] [blog] Prayer to Restore a Fragmented Soul — `065-Молитва о восстановлении раздробленной души.md`
 - [x] Prayer to Restore a Fragmented Soul *(downloads)* — `065-Молитва о восстановлении раздробленной души.md`
 - [x] Prayer to Unravel Plan For New World Order (NWO) *(downloads)* — `046-Молитва о разрушении плана нового мирового порядка.md`
 - [x] Prayer- Binding And Loosing? What About It? *(downloads)* — `033-Что такое связывание и высвобождение.md`
@@ -249,7 +250,7 @@
 - [ ] Prayers - DANGEROUS!! *(downloads)*
 - [ ] Prayers - Forgiveness (Simple) *(downloads)*
 - [ ] Prayers - Forgiveness (Simple) *(downloads)*
-- [ ] Prayers - Gene Moody's AM + PM *(blog)*
+- [blog] Prayers - Gene Moody's AM + PM
 - [ ] Prayers -- Healing in Communion *(downloads)*
 - [x] Prayers About Our Given Name *(downloads)* — `039-Молитвы об именах и связанных с ними заветах.md`
 - [blog] Prayers Against Evil Altars Part 1
@@ -261,7 +262,7 @@
 - [x] Prayers For Ritual Abuse Survivors *(downloads)* — `057-Молитва о защите для переживших ритуальное насилие.md`
 - [x] Prayers of Paul - 1st Person *(downloads)* — `037-Молитвы Павла.md`
 - [x] Prayers Renouncing Fallen Angels And Nephilim *(downloads)* — `042-Молитвы об отречении от падших ангелов и нефилимов.md`
-- [ ] Prior to Your Deliverance *(blog)*
+- [blog] Prior to Your Deliverance
 - [blog] Pulling Down Strongholds of the Mind
 - [blog] Python Spirits, Curses, and Black Arts Sorcery
 
@@ -273,7 +274,7 @@
 - [blog] Seeking Prayer Support
 - [x] Severing Soul Ties -  Freedom Step 3 *(steps-to-freedom)* — `005-Шаги к свободе 3 — Разрыв душевных связей.md`
 - [blog] Sexual Healing Prayer
-- [ ] Soul Ties to the Deceased *(downloads)*
+- [x] Soul Ties to the Deceased *(downloads)* — `123-Душевные связи с умершим.md`
 - [x] Soul Ties Worksheet For Freedom *(steps-to-freedom)* — `066-Опросник по душевным связям.md`
 - [x] Spirit - Python Spirit - Prayer + Deliverance *(downloads)* — `022-Дух питона.md`
 - [x] Spirit of Arrested Developement *(downloads)* — `021-Дух незрелости.md`
@@ -285,21 +286,21 @@
 - [x] Spirits of Anger and Rage - Freedom Step 16 *(steps-to-freedom)* — `018-Шаги к свободе 16 — Избавление от духов гнева и ярости.md`
 - [x] Spirits of Jezebel + Ahab - Freedom Step 4 *(steps-to-freedom)* — `006-Шаги к свободе 4 — Свобода от духов Иезавели, Ахава и контроля.md`
 - [x] Spirits of Perversions + Lust - Freedom Step 15 *(steps-to-freedom)* — `017-Шаги к свободе 15 — Победа над духами извращений и похоти.md`
-- [blog] Spiritual Cages
-- [blog] Spiritual House Cleansing Prayer 🏠
-- [blog] Spiritual Warfare for Families, Groups or Organizations
-- [blog] Spiritual Warfare Prayer Against Jezebel Spirit
-- [blog] Spiritual Warfare Prayer Against Witchcraft Over My Family
+- [x] [blog] Spiritual Cages — `118-Духовные клетки.md`
+- [x] [blog] Spiritual House Cleansing Prayer 🏠 — `122-Молитва духовного очищения дома.md`
+- [x] [blog] Spiritual Warfare for Families, Groups or Organizations — `121-Провозглашения духовной войны за семьи и группы.md`
+- [x] [blog] Spiritual Warfare Prayer Against Jezebel Spirit — `119-Молитва духовной войны против духа Иезавели.md`
+- [x] [blog] Spiritual Warfare Prayer Against Witchcraft Over My Family — `120-Молитва духовной войны против колдовства над семьёй.md`
 - [x] Stronghold of Self-Image - Freedom Step 14 *(steps-to-freedom)* — `016-Шаги к свободе 14 — Твердыня самооценки.md`
-- [blog] Symptoms - Moving Objects in the Body
+- [x] [blog] Symptoms - Moving Objects in the Body — `116-Симптомы — движущиеся объекты в теле.md`
 
 ## T
 
 - [ ] The Apocrypha + Pseudepigrapha in the New Testament *(downloads)*
 - [ ] The Baptism with The Holy Spirit *(downloads)*
-- [x] The Book of Enoch - R. H. Charles Translation *(downloads)*
+- [x] The Book of Enoch - R. H. Charles Translation *(downloads)* (manual)
 - [ ] The Book of Giants - The Reconstruction *(downloads)*
-- [x] The Books of Enoch -  Michael Knibb Translation - 1st, 2nd, & 3rd *(downloads)*
+- [x] The Books of Enoch -  Michael Knibb Translation - 1st, 2nd, & 3rd *(downloads)* (manual)
 - [x] The Curse of the Vagabond AKA The Spirit of Cain *(downloads)* — `019-Дух Каина.md`
 - [x] The Serious Consequences of Dishonoring Parents + Prayer *(downloads)* — `040-Серьёзные последствия непочтения к родителям.md`
 - [blog] The Spirit of Belial
@@ -313,7 +314,7 @@
 
 - [x] [blog] Understanding and Dealing With Strongholds — `102-Что такое твердыни и как их разрушать.md`
 
-## W
+## W — готово
 
 - [x] [blog] Warfare Prayer -By Victor Matthews — `108-Молитва духовной войны Виктора Мэтьюза.md`
 - [x] Warfare Prayer for An Unsaved Loved One (Or Saved but In Sin) *(downloads)* — `071-Молитва войны за неспасённого близкого.md`
@@ -335,6 +336,6 @@
 
 ---
 
-**Переведено: 56 файлов.** Учтено 57 строк — тема `Prayer To Dismantle The Roots Of Rebellion` на сайте указана дважды (блог и PDF) и ведёт к одному переводу.
+**Переведено: 121 файл.** Готовыми помечены 138 строк: 13 строк — это блог/PDF-версии одной темы, ведущие к одному переводу, ещё 4 темы не требуют перевода `(manual)`.
 
-**Осталось перевести: 204 темы.** Из 261 тем без кнопки Download — 85.
+**Осталось перевести: 123 строки.** Из них 48 — темы без кнопки Download (только блог), 75 — с PDF.
