@@ -91,35 +91,35 @@
 - [ ] How to Study the Bible Devotionally *(downloads)*
 - [blog] How to Test the Spirits
 
-## I
+## I — готово
 
-- [blog] Intercessory prayers for couples in trouble
+- [x] [blog] Intercessory prayers for couples in trouble — `096-Ходатайственные молитвы за супругов в беде.md`
 
-## J
+## J — готово
 
-- [blog] Jezebel Spirit
-- [blog] Jezebel Spirit - 30 Traits To Watch For
+- [x] [blog] Jezebel Spirit — `097-Дух Иезавели — 18 признаков влияния.md`
+- [x] [blog] Jezebel Spirit - 30 Traits To Watch For — `098-Дух Иезавели — 30 признаков и молитва.md`
 
 ## K
 
 - [ ] Kundalini - Full Prayer of Renunciation *(downloads)*
 
-## L
+## L — готово
 
-- [blog] Labor Room Trauma – A Door for Demons
-- [ ] Lilith (Info + Prayer) *(downloads)*
-- [blog] Lilith- Prayer of Renouncement
-- [ ] Listing of Demons *(downloads)*
+- [x] [blog] Labor Room Trauma – A Door for Demons — `099-Родовая травма — открытая дверь для бесов.md`
+- [x] Lilith (Info + Prayer) *(downloads)* — `100-Лилит — сведения и молитва.md`
+- [x] [blog] Lilith- Prayer of Renouncement — `100-Лилит — сведения и молитва.md`
+- [x] Listing of Demons *(downloads)* — `101-Список демонов от A до Z.md`
 
 ## M — готово
 
 - [x] Maintaining Your Freedom *(mfm)* — `077-Как сохранить свободу после освобождения.md`
 - [x] Morning Prayer *(downloads)* — `035-Утренняя молитва.md`
 
-## N
+## N — готово
 
-- [ ] New Testament Authority *(downloads)*
-- [ ] Notes: 1 Enoch 10.1 - 11.2 - Judgement + Restoration *(downloads)*
+- [x] New Testament Authority *(downloads)* — `104-Новозаветное основание нашей власти.md`
+- [x] Notes: 1 Enoch 10.1 - 11.2 - Judgement + Restoration *(downloads)* — `105-1 Енох 10.1–11.2 — суд и восстановление.md`
 
 ## O — готово
 
@@ -311,7 +311,7 @@
 
 ## U
 
-- [blog] Understanding and Dealing With Strongholds
+- [x] [blog] Understanding and Dealing With Strongholds — `102-Что такое твердыни и как их разрушать.md`
 
 ## W
 
@@ -331,7 +331,7 @@
 
 ## #
 
-- [blog] 👁 Third Eye Awakening Dangers
+- [x] [blog] 👁 Third Eye Awakening Dangers — `103-Опасности пробуждения третьего глаза.md`
 
 ---
 
