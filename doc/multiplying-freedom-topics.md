@@ -321,13 +321,13 @@
 - [x] [blog] What About Generational Curses? — `109-Что говорит Библия о родовых проклятиях.md`
 - [x] What About Generational Issues? - Freedom Step 7 *(steps-to-freedom)* — `009-Шаги к свободе 7 — Как быть с родовыми проклятиями.md`
 - [x] [blog] What Are Witchcraft Dreams? — `107-Колдовские сны — как распознать и что делать.md`
-- [blog] What Can We Do With A Demonized Son or Daughter?
+- [x] [blog] What Can We Do With A Demonized Son or Daughter? — `110-Что делать, если сын или дочь под демоническим угнетением.md`
 - [x] What to Expect in Receiving Deliverance *(mfm)* — `028-Чего ожидать при получении освобождения.md`
-- [blog] When One Is Possessed With Another Person’s Spirit
-- [ ] Who I Am In Christ Affirmations *(blog)*
-- [ ] Who’s In Charge? *(downloads)*
-- [blog] Who’s In Charge?
-- [blog] Why Are We Planning A Study of the Book of Enoch? *(downloads)*
+- [x] [blog] When One Is Possessed With Another Person’s Spirit — `111-Когда человек одержим духом другого человека.md`
+- [x] [blog] Who I Am In Christ Affirmations — `034-Положение верующего «во Христе».md`
+- [x] Who’s In Charge? *(downloads)* — `070-Быть человеком, который влияет на вечность.md`
+- [x] [blog] Who’s In Charge? — `070-Быть человеком, который влияет на вечность.md`
+- [x] [blog] Why Are We Planning A Study of the Book of Enoch? *(downloads)* — `112-Почему мы планируем изучение Книги Еноха.md`
 
 ## # — готово
 
