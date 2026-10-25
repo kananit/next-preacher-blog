@@ -19,7 +19,7 @@
 - [x] [blog] Avoiding Post-deliverance Backlash — `030-Как избежать ответного удара после освобождения.md`
 - [x] Avoiding Post-Deliverance Backlash *(downloads)* — `030-Как избежать ответного удара после освобождения.md`
 
-## B
+## B — готово
 
 - [x] [blog] Being A Person That Affects Eternity — `070-Быть человеком, который влияет на вечность.md`
 - [x] Believer's Position In Christ *(downloads)* — `034-Положение верующего «во Христе».md`
@@ -138,7 +138,7 @@
 - [ ] Prayer - Cancelling the Jezebel Ahab Curse *(downloads)*
 - [ ] Prayer - Deliverance From Destructive Covenants + Altars *(downloads)*
 - [ ] Prayer - For Inner Healing *(downloads)*
-- [ ] Prayer - For Sexual Healing *(downloads)*
+- [x] Prayer - For Sexual Healing *(downloads)* — `124-Молитва об исцелении сексуальности.md`
 - [ ] Prayer - Freemasonry Curse Renunciations *(downloads)*
 - [ ] Prayer - Freemasonry Prayer MFM Complete *(downloads)*
 - [blog] Prayer - Generational Altars In The Bloodline
@@ -266,14 +266,14 @@
 - [blog] Pulling Down Strongholds of the Mind
 - [blog] Python Spirits, Curses, and Black Arts Sorcery
 
-## S
+## S — готово
 
-- [blog] Scholars Explain Why the Sons of God in Gen. 6 were Angels *(downloads)*
+- [x] [blog] Scholars Explain Why the Sons of God in Gen. 6 were Angels *(downloads)* — `125-Почему сыны Божии в Бытии 6 были ангелами.md`
 - [x] Scriptures to Pray + Claim for Our Children *(downloads)* — `073-Молитва и обетования за наших детей.md`
 - [x] Sealing Off Prayer Before Deliverance (#2) *(downloads)* — `027-Молитва защиты перед освобождением.md`
-- [blog] Seeking Prayer Support
+- [x] [blog] Seeking Prayer Support (manual)
 - [x] Severing Soul Ties -  Freedom Step 3 *(steps-to-freedom)* — `005-Шаги к свободе 3 — Разрыв душевных связей.md`
-- [blog] Sexual Healing Prayer
+- [x] [blog] Sexual Healing Prayer — `124-Молитва об исцелении сексуальности.md`
 - [x] Soul Ties to the Deceased *(downloads)* — `123-Душевные связи с умершим.md`
 - [x] Soul Ties Worksheet For Freedom *(steps-to-freedom)* — `066-Опросник по душевным связям.md`
 - [x] Spirit - Python Spirit - Prayer + Deliverance *(downloads)* — `022-Дух питона.md`
@@ -336,6 +336,6 @@
 
 ---
 
-**Переведено: 121 файл.** Готовыми помечены 138 строк: 13 строк — это блог/PDF-версии одной темы, ведущие к одному переводу, ещё 4 темы не требуют перевода `(manual)`.
+**Переведено: 125 файлов.** Готовыми помечены 144 строки: 14 строк — это блог/PDF-версии одной темы, ведущие к одному переводу, ещё 5 тем не требуют перевода `(manual)`.
 
-**Осталось перевести: 123 строки.** Из них 48 — темы без кнопки Download (только блог), 75 — с PDF.
+**Осталось перевести: 117 строк.** Из них 45 — темы без кнопки Download (только блог), 72 — с PDF.
