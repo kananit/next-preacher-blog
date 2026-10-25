@@ -100,9 +100,9 @@
 - [x] [blog] Jezebel Spirit — `097-Дух Иезавели — 18 признаков влияния.md`
 - [x] [blog] Jezebel Spirit - 30 Traits To Watch For — `098-Дух Иезавели — 30 признаков и молитва.md`
 
-## K
+## K — готово
 
-- [ ] Kundalini - Full Prayer of Renunciation *(downloads)*
+- [x] Kundalini - Full Prayer of Renunciation *(downloads)* — `106-Кундалини — полная молитва отречения.md`
 
 ## L — готово
 
@@ -309,18 +309,18 @@
 - [x] The Warfare Prayer By Mark I. Bubeck *(downloads)* — `063-Молитва духовной войны Марка Бьюбека.md`
 - [x] The Watchers of 1 Enoch and What They Did *(downloads)* — `072-Стражи из 1 Еноха и что они сделали.md`
 
-## U
+## U — готово
 
 - [x] [blog] Understanding and Dealing With Strongholds — `102-Что такое твердыни и как их разрушать.md`
 
 ## W
 
-- [blog] Warfare Prayer -By Victor Matthews
+- [x] [blog] Warfare Prayer -By Victor Matthews — `108-Молитва духовной войны Виктора Мэтьюза.md`
 - [x] Warfare Prayer for An Unsaved Loved One (Or Saved but In Sin) *(downloads)* — `071-Молитва войны за неспасённого близкого.md`
 - [x] Warfare Prayers - Gene Moody *(downloads)* — `048-Молитвы духовной войны Джина Муди.md`
-- [blog] What About Generational Curses?
+- [x] [blog] What About Generational Curses? — `109-Что говорит Библия о родовых проклятиях.md`
 - [x] What About Generational Issues? - Freedom Step 7 *(steps-to-freedom)* — `009-Шаги к свободе 7 — Как быть с родовыми проклятиями.md`
-- [blog] What Are Witchcraft Dreams?
+- [x] [blog] What Are Witchcraft Dreams? — `107-Колдовские сны — как распознать и что делать.md`
 - [blog] What Can We Do With A Demonized Son or Daughter?
 - [x] What to Expect in Receiving Deliverance *(mfm)* — `028-Чего ожидать при получении освобождения.md`
 - [blog] When One Is Possessed With Another Person’s Spirit
@@ -329,7 +329,7 @@
 - [blog] Who’s In Charge?
 - [blog] Why Are We Planning A Study of the Book of Enoch? *(downloads)*
 
-## #
+## # — готово
 
 - [x] [blog] 👁 Third Eye Awakening Dangers — `103-Опасности пробуждения третьего глаза.md`
 
