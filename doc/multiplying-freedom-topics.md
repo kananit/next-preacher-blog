@@ -83,10 +83,10 @@
 - [x] Handling Fear, Anxiety & Panic  - Freedom Step 5 *(steps-to-freedom)* — `007-Шаги к свободе 5 — Свобода от страха, тревоги и паники.md`
 - [x] Head to Toe Deliverance Prayer *(downloads)* — `031-Молитва освобождения от головы до пят.md`
 - [x] [blog] Head To Toe Deliverance Prayer — `031-Молитва освобождения от головы до пят.md` (та же молитва; blog-статья перенаправляет на PDF)
-- [ ] Healing + Faith Verses + Healings of Christ *(downloads)*
-- [blog] Healing African Americans and Cleansing Bloodline Curses
-- [blog] Healing and Deliverance for Native Americans
-- [blog] How to Command Your Angels
+- [x] Healing + Faith Verses + Healings of Christ *(downloads)* — `129-Исцеление, вера и исцеления Христа.md`
+- [x] [blog] Healing African Americans and Cleansing Bloodline Curses — `126-Исцеление афроамериканцев и очищение родовых проклятий.md`
+- [x] [blog] Healing and Deliverance for Native Americans — `127-Исцеление и освобождение коренных американцев.md`
+- [x] [blog] How to Command Your Angels — `128-Как повелевать своими ангелами.md`
 - [x] [blog] How to Deal With Dreams From the Enemy — `114-Сны от врага — виды, значение, что делать.md`
 - [x] [blog] HOW TO STOP MOVING OBJECTS IN THE BODY — `117-Как остановить движение объектов в теле.md`
 - [ ] How to Study the Bible Devotionally *(downloads)*
