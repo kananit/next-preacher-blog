@@ -78,7 +78,7 @@
 - [x] Generational Curses - Can Christians Be Affected? *(downloads)* — `025-Родовые проклятия — могут ли они затрагивать христиан.md`
 - [x] God's Provision - One Page *(downloads)* — `076-Библейские утверждения о Божьем обеспечении.md` (тот же список, что в PDF)
 
-## H
+## H — готово
 
 - [x] Handling Fear, Anxiety & Panic  - Freedom Step 5 *(steps-to-freedom)* — `007-Шаги к свободе 5 — Свобода от страха, тревоги и паники.md`
 - [x] Head to Toe Deliverance Prayer *(downloads)* — `031-Молитва освобождения от головы до пят.md`
@@ -89,7 +89,7 @@
 - [x] [blog] How to Command Your Angels — `128-Как повелевать своими ангелами.md`
 - [x] [blog] How to Deal With Dreams From the Enemy — `114-Сны от врага — виды, значение, что делать.md`
 - [x] [blog] HOW TO STOP MOVING OBJECTS IN THE BODY — `117-Как остановить движение объектов в теле.md`
-- [ ] How to Study the Bible Devotionally *(downloads)*
+- [x] How to Study the Bible Devotionally *(downloads)* — `130-Как изучать Библию с пользой для души.md`
 - [x] [blog] How to Test the Spirits — `115-Как испытывать духов.md`
 
 ## I — готово
@@ -143,7 +143,7 @@
 - [ ] Prayer - Freemasonry Prayer MFM Complete *(downloads)*
 - [blog] Prayer - Generational Altars In The Bloodline
 - [ ] Prayer - How To Pray For Lost Loved Ones *(downloads)*
-- [ ] Prayer - Lilith, Who is She?  +  Prayer *(downloads)*
+- [x] Prayer - Lilith, Who is She?  +  Prayer *(downloads)* — `100-Лилит — сведения и молитва.md` (полная молитва — `017-Шаги к свободе 15 — Победа над духами извращений и похоти.md`)
 - [ ] Prayer - Renunciation of Satan's Counterfeit Religious System *(downloads)*
 - [ ] Prayer - Renunciations For Martial Arts - and more... *(downloads)*
 - [ ] Prayer - Spirit Spouses *(downloads)*
@@ -179,8 +179,8 @@
 - [blog] PRAYER FOR AUTISM
 - [ ] Prayer For Binding Demonic Spirits *(downloads)*
 - [ ] Prayer For Breaking Word Curses *(downloads)*
-- [blog] Prayer For Closing the Third Eye
-- [ ] Prayer For Closing the Third Eye - Read-a-long *(downloads)*
+- [x] [blog] Prayer For Closing the Third Eye — `135-Молитва о закрытии третьего глаза.md`
+- [x] Prayer For Closing the Third Eye - Read-a-long *(downloads)* — `135-Молитва о закрытии третьего глаза.md`
 - [ ] Prayer For Deception In The Fields Of Performing Arts And Sports *(downloads)*
 - [ ] Prayer For Deliverance - Tattoos *(downloads)*
 - [ ] Prayer for Deliverance from Ahab Spirit *(downloads)*
@@ -196,7 +196,7 @@
 - [ ] Prayer for Release of Maori Ancestry *(downloads)*
 - [blog] Prayer for Releasing the Gift of Discernment
 - [ ] Prayer For Releasing Trauma From the Spirit, Soul, and Body *(downloads)*
-- [blog] Prayer For Renouncing Lilith
+- [x] [blog] Prayer For Renouncing Lilith — `017-Шаги к свободе 15 — Победа над духами извращений и похоти.md`
 - [ ] Prayer For Renunciation Of Generational Druidism *(downloads)*
 - [ ] Prayer For Spiritual House Cleaning + Land *(downloads)*
 - [ ] Prayer For Targeted Individuals *(downloads)*
@@ -236,7 +236,7 @@
 - [x] Prayer to Remove Demonic Influence *(downloads)* — `044-Молитва об удалении демонического влияния.md`
 - [x] Prayer To Remove Entities *(downloads)* — `056-Молитва об изгнании сущностей.md`
 - [x] Prayer to Renounce the Hindu Religion *(downloads)* — `064-Молитва отречения от индуизма.md`
-- [ ] Prayer to Renounce the Jezebel Spirit *(downloads)*
+- [x] Prayer to Renounce the Jezebel Spirit *(downloads)* — `136-Молитва отречения от духа Иезавели.md`
 - [x] [blog] Prayer to Restore a Fragmented Soul — `065-Молитва о восстановлении раздробленной души.md`
 - [x] Prayer to Restore a Fragmented Soul *(downloads)* — `065-Молитва о восстановлении раздробленной души.md`
 - [x] Prayer to Unravel Plan For New World Order (NWO) *(downloads)* — `046-Молитва о разрушении плана нового мирового порядка.md`
@@ -303,10 +303,10 @@
 - [x] The Books of Enoch -  Michael Knibb Translation - 1st, 2nd, & 3rd *(downloads)* (manual)
 - [x] The Curse of the Vagabond AKA The Spirit of Cain *(downloads)* — `019-Дух Каина.md`
 - [x] The Serious Consequences of Dishonoring Parents + Prayer *(downloads)* — `040-Серьёзные последствия непочтения к родителям.md`
-- [blog] The Spirit of Belial
-- [blog] THE STRONGHOLD OF LEVIATHAN
-- [blog] The Top 3 Strongholds Corrupting Your Gift of Discernment
-- [blog] The Victim Spirit
+- [x] [blog] The Spirit of Belial — `131-Дух Велиара и его дела.md`
+- [x] [blog] THE STRONGHOLD OF LEVIATHAN — `132-Твердыня Левиафана.md`
+- [x] [blog] The Top 3 Strongholds Corrupting Your Gift of Discernment — `133-Три твердыни против дара различения.md`
+- [x] [blog] The Victim Spirit — `134-Дух жертвы и как от него освободиться.md`
 - [x] The Warfare Prayer By Mark I. Bubeck *(downloads)* — `063-Молитва духовной войны Марка Бьюбека.md`
 - [x] The Watchers of 1 Enoch and What They Did *(downloads)* — `072-Стражи из 1 Еноха и что они сделали.md`
 
@@ -336,6 +336,6 @@
 
 ---
 
-**Переведено: 125 файлов.** Готовыми помечены 144 строки: 14 строк — это блог/PDF-версии одной темы, ведущие к одному переводу, ещё 5 тем не требуют перевода `(manual)`.
+**Переведено: 130 файлов.** Готовыми помечены 149 строк: 14 строк — это блог/PDF-версии одной темы, ведущие к одному переводу, ещё 5 тем не требуют перевода `(manual)`.
 
-**Осталось перевести: 117 строк.** Из них 45 — темы без кнопки Download (только блог), 72 — с PDF.
+**Осталось перевести: 112 строк.** Из них 42 — темы без кнопки Download (только блог), 70 — с PDF.
