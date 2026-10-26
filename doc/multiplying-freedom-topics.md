@@ -1,6 +1,6 @@
 # Multiplying Freedom — все темы и соответствие переводам
 
-Источник: <https://multiplyingfreedom.com/free-stuff/> · 261 тема · снято 22.10.2026, сверено 25.10.2026
+Источник: <https://multiplyingfreedom.com/free-stuff/> · 261 тема · снято 22.10.2026, сверено 26.10.2026
 
 `[x]` — перевод уже есть в `content/notes/multiplying-freedom/` (имя файла в конце строки).
 `[ ]` — ещё не переведено.
@@ -8,6 +8,7 @@
 `[blog]` — тема без PDF, перевод пока не сделан.
 `(manual)` — тема не требует перевода, отмечена готовой без файла.
 `— готово` у буквы раздела — в разделе переведено всё, непомеченных тем не осталось.
+`(блог-версия строки выше)` / `(дубль строки выше)` — та же тема, отдельного перевода не требует.
 
 
 ## A — готово
@@ -173,19 +174,19 @@
 - [x] Prayer and Renunciations - Native American Roots *(downloads)* — `161-Молитва и отречения — корни коренных американцев.md`
 - [x] Prayer and Renunciations For Inner Vows + Word Curses *(downloads)* — `162-Внутренние обеты — как их отменить.md`
 - [blog] Prayer and Scripture to Cancel Evil Dreams
-- [blog] Prayer Binding + Loosing for Those Not Following Christ
+- [x] [blog] Prayer Binding + Loosing for Those Not Following Christ — `163-Связывание и разрешение за неверующих близких.md`
 - [x] Prayer Binding + Loosing for Those Not Following Christ *(downloads)* — `163-Связывание и разрешение за неверующих близких.md`
-- [blog] Prayer for An Unsaved Loved One - Warfare Prayer
+- [x] [blog] Prayer for An Unsaved Loved One - Warfare Prayer — `071-Молитва войны за неспасённого близкого.md`
 - [blog] PRAYER FOR AUTISM
 - [x] Prayer For Binding Demonic Spirits *(downloads)* — `164-Молитва связывания демонических духов.md`
-- [ ] Prayer For Breaking Word Curses *(downloads)*
+- [x] Prayer For Breaking Word Curses *(downloads)* — `165-Молитва о разрушении словесных проклятий в наш адрес.md`
 - [x] [blog] Prayer For Closing the Third Eye — `135-Молитва о закрытии третьего глаза.md`
 - [x] Prayer For Closing the Third Eye - Read-a-long *(downloads)* — `135-Молитва о закрытии третьего глаза.md`
-- [ ] Prayer For Deception In The Fields Of Performing Arts And Sports *(downloads)*
-- [ ] Prayer For Deliverance - Tattoos *(downloads)*
-- [ ] Prayer for Deliverance from Ahab Spirit *(downloads)*
-- [blog] Prayer for Deliverance from Ahab Spirit *(downloads)*
-- [ ] Prayer For Freedom From Constellations *(downloads)*
+- [x] Prayer For Deception In The Fields Of Performing Arts And Sports *(downloads)* — `166-Молитва против обмана в искусстве и спорте.md`
+- [x] Prayer For Deliverance - Tattoos *(downloads)* — `167-Молитва освобождения от татуировок.md`
+- [x] Prayer for Deliverance from Ahab Spirit *(downloads)* — `006-Шаги к свободе 4 — Свобода от духов Иезавели, Ахава и контроля.md`
+- [x] [blog] Prayer for Deliverance from Ahab Spirit — `006-Шаги к свободе 4 — Свобода от духов Иезавели, Ахава и контроля.md`
+- [x] Prayer For Freedom From Constellations *(downloads)* — `168-Молитва свободы от созвездий.md`
 - [ ] Prayer For Freedom From Gang Stalking *(downloads)*
 - [ ] Prayer for Healing from Auto Immune Disorders *(downloads)*
 - [ ] Prayer For Healing Of Memories *(downloads)*
@@ -206,7 +207,7 @@
 - [ ] Prayer For Wrapping Up Deliverance Session *(downloads)*
 - [blog] Prayer Of Freedom
 - [ ] Prayer of Refuge -  Warfare Prayers *(downloads)*
-- [blog] Prayer of Refuge - Warfare Prayers
+- [blog] Prayer of Refuge - Warfare Prayers (блог-версия строки выше)
 - [ ] Prayer Of Release For Roman Catholics & Their Descendants *(downloads)*
 - [blog] Prayer of Release from Fairy Tales, Nursery Rhymes, and Childhood Stories, Etc.
 - [blog] Prayer of Release from the Multi-Dimensional Zodiac System
@@ -225,7 +226,7 @@
 - [x] Prayer To Break Demonic Covenants and Curses *(downloads)* — `051-Молитва о расторжении бесовских заветов и проклятий.md`
 - [x] Prayer To Break The Generational Curse of the Bastard *(downloads)* — `052-Молитва о разрыве родового проклятия незаконнорождённости.md`
 - [ ] Prayer To Break the World Altar of Satan *(downloads)*
-- [blog] Prayer To Break the World Baal Altar of Satan
+- [blog] Prayer To Break the World Baal Altar of Satan (блог-версия строки выше)
 - [x] Prayer To Control Thought Life or Tormenting Thoughts *(downloads)* — `053-Молитва об обуздании помыслов и мучительных мыслей.md`
 - [x] Prayer to Denounce the Lewis Curse *(downloads)* — `054-Молитва об отречении от проклятия Льюиса.md`
 - [x] Prayer To Dismantle The Roots Of Rebellion *(downloads)* — `055-Молитва об искоренении непокорности.md`
@@ -249,7 +250,7 @@
 - [x] Prayers + Confessions - Last Days Guidance *(downloads)* — `047-Молитвы и исповедания для последних дней.md`
 - [ ] Prayers - DANGEROUS!! *(downloads)*
 - [ ] Prayers - Forgiveness (Simple) *(downloads)*
-- [ ] Prayers - Forgiveness (Simple) *(downloads)*
+- [ ] Prayers - Forgiveness (Simple) *(downloads)* (дубль строки выше)
 - [blog] Prayers - Gene Moody's AM + PM
 - [ ] Prayers -- Healing in Communion *(downloads)*
 - [x] Prayers About Our Given Name *(downloads)* — `039-Молитвы об именах и связанных с ними заветах.md`
@@ -336,6 +337,6 @@
 
 ---
 
-**Переведено: 156 файлов.** Готовыми помечены 178 строк: 17 строк — это блог/PDF-версии одной темы, ведущие к одному переводу, ещё 5 тем не требуют перевода `(manual)`.
+**Переведено: 168 файлов.** Готовыми помечены 196 строк: 23 строки — это блог/PDF-версии одной темы, ведущие к одному переводу, ещё 5 тем не требуют перевода `(manual)`.
 
-**Осталось перевести: 83 строки.** Из них 37 — темы без кнопки Download (только блог), 46 — с PDF.
+**Осталось перевести: 62 темы.** В чек-листе 65 строк: 30 тем с PDF и 32 темы только в блоге, плюс 3 строки-дубля — повтор «Prayers - Forgiveness (Simple)» и блог-версии тем «Prayer of Refuge» и «Prayer To Break the World Altar of Satan».
