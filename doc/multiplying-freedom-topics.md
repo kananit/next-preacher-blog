@@ -131,53 +131,53 @@
 
 - [x] Practical Tips for Spiritual Warriors *(downloads)* — `002-Практические советы для духовных воинов.md`
 - [blog] Prayer & Declarations For Losing Weight
-- [ ] Prayer + Renunciation For Ancestral Incest *(downloads)*
-- [ ] Prayer + Renunciations For Slavery Roots *(downloads)*
+- [x] Prayer + Renunciation For Ancestral Incest *(downloads)* — `137-Молитва отречения от проклятия инцеста.md`
+- [x] Prayer + Renunciations For Slavery Roots *(downloads)* — `138-Молитва отречения от корней рабства.md`
 - [x] Prayer -  Against Spiritual Attack *(downloads)* — `060-Молитва против духовных атак.md`
 - [blog] Prayer - Breaking Generational Curses
-- [ ] Prayer - Cancelling the Jezebel Ahab Curse *(downloads)*
-- [ ] Prayer - Deliverance From Destructive Covenants + Altars *(downloads)*
-- [ ] Prayer - For Inner Healing *(downloads)*
+- [x] Prayer - Cancelling the Jezebel Ahab Curse *(downloads)* — `139-Молитва об отмене проклятия Иезавели и Ахава.md`
+- [x] Prayer - Deliverance From Destructive Covenants + Altars *(downloads)* — `140-Молитва об освобождении от пагубных заветов и алтарей.md`
+- [x] Prayer - For Inner Healing *(downloads)* — `141-Молитва о внутреннем исцелении.md`
 - [x] Prayer - For Sexual Healing *(downloads)* — `124-Молитва об исцелении сексуальности.md`
-- [ ] Prayer - Freemasonry Curse Renunciations *(downloads)*
-- [ ] Prayer - Freemasonry Prayer MFM Complete *(downloads)*
+- [x] Prayer - Freemasonry Curse Renunciations *(downloads)* — `142-Молитва отречения от проклятий масонства.md`
+- [x] Prayer - Freemasonry Prayer MFM Complete *(downloads)* — `143-Молитва об отмене масонских проклятий по степеням.md`
 - [blog] Prayer - Generational Altars In The Bloodline
-- [ ] Prayer - How To Pray For Lost Loved Ones *(downloads)*
+- [x] Prayer - How To Pray For Lost Loved Ones *(downloads)* — `144-Как молиться за неспасённых близких.md`
 - [x] Prayer - Lilith, Who is She?  +  Prayer *(downloads)* — `100-Лилит — сведения и молитва.md` (полная молитва — `017-Шаги к свободе 15 — Победа над духами извращений и похоти.md`)
-- [ ] Prayer - Renunciation of Satan's Counterfeit Religious System *(downloads)*
-- [ ] Prayer - Renunciations For Martial Arts - and more... *(downloads)*
-- [ ] Prayer - Spirit Spouses *(downloads)*
+- [x] Prayer - Renunciation of Satan's Counterfeit Religious System *(downloads)* — `145-Отречение от поддельной религиозной системы сатаны.md`
+- [x] Prayer - Renunciations For Martial Arts - and more... *(downloads)* — `146-Отречение от боевых искусств, йоги и медитации.md`
+- [x] Prayer - Spirit Spouses *(downloads)* — `147-Молитва о духовных супругах.md`
 - [x] Prayer - Spiritual "Bolt Cutter" Prayer *(downloads)* — `068-Молитва «духовные кусачки».md`
 - [blog] Prayer - Spiritual Warfare For The Family
-- [ ] Prayer - Star Signs and Astrology Renunciations *(downloads)*
-- [ ] Prayer - The Spirit of Pharaoh *(downloads)*
-- [ ] Prayer - The Spirit of Religion *(downloads)*
-- [ ] Prayer - To Defeat Sickness + Disease + Infirmity *(downloads)*
-- [ ] Prayer - To Renounce African Gods and Goddesses- *(downloads)*
-- [ ] Prayer - Warfare Prayers 1 *(downloads)*
-- [ ] Prayer - Warfare Prayers 2 *(downloads)*
-- [ ] Prayer - Yoga Renunciation *(downloads)*
-- [ ] Prayer -Binding and Separating Prayer *(downloads)*
+- [x] Prayer - Star Signs and Astrology Renunciations *(downloads)* — `148-Отречение от знаков зодиака и астрологии.md`
+- [x] Prayer - The Spirit of Pharaoh *(downloads)* — `149-Дух фараона, он же дух Египта.md`
+- [x] Prayer - The Spirit of Religion *(downloads)* — `150-Молитва отречения от духа религиозности.md`
+- [x] Prayer - To Defeat Sickness + Disease + Infirmity *(downloads)* — `151-Молитва против болезней и немощи.md`
+- [x] Prayer - To Renounce African Gods and Goddesses- *(downloads)* — `152-Молитва отречения от африканских богов и богинь.md`
+- [x] Prayer - Warfare Prayers 1 *(downloads)* — `155-Молитвы духовной войны 1.md`
+- [x] Prayer - Warfare Prayers 2 *(downloads)* — `156-Молитвы духовной войны 2.md`
+- [x] Prayer - Yoga Renunciation *(downloads)* — `153-Отречение от йоги.md`
+- [x] Prayer -Binding and Separating Prayer *(downloads)* — `154-Молитва связывания и отделения.md`
 - [blog] Prayer About Time
-- [ ] Prayer Affirmations - The Never Again List *(downloads)*
-- [ ] Prayer Against Black Magic *(downloads)*
-- [ ] Prayer Against Dream Attacks *(downloads)*
+- [x] Prayer Affirmations - The Never Again List *(downloads)* — `157-Никогда больше — список библейских утверждений.md`
+- [x] Prayer Against Black Magic *(downloads)* — `155-Молитвы духовной войны 1.md` (молитва входит в сборник)
+- [x] Prayer Against Dream Attacks *(downloads)* — `155-Молитвы духовной войны 1.md` (молитва входит в сборник)
 - [blog] Prayer Against Familiar & Monitoring Spirits
-- [ ] Prayer Against Retaliation *(downloads)*
-- [ ] Prayer Against Spirit of Disconnect *(downloads)*
-- [ ] Prayer Against Territorial Spirits And Satanic Agents *(downloads)*
+- [x] Prayer Against Retaliation *(downloads)* — `158-Молитва против ответного удара.md`
+- [x] Prayer Against Spirit of Disconnect *(downloads)* — `159-Молитва разрыва нечестивых связей.md`
+- [x] Prayer Against Territorial Spirits And Satanic Agents *(downloads)* — `160-Молитва против территориальных духов и агентов сатаны.md`
 - [blog] Prayer Against the Spirit of Betrayal
 - [blog] Prayer Against Violent Weather
 - [blog] Prayer Against Witchcraft Control
 - [blog] Prayer and Deliverance For Evil Generational Bloodlines
-- [ ] Prayer and Renunciations - Native American Roots *(downloads)*
-- [ ] Prayer and Renunciations For Inner Vows + Word Curses *(downloads)*
+- [x] Prayer and Renunciations - Native American Roots *(downloads)* — `161-Молитва и отречения — корни коренных американцев.md`
+- [x] Prayer and Renunciations For Inner Vows + Word Curses *(downloads)* — `162-Внутренние обеты — как их отменить.md`
 - [blog] Prayer and Scripture to Cancel Evil Dreams
 - [blog] Prayer Binding + Loosing for Those Not Following Christ
-- [ ] Prayer Binding + Loosing for Those Not Following Christ *(downloads)*
+- [x] Prayer Binding + Loosing for Those Not Following Christ *(downloads)* — `163-Связывание и разрешение за неверующих близких.md`
 - [blog] Prayer for An Unsaved Loved One - Warfare Prayer
 - [blog] PRAYER FOR AUTISM
-- [ ] Prayer For Binding Demonic Spirits *(downloads)*
+- [x] Prayer For Binding Demonic Spirits *(downloads)* — `164-Молитва связывания демонических духов.md`
 - [ ] Prayer For Breaking Word Curses *(downloads)*
 - [x] [blog] Prayer For Closing the Third Eye — `135-Молитва о закрытии третьего глаза.md`
 - [x] Prayer For Closing the Third Eye - Read-a-long *(downloads)* — `135-Молитва о закрытии третьего глаза.md`
@@ -336,6 +336,6 @@
 
 ---
 
-**Переведено: 130 файлов.** Готовыми помечены 149 строк: 14 строк — это блог/PDF-версии одной темы, ведущие к одному переводу, ещё 5 тем не требуют перевода `(manual)`.
+**Переведено: 156 файлов.** Готовыми помечены 178 строк: 17 строк — это блог/PDF-версии одной темы, ведущие к одному переводу, ещё 5 тем не требуют перевода `(manual)`.
 
-**Осталось перевести: 112 строк.** Из них 42 — темы без кнопки Download (только блог), 70 — с PDF.
+**Осталось перевести: 83 строки.** Из них 37 — темы без кнопки Download (только блог), 46 — с PDF.
